@@ -13,17 +13,25 @@ module.exports = class SK_View extends SK_RootView {
             minimizable: true,
             maximizable: true,
 
-            //minWidth: 1500,
+            minWidth: 500,
             minHeight: 580,
 
-            //alwaysOnTop: true,
+            maxWidth: 1500,
+            maxHeight: 1580,
+
+            alwaysOnTop: true,
             //skipTaskbar: true,
 
             noTitle: true,
 
             show: true,
 
-            mainWindow: true
+            //mainWindow: true
+
+            //frame: false,
+            transparent: true,
+
+            backgroundColor: 'rgba(200, 124, 85, 0.5)'
         }
     }
 
