@@ -6,7 +6,7 @@ module.exports = class SK_View extends SK_RootView {
         super(opt)
         
         this.info = {
-            title: 'SK JUCE',
+            title: 'SK iPlug2 Demo',
 
             width: 1000,
             height: 512,
@@ -19,7 +19,7 @@ module.exports = class SK_View extends SK_RootView {
             maxWidth: 1500,
             maxHeight: 1580,
 
-            alwaysOnTop: true,
+            //alwaysOnTop: true,
             //skipTaskbar: true,
 
             noTitle: true,

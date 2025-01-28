@@ -4,6 +4,10 @@ class SK_App_View extends sk_ui_component {
     constructor(opt){
         super(opt)
 
+
+        
+
+
         var web = require('web')
 
         this.add.label(_c => {
@@ -83,7 +87,7 @@ class SK_App_View extends sk_ui_component {
                 _c.add.progressBar(_c => {
                     _c.styling += ' fullwidth'
                     _c.height = 8
-                    _c.as().line({
+                    _c.as.line({
 
                     })
                 })
