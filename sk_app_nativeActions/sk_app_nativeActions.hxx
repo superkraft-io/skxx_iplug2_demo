@@ -11,7 +11,7 @@ public:
         {"test", new SK_NativeAction_test()}
     };
 
-    SK_App_NativeActions::~SK_App_NativeActions() {
+    ~SK_App_NativeActions() {
         for (auto& pair : actions) {
             delete pair.second;
         }
