@@ -1,8 +1,9 @@
 #pragma once
 
-#include "../skxx/core/sk_common.hxx"
 
-#include "test/test.hxx"
+#include "../skxx/core/sk_common.hpp"
+
+#include "test/test.hpp"
 
 class SK_App_NativeActions {
 public:
