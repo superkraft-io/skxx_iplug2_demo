@@ -1,6 +1,6 @@
 #pragma once
 
-#include "skxx/core/sk_common.hpp"
+#include "./skxx/core/sk_common.hpp"
 
 
 
@@ -10,6 +10,8 @@ class SK_MS_BDFS_Entry {
 public:
     SK_String path;
     SK_String resourceName;
+    
+    SK_MS_BDFS_Entry() : path(), resourceName() {};
 
     int ctime = 0;
     int mtime = 0;
@@ -20,10 +22,10 @@ public:
 
 class SK_MS_BDFS_Dir : SK_MS_BDFS_Entry {
 public:
-    SK_String path;
     SK_String dirs;
     SK_String files;
 
+    SK_MS_BDFS_Dir() : dirs(), files() {};
 
     SK_MS_BDFS_Dir(const SK_String& _path, const SK_String& _dirs, const SK_String& _files) {
         path = _path;
@@ -142,3 +144,4 @@ public:
 };
 
 END_SK_NAMESPACE
+
