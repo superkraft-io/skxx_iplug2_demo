@@ -4,10 +4,6 @@ class SK_App_View extends sk_ui_component {
     constructor(opt){
         super(opt)
 
-
-        
-
-
         var web = require('web')
 
         this.add.label(_c => {

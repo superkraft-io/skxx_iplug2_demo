@@ -22,17 +22,20 @@ module.exports = class SK_App_Main {
         var { BrowserWindow } = require('proton')
 
         var wnd = new BrowserWindow({
-             //movable: false,
+            //movable: false,
             //resizable: true,
             //maxWidth: 500,
             //maxHeight: 300,
             //minWidth: 300,
             //minHeight: 200,
+            frame: false,
             //center: true,
             //alwaysOnTop: true,
             //fullscreen: true
-            frame: false,
-            thickFrame: false
+            
+            //thickFrame: false
+
+            backgroundColor: 'rgba(255,0,0,0.5)',
         })
 
 
@@ -48,7 +51,7 @@ module.exports = class SK_App_Main {
             //wnd.setAlwaysOnTop(!val)
 
             
-            var attribute = 'thickFrame'
+            var attribute = 'frame'
             var val = wnd[attribute]
             wnd[attribute] = !val
             wnd.title = attribute + ' = ' + !val
