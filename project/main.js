@@ -30,7 +30,8 @@ module.exports = class SK_App_Main {
 
             //movable: false,
             //resizable: true,
-            //maximizable: false,
+            //maximizable: true,
+                //fullscreenable: false,
             //minimizable: false,
             //closable: false,
 
@@ -50,7 +51,7 @@ module.exports = class SK_App_Main {
             //y: 300,
             //center: false,
             //alwaysOnTop: true,
-            //fullscreen: true
+            fullscreen: true
         })
 
 
@@ -77,11 +78,12 @@ module.exports = class SK_App_Main {
             //wnd.setAlwaysOnTop(!val)
 
             
-            /*var attribute = 'frame'
+            /*var attribute = 'fullscreen'
             var val = wnd[attribute]
             wnd[attribute] = !val
             wnd.title = attribute + ' = ' + !val
             */
+            
             
             
             
