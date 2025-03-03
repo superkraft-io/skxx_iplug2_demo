@@ -36,9 +36,9 @@ public:
           SK_Global::resizeAllMainWindowView(0, 0, w, h, 1);
 
           #if defined(SK_OS_windows)
-            float scale = getHWNDScale(SK_Global::mainWindowHWND);
-            SetWindowPos(SK_Global::mainWindowHWND, NULL, 0, 0, w * scale, h * scale, SWP_NOMOVE | SWP_NOZORDER);
-            SendMessage(SK_Global::mainWindowHWND, WM_SIZE, SIZE_RESTORED, MAKELPARAM(w * scale, h * scale));
+            float scale = getHWNDScale(SK_Global::mainWindowHandle);
+            SetWindowPos(SK_Global::mainWindowHandle, NULL, 0, 0, w * scale, h * scale, SWP_NOMOVE | SWP_NOZORDER);
+            SendMessage(SK_Global::mainWindowHandle, WM_SIZE, SIZE_RESTORED, MAKELPARAM(w * scale, h * scale));
           #endif
         };
 
@@ -53,7 +53,7 @@ public:
               
             #if defined(SK_OS_windows)
               wnd->wndHandle = static_cast<HWND>(handle);
-              SK_Common::updateWebViewHWNDListForView(wnd->windowClassName);
+              SK_Global::updateWebViewHWNDListForView(wnd->windowClassName);
             #elif defined(SK_OS_apple)
               wnd->wndHandle = (__bridge NSWindow*) handle;
             #endif
@@ -73,6 +73,8 @@ public:
 
         SK_Global::onWebViewReady = [&](void* webview, bool isHardBackend) {
           Superkraft::sk()->wvinit.init(webview, isHardBackend);
+
+
         };
 
         SK_IPC_v2::onSendToFrontend = [&](const SK_String& target, const SK_String& data) {

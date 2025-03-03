@@ -51,7 +51,7 @@ module.exports = class SK_App_Main {
             //y: 300,
             //center: false,
             //alwaysOnTop: true,
-            fullscreen: true
+            //fullscreen: true
         })
 
 

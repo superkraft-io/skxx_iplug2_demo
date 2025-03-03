@@ -2,7 +2,7 @@
 
 
 #include "../skxx/core/sk_include.h"
-#include "../skxx/core/utils/sk_string/sk_string.h"
+#include "../skxx/core/utils/sk_string.h"
 #include "../skxx/core/sk_communication/sk_communication_response.hpp"
 #include "../skxx/module_system/cpp/modules/sk/nativeActions/sk_nativeAction_root.hpp"
 

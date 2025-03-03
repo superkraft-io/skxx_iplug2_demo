@@ -1,6 +1,8 @@
 #pragma once
 
-#include "IPlugSWELL.h"
+#if defined(SK_OS_apple) || defined(SK_OS_apple)
+    #include "IPlugSWELL.h"
+#endif
 
 #if __has_include("./iPlug2_SK/IPlug/IPlugConstants.h")
     #include "config.h"
