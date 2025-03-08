@@ -17,9 +17,11 @@ module.exports = class SK_App_Main {
     preSKStart() {
         console.log('Pre-SK start...')
 
+        return
+        
         //Initialize all your modules here
 
-        var { BrowserWindow } = require('proton')
+        var { app, BrowserWindow } = require('proton')
 
         var wnd = new BrowserWindow({
             //transparent: true,
@@ -78,11 +80,11 @@ module.exports = class SK_App_Main {
             //wnd.setAlwaysOnTop(!val)
 
             
-            /*var attribute = 'fullscreen'
+            /*var attribute = 'alwaysOnTop'
             var val = wnd[attribute]
             wnd[attribute] = !val
-            wnd.title = attribute + ' = ' + !val
-            */
+            wnd.title = attribute + ' = ' + !val*/
+            
             
             
             
@@ -99,6 +101,100 @@ module.exports = class SK_App_Main {
             wnd.width = size.w
             wnd.height = size.h*/
         }, 3000)
+
+
+        var wndEvents = [
+            //{id: 'close'        , log: true},         //macos
+            //{id: 'closed'       , log: true},         //macos
+            //{id: 'blur'         , log: false},        //macos
+            //{id: 'focus'        , log: false},        //macos
+            //{id: 'show'         , log: false},        //macos
+            //{id: 'hide'         , log: false},        //macos
+            //{id: 'maximize'     , log: false},        //macos
+            //{id: 'unmaximize'   , log: false},        //macos
+            //{id: 'minimize'     , log: false},        //macos
+            //{id: 'restore'      , log: false},        //macos
+            //{id: 'will-resize'  , log: true},         //macos
+            //{id: 'resize'       , log: true},         //macos
+            //{id: 'resized'      , log: true},         //macos
+            //{id: 'will-move'    , log: true},         //macos
+            //{id: 'move'         , log: true},         //macos
+            //{id: 'moved'        , log: true},         //macos
+            //{id: 'enter-full-screen', log: true},     //macos
+            //{id: 'leave-full-screen', log: true},     //macos
+            //{id: 'swipe'            , log: true},     //macos
+            //{id: 'rotate-gesture'   , log: true},     //macos
+            //{id: 'sheet-begin'      , log: true},
+            //{id: 'sheet-end'        , log: true},
+
+            {id: 'ready-to-show'        , log: true},
+
+            {id: 'always-on-top-changed', log: false},   //doesn't seem to do anything on ElectronJS, so I'll ignore this
+
+            {id: 'new-window-for-tab'   , log: false},  // what does this one even do?
+            {id: 'app-command'          , log: false},  // windows only !!!
+            {id: 'system-context-menu'  , log: false},  // windows only !!!
+            {id: 'session-end'          , log: false},  // windows only !!!
+        ]
+    
+    
+        var listenToWndEvent = opt => {
+            wnd.on(opt.id, (arg1, arg2, arg3, arg4)=>{
+                var x = 0
+    
+                if (opt.id === 'close'){
+                    arg1.returnValue = false
+                }
+
+                if (!opt.log) return
+                
+                console.log('-----------------------')
+    
+                console.log(opt.id)
+                console.log('')
+                
+                if (arg1){
+                    if (Object.keys(arg1).length > 0){
+                        console.log('arg1')
+                        console.log(JSON.stringify(arg1))
+                        console.log('')
+                    }
+                }
+    
+                if (arg2){
+                    console.log('arg2')
+                    console.log(arg2)
+                    console.log('')
+                }
+                
+                if (arg3){
+                    console.log('arg3')
+                    console.log(arg3)
+                    console.log('')
+                }
+    
+                if (arg4){
+                    console.log('arg4')
+                    console.log(arg4)
+                    console.log('')
+                }
+            })
+        }
+    
+        for (var i in wndEvents) listenToWndEvent(wndEvents[i])
+       
+
+        app.on('ready', ()=>{
+            console.log('app is ready (on ready event)')
+        })
+        
+        app.whenReady().then(()=>{
+            console.log('app is ready (whenReady promise)')
+
+            console.log('loading URL test.html')
+
+            wnd.loadURL('/sk:project/test.html')
+        })
     }
 
     postSKInit(sk) {

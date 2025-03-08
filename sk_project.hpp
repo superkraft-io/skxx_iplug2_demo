@@ -95,6 +95,13 @@ public:
     static inline void onSoftBackend_isReady(){
         if (onSoftBackend_isReady_executed) return;
         
+        SK_Global::sb_ipc->on("sk_app_is_ready", [](nlohmann::json data, SK_Communication_Packet* packet) {
+            packet->response()->JSON_OK();
+            SK_App_Initializer::emitAppEvent("ready", {});
+        });
+        
+        
+        
         SK_Global::sb_ipc->on("valid_event_id", [](nlohmann::json data, SK_Communication_Packet* packet) {
           nlohmann::json json;
 
@@ -122,7 +129,7 @@ public:
             nlohmann::json be_data;
             be_data["this_is"] = "a backend request :)";
 
-            SK_Global::sb_ipc->request("sk.hb", "sk.sb", "requestFromBackend", be_data, [](const SK_String& sender, SK_Communication_Packet* packet) {
+            SK_Global::sb_ipc->request("sk:hb", "sk:sb", "requestFromBackend", be_data, [](const SK_String& sender, SK_Communication_Packet* packet) {
               SK_String key = packet->data["key"];
               DBGMSG("key = %s\n", key.c_str());
             });
