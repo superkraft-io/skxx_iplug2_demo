@@ -78,7 +78,7 @@ public:
         };
 
         SK_IPC_v2::onSendToFrontend = [&](const SK_String& target, const SK_String& data) {
-          SK_String str = "console.log('data incoming: ' + JSON.stringify(" + data + ")); sk_api.ipc.handleIncoming(" + data + ")";
+          SK_String str = "sk_api.ipc.handleIncoming(" + data + ")";
 
           if (target == "sk:sb")
           {

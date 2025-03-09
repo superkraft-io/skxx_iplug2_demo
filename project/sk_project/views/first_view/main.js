@@ -31,7 +31,7 @@ module.exports = class SK_View extends SK_RootView {
             //frame: false,
             transparent: true,
 
-            backgroundColor: 'rgba(200, 124, 85, 0.5)'
+            //backgroundColor: 'rgba(200, 124, 85, 0.5)'
         }
     }
 
