@@ -36,17 +36,19 @@ public:
           SK_Global::resizeAllMainWindowView(0, 0, w, h, 1);
 
           #if defined(SK_OS_windows)
-            float scale = getHWNDScale(SK_Global::mainWindowHandle);
-            SetWindowPos(SK_Global::mainWindowHandle, NULL, 0, 0, w * scale, h * scale, SWP_NOMOVE | SWP_NOZORDER);
-            SendMessage(SK_Global::mainWindowHandle, WM_SIZE, SIZE_RESTORED, MAKELPARAM(w * scale, h * scale));
+            float scale = getHWNDScale(SK_Global::mainWindow->wndHandle);
+            SetWindowPos(SK_Global::mainWindow->wndHandle, NULL, 0, 0, w * scale, h * scale, SWP_NOMOVE | SWP_NOZORDER);
+            SendMessage(SK_Global::mainWindow->wndHandle, WM_SIZE, SIZE_RESTORED, MAKELPARAM(w * scale, h * scale));
           #endif
         };
 
 
         SK_Global::onMainWindowHWNDAcquired = [&](void* handle) {
           SK_Window* wnd = Superkraft::sk()->wndMngr.newWindow([&](SK_Window* wnd) {
-            wnd->config["width"] = pAppHost->sInstance->GetPlug()->GetEditorWidth();
-            wnd->config["height"] = pAppHost->sInstance->GetPlug()->GetEditorHeight();
+            SK_Global::mainWindow = wnd;
+
+            wnd->config.data["width"] = pAppHost->sInstance->GetPlug()->GetEditorWidth();
+            wnd->config.data["height"] = pAppHost->sInstance->GetPlug()->GetEditorHeight();
 
             wnd->tag = "sb";
             wnd->config["visible"] = true;
