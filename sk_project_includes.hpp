@@ -1,6 +1,6 @@
 #pragma once
 
-#if defined(SK_OS_apple) || defined(SK_OS_apple)
+#if defined(SK_OS_apple)
     #include "IPlugSWELL.h"
 #endif
 
@@ -11,7 +11,7 @@
     #define SK_FRAMEWORK_iPlug2
     #undef SK_FRAMEWORK_Superkraft
 
-    #ifdef VST2_API
+    #if defined(VST2_API)
         #undef SK_APP_TYPE_app
 
         #define SK_APP_TYPE "vst"
@@ -19,15 +19,15 @@
         #define SK_APP_TYPE_vst2
 
 
-    #elif defined AU_API
+    #elif defined(AU_API)
         #undef SK_APP_TYPE_app
 
         #define SK_APP_TYPE "au"
         #define SK_APP_TYPE_au
-        #define SK_APP_TYPE_au1
+        #define SK_APP_TYPE_au2
 
 
-    #elif defined AUv3_API
+    #elif defined(AUv3_API)
         #undef SK_APP_TYPE_app
 
         #define SK_APP_TYPE "au"
@@ -35,14 +35,14 @@
         #define SK_APP_TYPE_au3
 
 
-    #elif defined AAX_API
+    #elif defined(AAX_API)
         #undef SK_APP_TYPE_app
 
         #define SK_APP_TYPE "aax"
         #define SK_APP_TYPE_aax
 
 
-    #elif defined APP_API
+    #elif defined(APP_API)
         #undef SK_APP_TYPE_app
 
         #define SK_APP_TYPE "app"
@@ -56,14 +56,14 @@
         #define SK_APP_TYPE_wam
 
 
-    #elif defined WEB_API
+    #elif defined(WEB_API)
         #undef SK_APP_TYPE_app
 
         #define SK_APP_TYPE "webapi"
         #define SK_APP_TYPE_webapi
 
 
-    #elif defined VST3_API
+    #elif defined(VST3_API)
         #undef SK_APP_TYPE_app
 
         #define SK_APP_TYPE "vst"
@@ -71,7 +71,7 @@
         #define SK_APP_TYPE_vst3
 
 
-    #elif defined VST3C_API
+    #elif defined(VST3C_API)
         #undef SK_APP_TYPE_app
 
         #define SK_APP_TYPE "vst"
@@ -79,7 +79,7 @@
         #define SK_APP_TYPE_vst3
 
 
-    #elif defined VST3P_API
+    #elif defined(VST3P_API)
         #undef SK_APP_TYPE_app
 
         #define SK_APP_TYPE "vst"
@@ -87,7 +87,7 @@
         #define SK_APP_TYPE_vst3
 
 
-    #elif defined CLAP_API
+    #elif defined(CLAP_API)
         #undef SK_APP_TYPE_app
 
         #define SK_APP_TYPE "clap"
