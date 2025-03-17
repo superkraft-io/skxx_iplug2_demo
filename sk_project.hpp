@@ -7,7 +7,7 @@
 
 #if defined(SK_APP_TYPE_app)
     #include "IPlugAPP_host.h"
-    using iPlugInstance = IPlugAPP;
+    using iPlugInstance = iplug::IPlugAPP;
 #elif defined(SK_APP_TYPE_au2)
     //#include "IPlugAU.h"
     using iPlugInstance = iplug::IPlugAPIBase;
@@ -34,26 +34,26 @@ public:
         Superkraft::_sk = new Superkraft();
         
         SK_Global::getMainWindowSize = [&]() {
-          SK_Point size{instance->GetEditorWidth(), instance->GetEditorHeight()};
-          return size;
+            SK_Point size{instance->GetEditorWidth(), instance->GetEditorHeight()};
+            return size;
         };
 
         SK_Global::setMainWindowSize = [&](int w, int h) {
-        instance->SetEditorSize(w, h);
-        instance->OnParentWindowResize(w, h);
+            instance->SetEditorSize(w, h);
+            instance->OnParentWindowResize(w, h);
 
 
-          SK_Global::resizeAllMainWindowView(0, 0, w, h, 1);
+            SK_Global::resizeAllMainWindowViews(0, 0, w, h, 1);
 
-          #if defined(SK_OS_windows)
-            float scale = getHWNDScale(SK_Global::mainWindow->wndHandle);
-            SetWindowPos(SK_Global::mainWindow->wndHandle, NULL, 0, 0, w * scale, h * scale, SWP_NOMOVE | SWP_NOZORDER);
-            SendMessage(SK_Global::mainWindow->wndHandle, WM_SIZE, SIZE_RESTORED, MAKELPARAM(w * scale, h * scale));
-          #endif
+            #if defined(SK_OS_windows)
+                float scale = getHWNDScale(SK_Global::mainWindow->wndHandle);
+                SetWindowPos(SK_Global::mainWindow->wndHandle, NULL, 0, 0, w * scale, h * scale, SWP_NOMOVE | SWP_NOZORDER);
+                SendMessage(SK_Global::mainWindow->wndHandle, WM_SIZE, SIZE_RESTORED, MAKELPARAM(w * scale, h * scale));
+            #endif
         };
 
 
-        SK_Global::onMainWindowHWNDAcquired = [&](void* handle) {
+        SK_Global::onMainWindowHWNDAcquired = [&](void* handle, bool isView = false) {
             SK_Window* wnd = Superkraft::sk()->wndMngr.newWindow([&](SK_Window* wnd) {
                 SK_Global::mainWindow = wnd;
 
@@ -68,7 +68,13 @@ public:
                     SK_Global::updateWebViewHWNDListForView(wnd->windowClassName);
                 #elif defined(SK_OS_apple)
                     #ifdef __OBJC__
-                        wnd->wndHandle = (__bridge NSWindow*) handle;
+                        if (!isView){
+                            wnd->wndHandle = (__bridge NSWindow*) handle;
+                            wnd->contentView = wnd->wndHandle.contentView;
+                        } else {
+                            wnd->contentView = (__bridge NSView*) handle;
+                            wnd->wndHandle = wnd->contentView.window;
+                        }
                     #endif
                 #endif
                   
@@ -99,6 +105,10 @@ public:
                 SK_Window* view = Superkraft::sk()->wndMngr.findWindowByTag(target);
                 view->webview.evaluateScript(str, NULL);
             }
+        };
+        
+        SK_Global::preConfigWnd = [](SK_Window* wnd, nlohmann::json constructorOpts){
+           //code here
         };
     }
     
