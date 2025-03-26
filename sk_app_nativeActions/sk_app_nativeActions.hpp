@@ -10,10 +10,19 @@
 
 class SK_App_NativeActions {
 public:
+    //SK_Global* skg;
+
+
 
     std::unordered_map<std::string, void*> actions {
         {"test", new SK_NativeAction_test()}
     };
+
+
+
+    SK_App_NativeActions() {
+        //skg = _skg;
+    }
 
     ~SK_App_NativeActions() {
         for (auto& pair : actions) {

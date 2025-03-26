@@ -24,7 +24,7 @@ module.exports = class SK_App_Main {
         var { app, BrowserWindow } = require('proton')
 
         var wnd = new BrowserWindow({
-            mainWindow: true,
+            //mainWindow: true,
             //transparent: true,
             //backgroundColor: 'rgba(255,0,0,0.5)',
             //frame: false,
