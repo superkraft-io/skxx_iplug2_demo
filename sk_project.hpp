@@ -90,6 +90,11 @@ public:
                 #endif
                   
                 skg->sb_ipc = wnd->ipc;
+                
+                wnd->onDestroyed = [&, wnd](){
+                    SK_Window_MacOS_Delegate* wndDelegate = wnd->wndDelegate;
+                    skg->sb_ipc = nullptr;
+                };
 
                 static_cast<Superkraft*>(skg->sk)->comm->sb_ipc = wnd->ipc;
 
