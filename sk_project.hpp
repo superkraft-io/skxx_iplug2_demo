@@ -92,7 +92,10 @@ public:
                 skg->sb_ipc = wnd->ipc;
                 
                 wnd->onDestroyed = [&, wnd](){
-                    SK_Window_MacOS_Delegate* wndDelegate = wnd->wndDelegate;
+                    #if defined(SK_OS_apple)
+                        SK_Window_MacOS_Delegate* wndDelegate = wnd->wndDelegate;
+                    #endif
+                    
                     skg->sb_ipc = nullptr;
                 };
 
