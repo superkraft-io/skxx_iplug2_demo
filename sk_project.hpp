@@ -40,7 +40,7 @@ public:
             }
             else {
                 SK_Window* view = static_cast<Superkraft*>(skg->sk)->wndMngr->findWindowByTag(target);
-                view->webview.evaluateScript(str, NULL);
+                if (view) view->webview.evaluateScript(str, NULL);
             }
          };
 
