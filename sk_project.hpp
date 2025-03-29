@@ -4,68 +4,105 @@
 #include "skxx/core/superkraft.hpp"
 
 #include "IPlugPlatform.h"
-#include "IPlugAPP_host.h"
+
+using iPlugInstance = iplug::IPlugAPIBase;
 
 using namespace iplug;
 
 class SK_Project {
 public:
-    static inline bool initialized;
-    static inline bool onSoftBackend_isReady_executed;
+    SK_Global* skg;
+
+    bool initialized = false;
+    bool onSoftBackend_isReady_executed = false;
     
-    static inline IPlugAPPHost* pAppHost;
+    iPlugInstance* instance;
     
-    static inline void init(IPlugAPPHost* _pAppHost){
+    SK_Project(SK_Global* _skg) {
+        skg = _skg;
+    }
+
+    void init(iPlugInstance* _instance = nullptr){
         if (initialized) return;
-        
-        pAppHost = _pAppHost;
-        
-        SK::SK_Machine::cpuInfo = SK::SK_Machine::getCPUInformation();
-        Superkraft::_sk = new Superkraft();
-        
-        SK_Global::getMainWindowSize = [&]() {
-          SK_Point size{pAppHost->sInstance->GetPlug()->GetEditorWidth(), pAppHost->sInstance->GetPlug()->GetEditorHeight()};
-          return size;
+
+        if (_instance) {
+            instance = _instance;
+        }
+
+        SK_Machine* skm = static_cast<SK_Machine*>(skg->machine);
+        skm->cpuInfo = skm->getCPUInformation();
+
+        skg->sendMsgToWebview = [&](const SK_String& target, const SK_String& data) {
+            SK_String str = "sk_api.ipc.handleIncoming(" + data + ")";
+
+            if (target == "sk:sb") {
+                instance->EvaluateJavaScript(str.c_str());
+            }
+            else {
+                SK_Window* view = static_cast<Superkraft*>(skg->sk)->wndMngr->findWindowByTag(target);
+                if (view) view->webview.evaluateScript(str, NULL);
+            }
+         };
+
+        skg->getMainWindowSize = [&]() {
+            SK_Point size{instance->GetEditorWidth(), instance->GetEditorHeight()};
+            return size;
         };
 
-        SK_Global::setMainWindowSize = [&](int w, int h) {
-          pAppHost->sInstance->GetPlug()->SetEditorSize(w, h);
-          pAppHost->sInstance->GetPlug()->OnParentWindowResize(w, h);
+        skg->setMainWindowSize = [&](int w, int h) {
+            instance->SetEditorSize(w, h);
+            instance->OnParentWindowResize(w, h);
 
 
-          SK_Global::resizeAllMainWindowView(0, 0, w, h, 1);
+            skg->resizeAllMainWindowViews(0, 0, w, h, 1);
 
-          #if defined(SK_OS_windows)
-            float scale = getHWNDScale(SK_Global::mainWindow->wndHandle);
-            SetWindowPos(SK_Global::mainWindow->wndHandle, NULL, 0, 0, w * scale, h * scale, SWP_NOMOVE | SWP_NOZORDER);
-            SendMessage(SK_Global::mainWindow->wndHandle, WM_SIZE, SIZE_RESTORED, MAKELPARAM(w * scale, h * scale));
-          #endif
-        };
-
-
-        SK_Global::onMainWindowHWNDAcquired = [&](void* handle) {
-          SK_Window* wnd = Superkraft::sk()->wndMngr.newWindow([&](SK_Window* wnd) {
-            SK_Global::mainWindow = wnd;
-
-            wnd->config.data["width"] = pAppHost->sInstance->GetPlug()->GetEditorWidth();
-            wnd->config.data["height"] = pAppHost->sInstance->GetPlug()->GetEditorHeight();
-
-            wnd->tag = "sb";
-            wnd->config["visible"] = true;
-              
             #if defined(SK_OS_windows)
-              wnd->wndHandle = static_cast<HWND>(handle);
-              SK_Global::updateWebViewHWNDListForView(wnd->windowClassName);
-            #elif defined(SK_OS_apple)
-              wnd->wndHandle = (__bridge NSWindow*) handle;
+                float scale = skg->mainWindow->getHWNDScale(skg->mainWindow->wndHandle);
+                SetWindowPos(skg->mainWindow->wndHandle, NULL, 0, 0, w * scale, h * scale, SWP_NOMOVE | SWP_NOZORDER);
+                SendMessage(skg->mainWindow->wndHandle, WM_SIZE, SIZE_RESTORED, MAKELPARAM(w * scale, h * scale));
             #endif
-              
-            SK_Global::sb_ipc = &wnd->ipc;
+        };
 
-            Superkraft::sk()->comm.sb_ipc = &wnd->ipc;
 
-            SK_Project::onSoftBackend_isReady();
-          });
+        skg->onMainWindowHWNDAcquired = [&](void* handle, bool isView = false) {
+            SK_Window* wnd = static_cast<Superkraft*>(skg->sk)->wndMngr->newWindow([&](SK_Window* wnd) {
+                skg->mainWindow = wnd;
+
+                wnd->config.data["width"] = instance->GetEditorWidth();
+                wnd->config.data["height"] = instance->GetEditorHeight();
+
+                wnd->tag = "sb";
+                wnd->config["visible"] = true;
+                  
+                #if defined(SK_OS_windows)
+                    wnd->wndHandle = static_cast<HWND>(handle);
+                    skg->updateWebViewHWNDListForView(wnd->windowClassName);
+                #elif defined(SK_OS_apple)
+                    #ifdef __OBJC__
+                        if (!isView){
+                            wnd->wndHandle = (__bridge NSWindow*) handle;
+                            wnd->contentView = wnd->wndHandle.contentView;
+                        } else {
+                            wnd->contentView = (__bridge NSView*) handle;
+                            wnd->wndHandle = wnd->contentView.window;
+                        }
+                    #endif
+                #endif
+                  
+                skg->sb_ipc = wnd->ipc;
+                
+                wnd->onDestroyed = [&, wnd](){
+                    #if defined(SK_OS_apple)
+                        SK_Window_MacOS_Delegate* wndDelegate = wnd->wndDelegate;
+                    #endif
+                    
+                    skg->sb_ipc = nullptr;
+                };
+
+                static_cast<Superkraft*>(skg->sk)->comm->sb_ipc = wnd->ipc;
+
+                onSoftBackend_isReady();
+            });
         };
 
           
@@ -73,80 +110,86 @@ public:
           
           
 
-        SK_Global::onWebViewReady = [&](void* webview, bool isHardBackend) {
-          Superkraft::sk()->wvinit.init(webview, isHardBackend);
-
-
+        skg->onWebViewReady = [&](void* webview, bool isHardBackend) {
+            static_cast<Superkraft*>(skg->sk)->wvinit.init(webview, isHardBackend);
         };
 
-        SK_IPC_v2::onSendToFrontend = [&](const SK_String& target, const SK_String& data) {
-          SK_String str = "sk_api.ipc.handleIncoming(" + data + ")";
 
-          if (target == "sk:sb")
-          {
-            pAppHost->sInstance->GetPlug()->EvaluateJavaScript(str.c_str());
-          }
-          else
-          {
-            SK_Window* view = Superkraft::sk()->wndMngr.findWindowByTag(target);
-            view->webview.evaluateScript(str, NULL);
-          }
+        
+        
+        skg->onPreConfigWnd = [](SK_Window* wnd, nlohmann::json constructorOpts){
+           //code here
         };
+
+        #if defined(SK_APP_TYPE_vst)
+            skg->onPostConfigWnd = [](SK_Window* wnd) {
+                for (auto& [key, value] : wnd->config_updateTracker.items()) {
+                    value = false;
+                }
+            };
+
+            skg->onWndCreated = [](SK_Window* wnd) {
+                wnd->updateWebView();
+            };
+        #endif
     }
     
-    static inline void onSoftBackend_isReady(){
+    void onSoftBackend_isReady(){
         if (onSoftBackend_isReady_executed) return;
-        
-        SK_Global::sb_ipc->on("sk_app_is_ready", [](nlohmann::json data, SK_Communication_Packet* packet) {
+
+        SK_IPC_v2* ipc = static_cast<SK_IPC_v2*>(skg->sb_ipc);
+
+        SK_Global* _skg = skg;
+        ipc->on("sk_app_is_ready", [&, _skg](nlohmann::json data, SK_Communication_Packet* packet) {
             packet->response()->JSON_OK();
-            SK_App_Initializer::emitAppEvent("ready", {});
+
+            SK_App_Initializer* appInitializer = static_cast<SK_App_Initializer*>(skg->appInitializer);
+            appInitializer->emitAppEvent("ready", {});
         });
         
         
         
-        SK_Global::sb_ipc->on("valid_event_id", [](nlohmann::json data, SK_Communication_Packet* packet) {
-          nlohmann::json json;
+        ipc->on("valid_event_id", [](nlohmann::json data, SK_Communication_Packet* packet) {
+            nlohmann::json json;
 
-          std::string frontend_message = std::string(data["key"]);
+            std::string frontend_message = std::string(data["key"]);
 
-          json["backend_said"] = "hello frontend :)";
-          packet->response()->JSON(json);
+            json["backend_said"] = "hello frontend :)";
+            packet->response()->JSON(json);
         });
 
-        SK_Global::sb_ipc->once("valid_event_id_once", [](nlohmann::json data, SK_Communication_Packet* packet) {
-          nlohmann::json json;
+        ipc->once("valid_event_id_once", [](nlohmann::json data, SK_Communication_Packet* packet) {
+            nlohmann::json json;
 
-          SK_String frontend_message = data["key"];
+            SK_String frontend_message = data["key"];
 
-          json["backend_said"] = "hello frontend :) deleting this event now";
-          packet->response()->JSON(json);
+            json["backend_said"] = "hello frontend :) deleting this event now";
+            packet->response()->JSON(json);
         });
 
 
-        SK_Global::sb_ipc->onMessage = [&](const SK_String& sender, SK_Communication_Packet* packet) {
-          SK_String action = packet->data["action"];
+        ipc->onMessage = [&](const SK_String& sender, SK_Communication_Packet* packet) {
+            SK_String action = packet->data["action"];
 
-          if (action == "reqFromBE")
-          {
-            nlohmann::json be_data;
-            be_data["this_is"] = "a backend request :)";
+            if (action == "reqFromBE") {
+                nlohmann::json be_data;
+                be_data["this_is"] = "a backend request :)";
+                
+                ipc->request("sk:hb", "sk:sb", "requestFromBackend", be_data, [](const SK_String& sender, SK_Communication_Packet* packet) {
+                    SK_String key = packet->data["key"];
+                    DBGMSG("key = %s\n", key.c_str());
+                });
+            }
+            else if (action == "msgFromBE")
+            {
+                nlohmann::json be_data;
+                be_data["this_is"] = "a message from backend :)";
 
-            SK_Global::sb_ipc->request("sk:hb", "sk:sb", "requestFromBackend", be_data, [](const SK_String& sender, SK_Communication_Packet* packet) {
-              SK_String key = packet->data["key"];
-              DBGMSG("key = %s\n", key.c_str());
-            });
-          }
-          else if (action == "msgFromBE")
-          {
-            nlohmann::json be_data;
-            be_data["this_is"] = "a message from backend :)";
-
-            SK_Global::sb_ipc->message(be_data);
-          }
-          else
-          {
-            DBGMSG("data = %s\n", packet->data.dump().c_str());
-          }
+                ipc->message(be_data);
+            }
+            else {
+                DBGMSG("data = %s\n", packet->data.dump().c_str());
+            }
         };
     }
 };

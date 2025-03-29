@@ -134,6 +134,8 @@ public:
 
         return SK_String(json.str());
         */
+        
+        return {};
     }
 
     std::unordered_map<std::string, SK_MS_BDFS_Dir*> dirEntries {
