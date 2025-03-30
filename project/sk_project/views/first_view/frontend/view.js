@@ -7,8 +7,53 @@ class SK_App_View extends sk_ui_component {
         var web = require('web')
 
         this.add.label(_c => {
-            _c.text = 'Welcome to Superkraft :)'
+            _c.text = 'Welcome to Superkraft for iPlug2 😎'
             _c.marginBottom = 64
+        })
+
+        this.add.group(_c => {
+            _c._header.weight = 'bold'
+            _c._header.size = 18
+            _c.header = 'Native Action'
+
+            _c.container.setup(_c => {
+                _c.add.text(_c => {
+                    _c.styling += ' fullwidth'
+                    _c.wrap = true
+                    _c.text = 'Below is a set of parameters that are available in the plugin.'
+                })
+
+                _c.add.text(_c => {
+                    _c.styling += ' fullwidth'
+                    _c.wrap = true
+                    _c.text = 'The parameters can be automatable in your DAW and Superkraft will handle all the logic for reading and writing the parameter values.'
+                })
+
+                this.add.checkbox(_c => {
+                    _c.pluginParamID = 'Boolean'
+                    _c.text = 'Boolean'
+                })
+
+                this.add.switch(_c => {
+                    _c.pluginParamID = 'Boolean'
+                    _c.text = 'Boolean'
+                })
+
+                this.add.checkbox(_c => {
+                    _c.pluginParamID = 'Integer'
+                    _c.text = 'Integer'
+                })
+
+                this.add.checkbox(_c => {
+                    _c.pluginParamID = 'Boolean'
+                    _c.text = 'Integer'
+                })
+
+                this.add.checkbox(_c => {
+                    _c.text = 'Integer'
+                })
+            })
+
         })
 
         this.add.group(_c => {
