@@ -34,12 +34,12 @@ class SK_App_View extends sk_ui_component {
                     _c.text = 'Boolean'
                 })
 
-                this.add.switch(_c => {
+                /*this.add.switch(_c => {
                     _c.pluginParamID = 'Boolean'
                     _c.text = 'Boolean'
                 })
 
-                this.add.checkbox(_c => {
+                this.add.checkb ox(_c => {
                     _c.pluginParamID = 'Integer'
                     _c.text = 'Integer'
                 })
@@ -52,6 +52,7 @@ class SK_App_View extends sk_ui_component {
                 this.add.checkbox(_c => {
                     _c.text = 'Integer'
                 })
+                */
             })
 
         })

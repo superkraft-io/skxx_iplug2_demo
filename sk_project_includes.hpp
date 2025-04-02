@@ -1,5 +1,7 @@
 #pragma once
 
+#include "IPlugParameter.h"
+
 #if defined(SK_OS_apple)
     #include "IPlugSWELL.h"
 #endif
@@ -14,7 +16,8 @@
     #if defined(VST2_API)
         #undef SK_APP_TYPE_app
 
-        #define SK_APP_TYPE "vst"
+        #define SK_APP_TYPE "plugin"
+        #define SK_APP_TYPE_plugin
         #define SK_APP_TYPE_vst
         #define SK_APP_TYPE_vst2
 
@@ -22,7 +25,8 @@
     #elif defined(AU_API)
         #undef SK_APP_TYPE_app
 
-        #define SK_APP_TYPE "au"
+        #define SK_APP_TYPE "plugin"
+        #define SK_APP_TYPE_plugin
         #define SK_APP_TYPE_au
         #define SK_APP_TYPE_au2
 
@@ -30,7 +34,8 @@
     #elif defined(AUv3_API)
         #undef SK_APP_TYPE_app
 
-        #define SK_APP_TYPE "au"
+        #define SK_APP_TYPE "plugin"
+        #define SK_APP_TYPE_plugin
         #define SK_APP_TYPE_au
         #define SK_APP_TYPE_au3
 
@@ -38,7 +43,8 @@
     #elif defined(AAX_API)
         #undef SK_APP_TYPE_app
 
-        #define SK_APP_TYPE "aax"
+        #define SK_APP_TYPE "plugin"
+        #define SK_APP_TYPE_plugin
         #define SK_APP_TYPE_aax
 
 
@@ -66,7 +72,8 @@
     #elif defined(VST3_API)
         #undef SK_APP_TYPE_app
 
-        #define SK_APP_TYPE "vst"
+        #define SK_APP_TYPE "plugin"
+        #define SK_APP_TYPE_plugin
         #define SK_APP_TYPE_vst
         #define SK_APP_TYPE_vst3
 
@@ -74,7 +81,8 @@
     #elif defined(VST3C_API)
         #undef SK_APP_TYPE_app
 
-        #define SK_APP_TYPE "vst"
+        #define SK_APP_TYPE "plugin"
+        #define SK_APP_TYPE_plugin
         #define SK_APP_TYPE_vst
         #define SK_APP_TYPE_vst3
 
@@ -82,7 +90,8 @@
     #elif defined(VST3P_API)
         #undef SK_APP_TYPE_app
 
-        #define SK_APP_TYPE "vst"
+        #define SK_APP_TYPE "plugin"
+        #define SK_APP_TYPE_plugin
         #define SK_APP_TYPE_vst
         #define SK_APP_TYPE_vst3
 
@@ -90,8 +99,14 @@
     #elif defined(CLAP_API)
         #undef SK_APP_TYPE_app
 
-        #define SK_APP_TYPE "clap"
+        #define SK_APP_TYPE "plugin"
+        #define SK_APP_TYPE_plugin
         #define SK_APP_TYPE_clap
     #else
     #endif
 #endif
+
+
+using SK_GetPluginInstance_CB = std::function<void*()>;
+using SK_FindPluginParamByName_CB = std::function<iplug::IParam*(const std::string& paramName)>;
+using SK_FindPluginParamIdxByName_CB = std::function<int(const std::string& paramName)>;

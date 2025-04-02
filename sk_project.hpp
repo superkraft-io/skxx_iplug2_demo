@@ -3,9 +3,10 @@
 #include "skxx/core/sk_common.hpp"
 #include "skxx/core/superkraft.hpp"
 
+#include "IPlugWebUI_SK.h"
+
 #include "IPlugPlatform.h"
 
-using iPlugInstance = iplug::IPlugAPIBase;
 
 using namespace iplug;
 
@@ -16,19 +17,46 @@ public:
     bool initialized = false;
     bool onSoftBackend_isReady_executed = false;
     
-    iPlugInstance* instance;
+    IPlugAPIBase* instance;
     
     SK_Project(SK_Global* _skg) {
         skg = _skg;
     }
 
-    void init(iPlugInstance* _instance = nullptr){
+    void init(IPlugAPIBase* _instance = nullptr){
         if (initialized) return;
 
         if (_instance) {
             instance = _instance;
         }
 
+        skg->getPluginInstance = [&]() {
+            return instance;
+        };
+        
+        skg->findPluginParamByName = [&](const std::string& paramName) -> iplug::IParam* {
+            for (int i = 0; i < kNumParams; i++) {
+                IParam* param = instance->GetParam(i);
+                if (SK_String(param->GetName()) == paramName) {
+                    return param;
+                }
+            }
+            
+            return nullptr;
+        };
+        
+        skg->findPluginParamIdxByName = [&](const std::string& paramName) {
+            IParam*  targetParam = skg->findPluginParamByName(paramName);
+            
+            for (int i = 0; i < kNumParams; i++) {
+               if (instance->GetParam(i) == targetParam){
+                   return i;
+               }
+            }
+            
+            return -1; // Not found
+        };
+        
         SK_Machine* skm = static_cast<SK_Machine*>(skg->machine);
         skm->cpuInfo = skm->getCPUInformation();
 
@@ -44,6 +72,67 @@ public:
             }
          };
 
+        
+        
+        skg->handlePluginParamEvent = [&](const nlohmann::json& payload, SK_Communication_Response& respondWith){
+            SK_String pluginParamID = payload["pluginParamID"];
+            iplug::IParam* param = skg->findPluginParamByName(pluginParamID);
+            int paramIdx = skg->findPluginParamIdxByName(pluginParamID);
+
+            if (param == NULL) {
+                respondWith.error(404, "invalid_plugin_param_id");
+                return;
+            }
+
+            SK_String event = payload["event"];
+
+            if (event == "read") {
+                respondWith.JSON(nlohmann::json{
+                    {"value", 0}//SK_String(param->getValue()) }
+                });
+                //DBG(responseData);
+                return;
+            }
+            else if (event == "contextmenu") {
+                if (skg->runningAs == "app") {
+                    respondWith.error(404, "standalone_runtime");
+                    return;
+                }
+
+                int left = payload["left"];
+                int top = payload["top"];
+
+                #if defined(SK_FRAMEWORK_JUCE)
+                    auto ctx = vbe->editor->getHostContext();
+                    std::unique_ptr<juce::HostProvidedContextMenu> menu = ctx->getContextMenuForParameter(param);
+                    menu.get()->showNativeMenu(Points<int>{left, top});
+                #elif defined(SK_FRAMEWORK_iPlug2)
+                    //WHY IS THIS NOT ACTIVATED???
+                    //wip
+                    int x = 0;
+                #endif
+            }
+            else if (event == "write") {
+                double value = payload["value"] || 0;
+                double normalizedValue = param->ToNormalized(value);
+                param->Set(normalizedValue);
+            }
+            else if (event == "mousedown"){
+                instance->BeginInformHostOfParamChangeFromUI(paramIdx);
+            }
+            else if (event == "mouseup"){
+                instance->EndInformHostOfParamChangeFromUI(paramIdx);
+            }
+                                             
+            respondWith.JSON_OK();
+        };
+        
+        
+        
+        
+        
+        
+        
         skg->getMainWindowSize = [&]() {
             SK_Point size{instance->GetEditorWidth(), instance->GetEditorHeight()};
             return size;
@@ -121,7 +210,7 @@ public:
            //code here
         };
 
-        #if defined(SK_APP_TYPE_vst)
+        #if defined(SK_APP_TYPE_plugin)
             skg->onPostConfigWnd = [](SK_Window* wnd) {
                 for (auto& [key, value] : wnd->config_updateTracker.items()) {
                     value = false;
