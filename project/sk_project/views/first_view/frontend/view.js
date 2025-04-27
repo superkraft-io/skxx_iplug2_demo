@@ -4,6 +4,8 @@ class SK_App_View extends sk_ui_component {
     constructor(opt){
         super(opt)
 
+        this.styling = 'left middle ttb scrollable'
+        
         var web = require('web')
 
         this.add.label(_c => {
@@ -14,7 +16,8 @@ class SK_App_View extends sk_ui_component {
         this.add.group(_c => {
             _c._header.weight = 'bold'
             _c._header.size = 18
-            _c.header = 'Native Action'
+            _c.header = 'DAW Plugin Parameters'
+            _c.width = 300
 
             _c.container.setup(_c => {
                 _c.add.text(_c => {
@@ -29,30 +32,23 @@ class SK_App_View extends sk_ui_component {
                     _c.text = 'The parameters can be automatable in your DAW and Superkraft will handle all the logic for reading and writing the parameter values.'
                 })
 
-                this.add.checkbox(_c => {
+                _c.add.switch(_c => {
                     _c.pluginParamID = 'Boolean'
                     _c.text = 'Boolean'
                 })
 
-                /*this.add.switch(_c => {
-                    _c.pluginParamID = 'Boolean'
-                    _c.text = 'Boolean'
-                })
-
-                this.add.checkb ox(_c => {
+                _c.add.slider(_c => {
                     _c.pluginParamID = 'Integer'
-                    _c.text = 'Integer'
-                })
 
-                this.add.checkbox(_c => {
-                    _c.pluginParamID = 'Boolean'
-                    _c.text = 'Integer'
-                })
+                    _c.style.maxWidth = '300px'
 
-                this.add.checkbox(_c => {
-                    _c.text = 'Integer'
+                    _c.step = 1
+                    _c.min = 1
+                    _c.max = 9
+                    _c.defaultValue = 5
+
+                    _c.smooth = false
                 })
-                */
             })
 
         })

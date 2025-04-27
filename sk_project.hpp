@@ -86,14 +86,7 @@ public:
 
             SK_String event = payload["event"];
 
-            if (event == "read") {
-                respondWith.JSON(nlohmann::json{
-                    {"value", 0}//SK_String(param->getValue()) }
-                });
-                //DBG(responseData);
-                return;
-            }
-            else if (event == "contextmenu") {
+            if (event == "contextmenu") {
                 if (skg->runningAs == "app") {
                     respondWith.error(404, "standalone_runtime");
                     return;
@@ -112,10 +105,17 @@ public:
                     int x = 0;
                 #endif
             }
+            else if (event == "read") {
+                respondWith.JSON(nlohmann::json{
+                    {"value", param->Value()}
+                });
+                
+                return;
+            }
             else if (event == "write") {
-                double value = payload["value"] || 0;
-                double normalizedValue = param->ToNormalized(value);
-                param->Set(normalizedValue);
+                float value = payload["value"];
+                //double normalizedValue = param->ToNormalized(value);
+                param->Set(value);
             }
             else if (event == "mousedown"){
                 instance->BeginInformHostOfParamChangeFromUI(paramIdx);
