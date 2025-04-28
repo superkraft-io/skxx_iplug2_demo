@@ -7,6 +7,7 @@
 
 #include "IPlugPlatform.h"
 
+#include "WebView2.h"
 
 using namespace iplug;
 
@@ -18,6 +19,10 @@ public:
     bool onSoftBackend_isReady_executed = false;
     
     IPlugAPIBase* instance;
+
+    #if defined(SK_OS_windows)
+        wil::com_ptr<ICoreWebView2SharedBuffer> sharedBuffer;
+    #endif
     
     SK_Project(SK_Global* _skg) {
         skg = _skg;
@@ -35,7 +40,7 @@ public:
         };
         
         skg->findPluginParamByName = [&](const std::string& paramName) -> iplug::IParam* {
-            for (int i = 0; i < kNumParams; i++) {
+            for (int i = 0; i < instance->NParams(); i++) {
                 IParam* param = instance->GetParam(i);
                 if (SK_String(param->GetName()) == paramName) {
                     return param;
@@ -48,7 +53,7 @@ public:
         skg->findPluginParamIdxByName = [&](const std::string& paramName) {
             IParam*  targetParam = skg->findPluginParamByName(paramName);
             
-            for (int i = 0; i < kNumParams; i++) {
+            for (int i = 0; i < instance->NParams(); i++) {
                if (instance->GetParam(i) == targetParam){
                    return i;
                }
@@ -114,8 +119,16 @@ public:
             }
             else if (event == "write") {
                 float value = payload["value"];
-                //double normalizedValue = param->ToNormalized(value);
-                param->Set(value);
+                double normalizedValue = param->ToNormalized(value);
+
+                instance->BeginInformHostOfParamChangeFromUI(paramIdx);
+                instance->SendParameterValueFromUI(paramIdx, normalizedValue);
+                instance->EndInformHostOfParamChangeFromUI(paramIdx);
+                //instance->SetParameterValue(paramIdx, normalizedValue); //this is for VST3
+
+                //The two lines below are for AU if the above line doesn't work for AU
+                //param->SetNormalized(normalizedValue);
+                //instance->EndInformHostOfParamChangeFromUI(paramIdx);
             }
             else if (event == "mousedown"){
                 instance->BeginInformHostOfParamChangeFromUI(paramIdx);
@@ -199,8 +212,13 @@ public:
           
           
 
-        skg->onWebViewReady = [&](void* webview, bool isHardBackend) {
+        skg->onWebViewReady = [&](void* wnd, void* webview, bool isHardBackend) {
             static_cast<Superkraft*>(skg->sk)->wvinit.init(webview, isHardBackend);
+
+            SK_Window* _wnd = static_cast<SK_Window*>(wnd);
+            if (_wnd->config.data.contains("accessParameters") && _wnd->config.data["accessParameters"] == true) {
+                constructParametersForView(_wnd);
+            }
         };
 
 
@@ -223,6 +241,19 @@ public:
         #endif
     }
     
+
+    void constructParametersForView(SK_Window* wnd) {
+        size_t bufferSize = instance->NParams() * sizeof(float);
+
+        #if defined(SK_OS_windows)
+            HRESULT hr = wnd->webview.environment12->CreateSharedBuffer(bufferSize, &sharedBuffer);
+        #endif
+    }
+
+    void updateParamValue(int paramIdx, float value) {
+
+    }
+
     void onSoftBackend_isReady(){
         if (onSoftBackend_isReady_executed) return;
 
