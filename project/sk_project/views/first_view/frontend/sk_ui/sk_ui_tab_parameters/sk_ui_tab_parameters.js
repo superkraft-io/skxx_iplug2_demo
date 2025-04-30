@@ -85,6 +85,12 @@ class sk_ui_tab_parameters extends sk_ui_component {
                 _c.add.list(_c => {
                     _c.pluginParamID = 'List'
 
+                    _c.highlightOnSelect = true
+
+                    _c.style.border = 'solid 1px var(--sk_ui_color_dark_grey_2)'
+                    _c.roundness = 12
+                    _c.backgroundColor = 'var(--sk_ui_color_very_dark_grey_2)'
+
                     _c.items.add({
                         label: 'Option 1'
                     })

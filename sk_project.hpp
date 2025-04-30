@@ -20,9 +20,15 @@ public:
     
     IPlugAPIBase* instance;
 
+
+    std::vector<float> paramValues;
+
     #if defined(SK_OS_windows)
-        wil::com_ptr<ICoreWebView2SharedBuffer> sharedBuffer;
+        //...
     #endif
+    
+
+    SK_Window* parameterListener = NULL;
     
     SK_Project(SK_Global* _skg) {
         skg = _skg;
@@ -121,9 +127,7 @@ public:
                 float value = payload["value"];
                 double normalizedValue = param->ToNormalized(value);
 
-                instance->BeginInformHostOfParamChangeFromUI(paramIdx);
                 instance->SendParameterValueFromUI(paramIdx, normalizedValue);
-                instance->EndInformHostOfParamChangeFromUI(paramIdx);
                 //instance->SetParameterValue(paramIdx, normalizedValue); //this is for VST3
 
                 //The two lines below are for AU if the above line doesn't work for AU
@@ -213,11 +217,40 @@ public:
           
 
         skg->onWebViewReady = [&](void* wnd, void* webview, bool isHardBackend) {
+            //generate ordered list of parameter names
+            SK_String pluginParameters = "";
+            if (instance->NParams() == 1){
+                pluginParameters = "'" + SK_String(instance->GetParam(0)->GetName()) + "'";
+            }
+            else {
+                for (int i = 0; i < instance->NParams() - 1; i++) {
+                    IParam* param = instance->GetParam(i);
+                    pluginParameters += "{id:'" + SK_String(param->GetName()) + "',value:" + SK_String(param->Value()) + "},";
+                }
+
+                IParam* param = instance->GetParam(instance->NParams() - 1);
+                pluginParameters += "{id:'" + SK_String(param->GetName()) + "',value:" + SK_String(param->Value()) + "}";
+            }
+
+            pluginParameters = "[" + pluginParameters + "]";
+
+            static_cast<Superkraft*>(skg->sk)->wvinit.pluginParameters = pluginParameters;
+
+
+
+
+            //initialize the webview
             static_cast<Superkraft*>(skg->sk)->wvinit.init(webview, isHardBackend);
 
             SK_Window* _wnd = static_cast<SK_Window*>(wnd);
-            if (_wnd->config.data.contains("accessParameters") && _wnd->config.data["accessParameters"] == true) {
-                constructParametersForView(_wnd);
+            if (_wnd->config.data.contains("accessPluginParameters") && _wnd->config.data["accessPluginParameters"] == true) {
+                for (int i = 0; i < instance->NParams(); i++) {
+                    IParam* param = instance->GetParam(i);
+                    paramValues.push_back(param->Value());
+                }
+
+
+                parameterListener = _wnd;
             }
         };
 
@@ -242,16 +275,50 @@ public:
     }
     
 
-    void constructParametersForView(SK_Window* wnd) {
-        size_t bufferSize = instance->NParams() * sizeof(float);
 
-        #if defined(SK_OS_windows)
-            HRESULT hr = wnd->webview.environment12->CreateSharedBuffer(bufferSize, &sharedBuffer);
-        #endif
-    }
+    void updateParamValues() {
+        if (!parameterListener) return;
+        
+        bool anyParamHasChanged = false;
 
-    void updateParamValue(int paramIdx, float value) {
+        for (int i = 0; i < instance->NParams() - 1; i++) {
+            IParam* param = instance->GetParam(i);
+            float value = param->Value();
+            if (paramValues[i] != value) {
+                paramValues[i] = value;
+                anyParamHasChanged = true;
+            }
+        }
 
+        if (!anyParamHasChanged) return;
+
+
+        UINT bufferSize = static_cast<UINT>(paramValues.size() * sizeof(float));
+        wil::com_ptr<ICoreWebView2SharedBuffer> sharedBuffer;
+        HRESULT hr = parameterListener->webview.environment12->CreateSharedBuffer(bufferSize, &sharedBuffer);
+        if (FAILED(hr)) {
+            return;
+        }        
+
+        BYTE* bufferData = nullptr;
+        hr = sharedBuffer->get_Buffer(&bufferData);
+        if (FAILED(hr)) {
+            return;
+        }
+
+        memcpy(bufferData, paramValues.data(), bufferSize);
+
+
+
+        std::wstring additionalData = L"{\"id\":\"pluginParamUpdate\"}";
+        hr = parameterListener->webview.webview17->PostSharedBufferToScript(
+            sharedBuffer.get(),
+            COREWEBVIEW2_SHARED_BUFFER_ACCESS_READ_ONLY,
+            additionalData.c_str()
+        );
+        if (FAILED(hr)) {
+            return;
+        }
     }
 
     void onSoftBackend_isReady(){

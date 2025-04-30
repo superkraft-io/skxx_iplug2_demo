@@ -32,6 +32,8 @@ module.exports = class SK_View extends SK_RootView {
             //transparent: true,
 
             //backgroundColor: 'rgba(200, 124, 85, 0.5)'
+
+            accessPluginParameters: true, //this tells the SK++ backend that this view will need to access the plugin parameters
         }
     }
 
