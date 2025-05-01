@@ -110,3 +110,5 @@
 using SK_GetPluginInstance_CB = std::function<void*()>;
 using SK_FindPluginParamByName_CB = std::function<iplug::IParam*(const std::string& paramName)>;
 using SK_FindPluginParamIdxByName_CB = std::function<int(const std::string& paramName)>;
+
+using SK_PopupCtxMenu_CB = std::function<void(int paramIdx, int x, int y)>;

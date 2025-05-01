@@ -1,101 +1,59 @@
 #pragma once
 
+#include "./skxx/core/sk_common.hpp"
+
+#include "IPlugWebUI_SK.h"
 #include "IPlugPlatform.h"
-#include "IGraphicsPopupMenu.h"
+
+#include "./iPlug2_SK/IPlug/VST3/IPlugVST3.h"
+
+#include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/base/istringresult.h"
+#include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/base/ipersistent.h"
+#include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/base/funknown.h"
+#include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/vst/vsttypes.h"
+#include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/vst/ivstcontextmenu.h"
 
 using namespace iplug;
 
 class SK_Plugin_ContextMenu {
 public:
-    iplug::igraphics::IPopupMenu popupMenu;
+    SK::SK_Global* skg;
 
-    SK_Plugin_ContextMenu() {
 
+    SK_Plugin_ContextMenu(SK::SK_Global* _skg) {
+        skg = _skg;
+
+        skg->popupContextMenu = [&](int paramIdx, int x, int y) {
+            popup(paramIdx, x, y);
+        };
     }
 
     void popup(int paramIdx, int x, int y){
-        iplug::igraphics::IPopupMenu& contextMenu = popupMenu;
-  contextMenu.Clear();
 
-  if(pControl)
-  {
-    pControl->CreateContextMenu(contextMenu);
 
-#if defined VST3_API || defined VST3C_API
-    VST3_API_BASE* pVST3 = dynamic_cast<VST3_API_BASE*>(GetDelegate());
+        #if defined(SK_APP_TYPE)
 
-    if (!pVST3->GetComponentHandler() || !pVST3->GetView())
-      return;
+            if (iplug::IPlugVST3* pVST3 = static_cast<iplug::IPlugVST3*>(skg->getPluginInstance())) {
+                Steinberg::FUnknownPtr<Steinberg::Vst::IComponentHandler3>handler(pVST3->GetComponentHandler());
 
-    Steinberg::FUnknownPtr<Steinberg::Vst::IComponentHandler3>handler(pVST3->GetComponentHandler() );
+                if (handler == 0) {
+                    return;
+                }
 
-    if (handler == 0)
-      return;
+                // Query the IComponentHandler3 interface
+                Steinberg::Vst::ParamID pid = static_cast<Steinberg::Vst::ParamID>(paramIdx);
+                Steinberg::Vst::IContextMenu* menu = handler->createContextMenu(pVST3->GetView(), &pid);
+                if (menu) {
+                    // (Optional) Add custom items:
+                    // Steinberg::Vst::IContextMenu::Item item = {0};
+                    // UString128("My Item").copyTo(item.name, 128);
+                    // item.tag = 1;
+                    // menu->addItem(item, myTarget); 
+                    menu->popup(static_cast<Steinberg::UCoord>(x), static_cast<Steinberg::UCoord>(y));
+                    menu->release();
+                }
+            }
 
-    Steinberg::Vst::ParamID p = paramIdx;
-
-    Steinberg::Vst::IContextMenu* pVST3ContextMenu = handler->createContextMenu(pVST3->GetView(), &p);
-
-    if (pVST3ContextMenu)
-    {
-      std::function<void(IPopupMenu* pCurrentMenu)> populateFunc;
-      Steinberg::int32 tag = 0;
-      
-      populateFunc = [&populateFunc, &tag, pVST3ContextMenu, pControl](IPopupMenu* pCurrentMenu) {
-        Steinberg::Vst::IContextMenu::Item item = {0};
-
-        for (int i = 0; i < pCurrentMenu->NItems(); i++)
-        {
-          Steinberg::UString128 (pCurrentMenu->GetItemText(i)).copyTo (item.name, 128);
-          item.tag = tag++;
-          item.flags = 0;
-          
-          if (pCurrentMenu->GetItem(i)->GetIsSeparator())
-          {
-            item.flags = Steinberg::Vst::IContextMenu::Item::kIsSeparator;
-          }
-          else if (auto pSubMenu = pCurrentMenu->GetItem(i)->GetSubmenu())
-          {
-            item.flags = Steinberg::Vst::IContextMenu::Item::kIsGroupStart;
-            pVST3ContextMenu->addItem(item, pControl);
-            populateFunc(pSubMenu);
-            item.tag = tag++;
-            item.flags = Steinberg::Vst::IContextMenu::Item::kIsGroupEnd;
-            pVST3ContextMenu->addItem(item, pControl);
-            continue;
-          }
-          else
-          {
-            if (!pCurrentMenu->GetItem(i)->GetEnabled())
-              item.flags |= Steinberg::Vst::IContextMenu::Item::kIsDisabled;
-            
-            if (pCurrentMenu->GetItem(i)->GetChecked())
-              item.flags |= Steinberg::Vst::IContextMenu::Item::kIsChecked;
-          }
-          
-          pVST3ContextMenu->addItem(item, pControl);
-        }
-      };
-      
-      populateFunc(&contextMenu);
-     
-#ifdef OS_WIN
-      x *= GetTotalScale();
-      y *= GetTotalScale();
-#else
-      x *= GetDrawScale();
-      y *= GetDrawScale();
-#endif
-      pVST3ContextMenu->popup((Steinberg::UCoord) x, (Steinberg::UCoord) y);
-      pVST3ContextMenu->release();
-    }
-
-#else
-    if(!contextMenu.NItems())
-      return;
-
-    DoCreatePopupMenu(*pControl, contextMenu, IRECT(x, y, x, y), kNoValIdx, true);
-#endif
-  }
+        #endif
     }
 };

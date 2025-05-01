@@ -2,6 +2,7 @@
 
 #include "skxx/core/sk_common.hpp"
 #include "skxx/core/superkraft.hpp"
+#include "sk_plugin_contextMenu.hpp"
 
 #include "IPlugWebUI_SK.h"
 
@@ -20,6 +21,7 @@ public:
     
     IPlugAPIBase* instance;
 
+    SK_Plugin_ContextMenu* plugCtxMenu;
 
     std::vector<float> paramValues;
 
@@ -32,6 +34,7 @@ public:
     
     SK_Project(SK_Global* _skg) {
         skg = _skg;
+        plugCtxMenu = new SK_Plugin_ContextMenu(skg);
     }
 
     void init(IPlugAPIBase* _instance = nullptr){
@@ -106,15 +109,8 @@ public:
                 int left = payload["left"];
                 int top = payload["top"];
 
-                #if defined(SK_FRAMEWORK_JUCE)
-                    auto ctx = vbe->editor->getHostContext();
-                    std::unique_ptr<juce::HostProvidedContextMenu> menu = ctx->getContextMenuForParameter(param);
-                    menu.get()->showNativeMenu(Points<int>{left, top});
-                #elif defined(SK_FRAMEWORK_iPlug2)
-                    //WHY IS THIS NOT ACTIVATED???
-                    //wip
-                    int x = 0;
-                #endif
+                plugCtxMenu->popup(paramIdx, left, top);
+
             }
             else if (event == "read") {
                 respondWith.JSON(nlohmann::json{
