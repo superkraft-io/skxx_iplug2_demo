@@ -5,13 +5,17 @@
 #include "IPlugWebUI_SK.h"
 #include "IPlugPlatform.h"
 
-#include "./iPlug2_SK/IPlug/VST3/IPlugVST3.h"
+#if defined(SK_APP_TYPE_vst)
+    #include "./iPlug2_SK/IPlug/VST3/IPlugVST3.h"
 
-#include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/base/istringresult.h"
-#include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/base/ipersistent.h"
-#include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/base/funknown.h"
-#include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/vst/vsttypes.h"
-#include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/vst/ivstcontextmenu.h"
+    #include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/base/istringresult.h"
+    #include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/base/ipersistent.h"
+    #include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/base/funknown.h"
+    #include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/vst/vsttypes.h"
+    #include "./iPlug2_SK/Dependencies/IPlug/VST3_SDK/pluginterfaces/vst/ivstcontextmenu.h"
+#elif defined(SK_APP_TYPE_au)
+    #include <AudioUnit/AudioUnit.h>
+#endif
 
 using namespace iplug;
 
@@ -31,8 +35,7 @@ public:
     void popup(int paramIdx, int x, int y){
 
 
-        #if defined(SK_APP_TYPE)
-
+        #if defined(SK_APP_TYPE_vst)
             if (iplug::IPlugVST3* pVST3 = static_cast<iplug::IPlugVST3*>(skg->getPluginInstance())) {
                 Steinberg::FUnknownPtr<Steinberg::Vst::IComponentHandler3>handler(pVST3->GetComponentHandler());
 
@@ -53,7 +56,11 @@ public:
                     menu->release();
                 }
             }
-
+        
+        #elif defined(SK_APP_TYPE_au)
+            #ifdef __OBJC__
+                //Not available in AU
+            #endif
         #endif
     }
 };

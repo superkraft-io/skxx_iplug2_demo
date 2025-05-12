@@ -8,7 +8,9 @@
 
 #include "IPlugPlatform.h"
 
-#include "WebView2.h"
+#if defined(SK_OS_windows)
+    #include "WebView2.h"
+#endif
 
 using namespace iplug;
 
@@ -24,10 +26,6 @@ public:
     SK_Plugin_ContextMenu* plugCtxMenu;
 
     std::vector<float> paramValues;
-
-    #if defined(SK_OS_windows)
-        //...
-    #endif
     
 
     SK_Window* parameterListener = NULL;
@@ -43,6 +41,8 @@ public:
         if (_instance) {
             instance = _instance;
         }
+        
+        skg->sk_config["host"] = getHostName();
 
         skg->getPluginInstance = [&]() {
             return instance;
@@ -177,13 +177,14 @@ public:
                 wnd->config["visible"] = true;
                   
                 #if defined(SK_OS_windows)
-                    wnd->wndHandle = static_cast<HWND>(handle);
+                    wnd->wndHandle = static_cast<HWND>(handle);º
                     skg->updateWebViewHWNDListForView(wnd->windowClassName);
                 #elif defined(SK_OS_apple)
                     #ifdef __OBJC__
                         if (!isView){
                             wnd->wndHandle = (__bridge NSWindow*) handle;
-                            wnd->contentView = wnd->wndHandle.contentView;
+                            NSWindow* _wndHandle = wnd->wndHandle;
+                            wnd->contentView = _wndHandle.contentView;
                         } else {
                             wnd->contentView = (__bridge NSView*) handle;
                             wnd->wndHandle = wnd->contentView.window;
@@ -194,11 +195,9 @@ public:
                 skg->sb_ipc = wnd->ipc;
                 
                 wnd->onDestroyed = [&, wnd](){
-                    #if defined(SK_OS_apple)
-                        SK_Window_MacOS_Delegate* wndDelegate = wnd->wndDelegate;
-                    #endif
-                    
-                    skg->sb_ipc = nullptr;
+                    /*if (wnd->tag == "sb") {
+                        skg->sb_ipc = nullptr; //<<<<<<<------ HERE
+                    }*/
                 };
 
                 static_cast<Superkraft*>(skg->sk)->comm->sb_ipc = wnd->ipc;
@@ -230,13 +229,13 @@ public:
 
             pluginParameters = "[" + pluginParameters + "]";
 
-            static_cast<Superkraft*>(skg->sk)->wvinit.pluginParameters = pluginParameters;
+            static_cast<Superkraft*>(skg->sk)->wvinit->pluginParameters = pluginParameters;
 
 
 
 
             //initialize the webview
-            static_cast<Superkraft*>(skg->sk)->wvinit.init(webview, isHardBackend);
+            static_cast<Superkraft*>(skg->sk)->wvinit->init(webview, isHardBackend);
 
             SK_Window* _wnd = static_cast<SK_Window*>(wnd);
             if (_wnd->config.data.contains("accessPluginParameters") && _wnd->config.data["accessPluginParameters"] == true) {
@@ -258,9 +257,17 @@ public:
         };
 
         #if defined(SK_APP_TYPE_plugin)
-            skg->onPostConfigWnd = [](SK_Window* wnd) {
+            skg->onPostConfigWnd = [&](SK_Window* wnd) {
                 for (auto& [key, value] : wnd->config_updateTracker.items()) {
                     value = false;
+                }
+                
+                if (wnd->config.data.contains("mainWindow") && wnd->config.data["mainWindow"] == true) {
+                    //Custom host specific styling can happen here
+                    /*if (skg->sk_config["host"] == "Studio One"){
+                        wnd->config.data["frame"] = false;
+                        wnd->config.data["roundness"] = 0.0f;
+                    }*/
                 }
             };
 
@@ -273,48 +280,64 @@ public:
 
 
     void updateParamValues() {
-        if (!parameterListener) return;
+        if (parameterListener == NULL) return;
         
         bool anyParamHasChanged = false;
 
-        for (int i = 0; i < instance->NParams() - 1; i++) {
-            IParam* param = instance->GetParam(i);
-            float value = param->Value();
-            if (paramValues[i] != value) {
-                paramValues[i] = value;
-                anyParamHasChanged = true;
+        
+        #if defined(SK_OS_windows)
+            for (int i = 0; i < instance->NParams() - 1; i++) {
+                IParam* param = instance->GetParam(i);
+                float value = param->Value();
+                if (paramValues[i] != value) {
+                    paramValues[i] = value;
+                    anyParamHasChanged = true;
+                }
             }
-        }
 
-        if (!anyParamHasChanged) return;
-
-
-        UINT bufferSize = static_cast<UINT>(paramValues.size() * sizeof(float));
-        wil::com_ptr<ICoreWebView2SharedBuffer> sharedBuffer;
-        HRESULT hr = parameterListener->webview.environment12->CreateSharedBuffer(bufferSize, &sharedBuffer);
-        if (FAILED(hr)) {
-            return;
-        }        
-
-        BYTE* bufferData = nullptr;
-        hr = sharedBuffer->get_Buffer(&bufferData);
-        if (FAILED(hr)) {
-            return;
-        }
-
-        memcpy(bufferData, paramValues.data(), bufferSize);
+            if (!anyParamHasChanged) return;
 
 
+            UINT bufferSize = static_cast<UINT>(paramValues.size() * sizeof(float));
+            wil::com_ptr<ICoreWebView2SharedBuffer> sharedBuffer;
+            HRESULT hr = parameterListener->webview.environment12->CreateSharedBuffer(bufferSize, &sharedBuffer);
+            if (FAILED(hr)) {
+                return;
+            }
 
-        std::wstring additionalData = L"{\"id\":\"pluginParamUpdate\"}";
-        hr = parameterListener->webview.webview17->PostSharedBufferToScript(
-            sharedBuffer.get(),
-            COREWEBVIEW2_SHARED_BUFFER_ACCESS_READ_ONLY,
-            additionalData.c_str()
-        );
-        if (FAILED(hr)) {
-            return;
-        }
+            BYTE* bufferData = nullptr;
+            hr = sharedBuffer->get_Buffer(&bufferData);
+            if (FAILED(hr)) {
+                return;
+            }
+
+            memcpy(bufferData, paramValues.data(), bufferSize);
+
+
+
+            std::wstring additionalData = L"{\"id\":\"pluginParamUpdate\"}";
+            hr = parameterListener->webview.webview17->PostSharedBufferToScript(
+                sharedBuffer.get(),
+                COREWEBVIEW2_SHARED_BUFFER_ACCESS_READ_ONLY,
+                additionalData.c_str()
+            );
+            if (FAILED(hr)) {
+                return;
+            }
+        #elif defined(SK_OS_macos)
+            #ifdef __OBJC__
+                if (!instance) return;
+        
+                for (int i = 0; i < instance->NParams() - 1; i++) {
+                    IParam* param = instance->GetParam(i);
+                    float value = param->Value();
+                    if (paramValues[i] != value) {
+                        paramValues[i] = value;
+                        parameterListener->webview.evaluateScript("window.sk_api.pluginMngr.updateParameter(" + SK_String(i) + "," + SK_String(value) + ")", NULL);
+                    }
+                }
+            #endif
+        #endif
     }
 
     void onSoftBackend_isReady(){
@@ -374,5 +397,60 @@ public:
                 DBGMSG("data = %s\n", packet->data.dump().c_str());
             }
         };
+    }
+    
+    
+    SK_String getHostName() {
+        int hostID = instance->GetHost();
+        
+        switch (hostID) {
+            case kHostUnknown:           return "Unknown";
+            case kHostReaper:            return "Reaper";
+            case kHostProTools:          return "Pro Tools";
+            case kHostCubase:            return "Cubase";
+            case kHostNuendo:            return "Nuendo";
+            case kHostSonar:             return "Sonar";
+            case kHostVegas:             return "Vegas";
+            case kHostFL:                return "FL Studio";
+            case kHostSamplitude:        return "Samplitude";
+            case kHostAbletonLive:       return "Ableton Live";
+            case kHostTracktion:         return "Tracktion";
+            case kHostNTracks:           return "NTracks";
+            case kHostMelodyneStudio:    return "Melodyne Studio";
+            case kHostVSTScanner:        return "VST Scanner";
+            case kHostAULab:             return "AU Lab";
+            case kHostForte:             return "Forte";
+            case kHostChainer:           return "Chainer";
+            case kHostAudition:          return "Audition";
+            case kHostOrion:             return "Orion";
+            case kHostBias:              return "Bias";
+            case kHostSAWStudio:         return "SAWStudio";
+            case kHostLogic:             return "Logic";
+            case kHostGarageBand:        return "GarageBand";
+            case kHostDigitalPerformer:  return "Digital Performer";
+            case kHostStandalone:        return "Standalone";
+            case kHostAudioMulch:        return "AudioMulch";
+            case kHostStudioOne:         return "Studio One";
+            case kHostVST3TestHost:      return "VST3 Test Host";
+            case kHostArdour:            return "Ardour";
+            case kHostRenoise:           return "Renoise";
+            case kHostOpenMPT:           return "OpenMPT";
+            case kHostWaveLab:           return "WaveLab";
+            case kHostWaveLabElements:   return "WaveLab Elements";
+            case kHostTwistedWave:       return "TwistedWave";
+            case kHostBitwig:            return "Bitwig";
+            case kHostWWW:               return "WWW (Web Host)";
+            case kHostReason:            return "Reason";
+            case kHostGoldWave5x:        return "GoldWave 5.x";
+            case kHostWaveform:          return "Waveform";
+            case kHostAudacity:          return "Audacity";
+            case kHostAcoustica:         return "Acoustica";
+            case kHostPluginDoctor:      return "Plugin Doctor";
+            case kHostiZotopeRX:         return "iZotope RX";
+            case kHostSAVIHost:          return "SAVIHost";
+            case kHostBlueCat:           return "BlueCat";
+            case kHostMixbus32C:         return "Mixbus32C";
+            default:                     return "Unknown Host";
+        }
     }
 };

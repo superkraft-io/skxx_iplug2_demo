@@ -19,6 +19,8 @@ module.exports = class SK_View extends SK_RootView {
             maxWidth: 1500,
             maxHeight: 1580,
 
+            resizable: false,
+
             //alwaysOnTop: true,
             //skipTaskbar: true,
 
