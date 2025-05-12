@@ -177,7 +177,7 @@ public:
                 wnd->config["visible"] = true;
                   
                 #if defined(SK_OS_windows)
-                    wnd->wndHandle = static_cast<HWND>(handle);º
+                    wnd->wndHandle = static_cast<HWND>(handle);
                     skg->updateWebViewHWNDListForView(wnd->windowClassName);
                 #elif defined(SK_OS_apple)
                     #ifdef __OBJC__
