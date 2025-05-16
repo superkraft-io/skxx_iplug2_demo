@@ -256,6 +256,23 @@ public:
            //code here
         };
 
+        skg->onBeforeWndResize = [this](SK_Window* wnd){
+            if (wnd->config.data.contains("mainWindow") && wnd->config.data["mainWindow"] == true){
+                int w = wnd->config.data["width"];
+                int h = wnd->config.data["height"];
+                
+                #if defined(SK_APP_TYPE_vst3)
+                    IPlugVST3* _instance = static_cast<IPlugVST3*>(instance);
+                    _instance->GetView()->Resize(w, h);
+                #elif defined(SK_APP_TYPE_au2)
+                    IPlugAU* plugin = static_cast<IPlugAU*>(instance); // cast directly to your plugin class
+                    plugin->Resize(w, h);
+                #endif
+            }
+            
+            return SK_Point(-2, -2);
+        };
+        
         #if defined(SK_APP_TYPE_plugin)
             skg->onPostConfigWnd = [&](SK_Window* wnd) {
                 for (auto& [key, value] : wnd->config_updateTracker.items()) {
