@@ -3,8 +3,9 @@ class sk_ui_tab_web extends sk_ui_component {
         super(opt)
 
         this.styling = ' top left ttb fullwidth fullheight'
-
         
+        var web = require('web')
+
         this.add.group(_c => {
             _c._header.weight = 'bold'
             _c._header.size = 18

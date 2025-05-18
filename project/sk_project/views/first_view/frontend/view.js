@@ -7,8 +7,6 @@ class SK_App_View extends sk_ui_component {
         sk.app.body.styling = 'center tbb scrollable'
 
         this.styling = 'left middle ttb scrollable'
-        
-        var web = require('web')
 
         this.add.label(_c => {
             _c.text = 'Welcome to Superkraft for iPlug2 😎'
