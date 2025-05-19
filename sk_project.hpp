@@ -268,6 +268,8 @@ public:
                     IPlugAU* plugin = static_cast<IPlugAU*>(instance); // cast directly to your plugin class
                     plugin->Resize(w, h);
                 #endif
+                
+                return SK_Point(-1, -1);
             }
             
             return SK_Point(-2, -2);
