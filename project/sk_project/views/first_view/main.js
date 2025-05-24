@@ -19,6 +19,8 @@ module.exports = class SK_View extends SK_RootView {
             maxWidth: 1500,
             maxHeight: 1580,
 
+            //resizable: false,
+
             //alwaysOnTop: true,
             //skipTaskbar: true,
 
@@ -32,6 +34,8 @@ module.exports = class SK_View extends SK_RootView {
             //transparent: true,
 
             //backgroundColor: 'rgba(200, 124, 85, 0.5)'
+
+            accessPluginParameters: true, //this tells the SK++ backend that this view will need to access the plugin parameters
         }
     }
 

@@ -21,6 +21,8 @@ module.exports = class SK_App_Main {
         
         //Initialize all your modules here
 
+        return
+        
         var { app, BrowserWindow } = require('proton')
 
         var wnd = new BrowserWindow({

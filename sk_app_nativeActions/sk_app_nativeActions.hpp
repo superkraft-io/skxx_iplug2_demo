@@ -8,9 +8,11 @@
 
 #include "test/test.hpp"
 
+BEGIN_SK_NAMESPACE
+
 class SK_App_NativeActions {
 public:
-    //SK_Global* skg;
+    SK_Global* skg;
 
 
 
@@ -20,8 +22,12 @@ public:
 
 
 
-    SK_App_NativeActions() {
-        //skg = _skg;
+    SK_App_NativeActions(SK_Global* _skg) {
+        skg = _skg;
+        
+        for (auto& pair : actions) {
+            static_cast<SK_NativeAction_Root*>(pair.second)->skg = skg;
+        }
     }
 
     ~SK_App_NativeActions() {
@@ -42,3 +48,5 @@ public:
         return true;
     };
 };
+
+END_SK_NAMESPACE
