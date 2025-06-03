@@ -1,0 +1,1 @@
+#define SK_BUNDLER_MODE_SHALLOW 1
