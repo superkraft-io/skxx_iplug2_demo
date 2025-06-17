@@ -38,7 +38,7 @@ public:
     }
     
 
-    bool handleOperation(const SK::SK_String& operation, const nlohmann::json& payload, SK::SK_Communication_Response& respondWith) {
+    bool handleOperation(const SK::SK_String& operation, nlohmann::json& payload, SK::SK_Communication_Response& respondWith) {
         void* action = actions[operation];
 
         if (!action) return false;

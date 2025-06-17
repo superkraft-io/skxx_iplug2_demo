@@ -1,4 +1,5 @@
 var fs = require('fs')
+const { config } = require('process')
 
 var skApp = {}
 
@@ -11,7 +12,9 @@ module.exports = class SK_App_Main {
         console.log('Pre-SK initialization...')
 
         skOpts.config = '/config.json'
-        skApp.config = JSON.parse(fs.readFileSync(skOpts.config))
+        var configData = fs.readFileSync(skOpts.config)
+        console.log(configData)
+        skApp.config = JSON.parse(configData)
     }
 
     preSKStart() {
