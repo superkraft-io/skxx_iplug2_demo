@@ -1,3 +1,3 @@
-#define SK_ROUTE_FS_TO_BDFS 1
 #define SK_BUNDLER_MODE_DEEP 1
 #define SK_BUNDLER_MODE "deep"
+#define SK_ROUTE_FS_TO_BDFS 1
