@@ -1,0 +1,2004 @@
+<!doctype html>
+
+<title>CodeMirror: Simple Scrollbar Demo</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="../doc/docs.css">
+
+<link rel="stylesheet" href="../lib/codemirror.css">
+<link rel="stylesheet" href="../addon/scroll/simplescrollbars.css">
+<script src="../lib/codemirror.js"></script>
+<script src="../mode/markdown/markdown.js"></script>
+<script src="../mode/xml/xml.js"></script>
+<script src="../addon/scroll/simplescrollbars.js"></script>
+
+<div id=nav>
+  <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+
+  <ul>
+    <li><a href="../index.html">Home</a>
+    <li><a href="../doc/manual.html">Manual</a>
+    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+  </ul>
+  <ul>
+    <li><a class=active href="#">Simple Scrollbar</a>
+  </ul>
+</div>
+
+<article>
+<h2>Simple Scrollbar Demo</h2>
+<form><textarea id="code" name="code"># Custom Scrollbars
+
+This is a piece of text that creates scrollbars
+
+Lorem ipsum dolor sit amet, turpis nec facilisis neque vestibulum adipiscing, magna nunc est luctus orci a,
+aliquam duis ad volutpat nostra. Vestibulum ultricies suspendisse commodo volutpat pede sed. Bibendum odio
+dignissim, ad vitae mollis ac sed nibh quis, suspendisse diam, risus quas blandit phasellus luctus nec,
+integer nunc vitae posuere scelerisque. Lobortis quam porta conubia nulla. Et nisl ac, imperdiet vitae ac.
+Parturient sit. Et vestibulum euismod, rutrum nunc libero mauris purus convallis. Cum id adipiscing et eget
+pretium rutrum, ultrices sapien magnis fringilla sit lorem, eu vitae scelerisque ipsum aliquet, magna sed
+fusce vel.
+
+Lectus ultricies libero dolor convallis, sed etiam vel hendrerit egestas viverra, at urna mauris, eget
+vulputate dolor voluptatem, nulla eget sollicitudin. Sed tincidunt, elit sociis. Mattis mi tortor dui id
+sodales mi, maecenas nam fringilla risus turpis mauris praesent, imperdiet maecenas ultrices nonummy tellus
+quis est. Scelerisque nec pharetra quis varius fringilla. Varius vestibulum non dictum pharetra, tincidunt in
+vestibulum iaculis molestie, id condimentum blandit elit urna magna pulvinar, quam suspendisse pellentesque
+donec. Vel amet ad ac. Nec aut viverra, morbi mi neque massa, turpis enim proin. Tellus eu, fermentum velit
+est convallis aliquam velit, rutrum in diam lacus, praesent tempor pellentesque dictum semper augue. Felis
+explicabo massa amet lectus phasellus dolor. Ut lorem quis arcu neque felis ultricies, senectus vitae
+curabitur sed pellentesque et, id sed risus in sed ac accumsan, blandit arcu quam duis nunc.
+
+Sed leo sollicitudin odio vitae, purus sit egestas, justo eros inceptos auctor fermentum lectus. Ligula luctus
+turpis, quod massa vitae elementum orci, nullam fringilla elit tortor. Justo ante tempor amet quam posuere
+volutpat. Facilisis pede erat ut hac ultrices ipsum, wisi duis sit metus. Dolor vitae est sed sed vitae. Sed
+eu ligula, morbi vestibulum nunc nibh velit ut taciti, ligula elit semper sagittis in, auctor arcu vel eget.
+Mauris at vitae nec suspendisse et, aenean proin blandit suscipit. Morbi quam, dolor ultricies. Viverra
+tempus. Suspendisse sit dapibus, ac fuga aenean, magna nisl nonummy augue posuere, dictum ut fuga velit
+parturient augue interdum, mattis sit tellus.
+
+Vehicula commodo tempus curabitur eros, lacinia erat vulputate lorem vel fermentum donec, lectus sed conubia
+id pellentesque. Vel senectus donec pede aliquet dolor sit, nec vivamus justo placerat interdum maecenas,
+sodales euismod. Quis netus sapien amet, vestibulum quam nec amet lacinia, quis aliquet, tempor vivamus tellus
+enim, suscipit quis eleifend. Amet class phasellus orci pretium, risus in nulla. Neque sit ullamcorper,
+ultricies platea id nec suspendisse ac. Et elementum. Dictum nam, ut dui fermentum egestas facilisis elit
+augue, adipiscing donec ipsum erat nam pellentesque convallis, vestibulum vestibulum risus id nulla ut mauris,
+curabitur aute aptent. Ultrices orci wisi dui ipsum praesent, pharetra felis eu quis. Est fringilla etiam,
+maxime sem dapibus et eget, mi enim dignissim nec pretium, augue vehicula, volutpat proin. Et occaecati
+lobortis viverra, cum in sed, vivamus tellus. Libero at malesuada est vivamus leo tortor.
+</textarea></form>
+
+<p>The <a href="../doc/manual.html#addon_simplescrollbars"><code>simplescrollbars</code></a> addon defines two
+styles of non-native scrollbars: <a href="javascript:editor.setOption('scrollbarStyle', 'simple')"><code>"simple"</code></a> and <a href="javascript:editor.setOption('scrollbarStyle', 'overlay')"><code>"overlay"</code></a> (click to try), which can be passed to
+the <a href="../doc/manual.html#option_scrollbarStyle"><code>scrollbarStyle</code></a> option. These implement
+the scrollbar using DOM elements, allowing more control over
+its <a href="../addon/scroll/simplescrollbars.css">appearance</a>.</p>
+
+  <script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      lineNumbers: true,
+      scrollbarStyle: "simple"
+    });
+  </script>
+</article>
+<!doctype html>
+
+<title>CodeMirror: Automatically derive odd wrapping behavior for your browser</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="../doc/docs.css">
+
+<div id=nav>
+  <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+
+  <ul>
+    <li><a href="../index.html">Home</a>
+    <li><a href="../doc/manual.html">Manual</a>
+    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+  </ul>
+  <ul>
+    <li><a class=active href="#">Automatically derive odd wrapping behavior for your browser</a>
+  </ul>
+</div>
+
+<article>
+<h2>Automatically derive odd wrapping behavior for your browser</h2>
+
+
+    <p>This is a hack to automatically derive
+    a <code>spanAffectsWrapping</code> regexp for a browser. See the
+    comments above that variable
+    in <a href="../lib/codemirror.js"><code>lib/codemirror.js</code></a>
+    for some more details.</p>
+
+    <div style="white-space: pre-wrap; width: 50px;" id="area"></div>
+    <pre id="output"></pre>
+
+    <script id="script">
+      var a = document.getElementById("area"), bad = Object.create(null);
+      var chars = "a~`!@#$%^&*()-_=+}{[]\\|'\"/?.>,<:;", l = chars.length;
+      for (var x = 0; x < l; ++x) for (var y = 0; y < l; ++y) {
+        var s1 = "foooo" + chars.charAt(x), s2 = chars.charAt(y) + "br";
+        a.appendChild(document.createTextNode(s1 + s2));
+        var h1 = a.offsetHeight;
+        a.innerHTML = "";
+        a.appendChild(document.createElement("span")).appendChild(document.createTextNode(s1));
+        a.appendChild(document.createElement("span")).appendChild(document.createTextNode(s2));
+        if (a.offsetHeight != h1)
+          bad[chars.charAt(x)] = (bad[chars.charAt(x)] || "") + chars.charAt(y);
+        a.innerHTML = "";
+      }
+
+      var re = "";
+      function toREElt(str) {
+        if (str.length > 1) {
+          var invert = false;
+          if (str.length > chars.length * .6) {
+            invert = true;
+            var newStr = "";
+            for (var i = 0; i < l; ++i) if (str.indexOf(chars.charAt(i)) == -1) newStr += chars.charAt(i);
+            str = newStr;
+          }
+          str = str.replace(/[\-\.\]\"\'\\\/\^a]/g, function(orig) { return orig == "a" ? "\\w" : "\\" + orig; });
+          return "[" + (invert ? "^" : "") + str + "]";
+        } else if (str == "a") {
+          return "\\w";
+        } else if (/[?$*()+{}[\]\.|/\'\"]/.test(str)) {
+          return "\\" + str;
+        } else {
+          return str;
+        }
+      }
+
+      var newRE = "";
+      for (;;) {
+        var left = null;
+        for (var left in bad) break;
+        if (left == null) break;
+        var right = bad[left];
+        delete bad[left];
+        for (var other in bad) if (bad[other] == right) {
+          left += other;
+          delete bad[other];
+        }
+        newRE += (newRE ? "|" : "") + toREElt(left) + toREElt(right);
+      }
+
+      document.getElementById("output").appendChild(document.createTextNode("Your regexp is: " + (newRE || "^$")));
+    </script>
+  </article>
+<!doctype html>
+
+<title>CodeMirror: Sublime Text bindings demo</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="../doc/docs.css">
+
+<link rel="stylesheet" href="../lib/codemirror.css">
+<link rel="stylesheet" href="../addon/fold/foldgutter.css">
+<link rel="stylesheet" href="../addon/dialog/dialog.css">
+<link rel="stylesheet" href="../theme/monokai.css">
+<script src="../lib/codemirror.js"></script>
+<script src="../addon/search/searchcursor.js"></script>
+<script src="../addon/search/search.js"></script>
+<script src="../addon/dialog/dialog.js"></script>
+<script src="../addon/edit/matchbrackets.js"></script>
+<script src="../addon/edit/closebrackets.js"></script>
+<script src="../addon/comment/comment.js"></script>
+<script src="../addon/wrap/hardwrap.js"></script>
+<script src="../addon/fold/foldcode.js"></script>
+<script src="../addon/fold/brace-fold.js"></script>
+<script src="../mode/javascript/javascript.js"></script>
+<script src="../keymap/sublime.js"></script>
+<style>
+  .CodeMirror {border-top: 1px solid #eee; border-bottom: 1px solid #eee; line-height: 1.3; height: 500px}
+  .CodeMirror-linenumbers { padding: 0 8px; }
+</style>
+<div id=nav>
+  <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+
+  <ul>
+    <li><a href="../index.html">Home</a>
+    <li><a href="../doc/manual.html">Manual</a>
+    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+  </ul>
+  <ul>
+    <li><a class=active href="#">Sublime bindings</a>
+  </ul>
+</div>
+
+<article>
+<h2>Sublime Text bindings demo</h2>
+
+<p>The <code>sublime</code> keymap defines many Sublime Text-specific
+bindings for CodeMirror. See the code below for an overview.</p>
+
+<p>Enable the keymap by
+loading <a href="../keymap/sublime.js"><code>keymap/sublime.js</code></a>
+and setting
+the <a href="../doc/manual.html#option_keyMap"><code>keyMap</code></a>
+option to <code>"sublime"</code>.</p>
+
+<p>(A lot of the search functionality is still missing.)
+
+<script>
+  var value = "// The bindings defined specifically in the Sublime Text mode\nvar bindings = {\n";
+  var map = CodeMirror.keyMap.sublime;
+  for (var key in map) {
+    var val = map[key];
+    if (key != "fallthrough" && val != "..." && (!/find/.test(val) || /findUnder/.test(val)))
+      value += "  \"" + key + "\": \"" + val + "\",\n";
+  }
+  value += "}\n\n// The implementation of joinLines\n";
+  value += CodeMirror.commands.joinLines.toString().replace(/^function\s*\(/, "function joinLines(").replace(/\n  /g, "\n") + "\n";
+  var editor = CodeMirror(document.body.getElementsByTagName("article")[0], {
+    value: value,
+    lineNumbers: true,
+    mode: "javascript",
+    keyMap: "sublime",
+    autoCloseBrackets: true,
+    matchBrackets: true,
+    showCursorWhenSelecting: true,
+    theme: "monokai",
+    tabSize: 2
+  });
+</script>
+
+</article>
+<!doctype html>
+
+<title>CodeMirror: Tern Demo</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="../doc/docs.css">
+
+<link rel="stylesheet" href="../lib/codemirror.css">
+<link rel="stylesheet" href="../addon/dialog/dialog.css">
+<link rel="stylesheet" href="../addon/hint/show-hint.css">
+<link rel="stylesheet" href="../addon/tern/tern.css">
+<script src="../lib/codemirror.js"></script>
+<script src="../mode/javascript/javascript.js"></script>
+<script src="../addon/dialog/dialog.js"></script>
+<script src="../addon/hint/show-hint.js"></script>
+<script src="../addon/tern/tern.js"></script>
+<script src="https://unpkg.com/acorn/dist/acorn.js"></script>
+<script src="https://unpkg.com/acorn-loose/dist/acorn-loose.js"></script>
+<script src="https://unpkg.com/acorn-walk/dist/walk.js"></script>
+<script src="//ternjs.net/doc/demo/polyfill.js"></script>
+<script src="https://unpkg.com/tern/lib/signal.js"></script>
+<script src="https://unpkg.com/tern/lib/tern.js"></script>
+<script src="https://unpkg.com/tern/lib/def.js"></script>
+<script src="https://unpkg.com/tern/lib/comment.js"></script>
+<script src="https://unpkg.com/tern/lib/infer.js"></script>
+<script src="https://unpkg.com/tern/plugin/doc_comment.js"></script>
+<style>
+      .CodeMirror {border: 1px solid #ddd;}
+    </style>
+<div id=nav>
+  <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+
+  <ul>
+    <li><a href="../index.html">Home</a>
+    <li><a href="../doc/manual.html">Manual</a>
+    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+  </ul>
+  <ul>
+    <li><a class=active href="#">Tern</a>
+  </ul>
+</div>
+
+<article>
+<h2>Tern Demo</h2>
+<form><textarea id="code" name="code">// Use ctrl-space to complete something
+// Put the cursor in or after an expression, press ctrl-o to
+// find its type
+
+var foo = ["array", "of", "strings"];
+var bar = foo.slice(0, 2).join("").split("a")[0];
+
+// Works for locally defined types too.
+
+function CTor() { this.size = 10; }
+CTor.prototype.hallo = "hallo";
+
+var baz = new CTor;
+baz.
+
+// You can press ctrl-q when the cursor is on a variable name to
+// rename it. Try it with CTor...
+
+// When the cursor is in an argument list, the arguments are
+// shown below the editor.
+
+[1].reduce(  );
+
+// And a little more advanced code...
+
+(function(exports) {
+  exports.randomElt = function(arr) {
+    return arr[Math.floor(arr.length * Math.random())];
+  };
+  exports.strList = "foo".split("");
+  exports.intList = exports.strList.map(function(s) { return s.charCodeAt(0); });
+})(window.myMod = {});
+
+var randomStr = myMod.randomElt(myMod.strList);
+var randomInt = myMod.randomElt(myMod.intList);
+</textarea></form>
+
+<p>Demonstrates integration of <a href="http://ternjs.net/">Tern</a>
+and CodeMirror. The following keys are bound:</p>
+
+<dl>
+  <dt>Ctrl-Space</dt><dd>Autocomplete</dd>
+  <dt>Ctrl-O</dt><dd>Find docs for the expression at the cursor</dd>
+  <dt>Ctrl-I</dt><dd>Find type at cursor</dd>
+  <dt>Alt-.</dt><dd>Jump to definition (Alt-, to jump back)</dd>
+  <dt>Ctrl-Q</dt><dd>Rename variable</dd>
+  <dt>Ctrl-.</dt><dd>Select all occurrences of a variable</dd>
+</dl>
+
+<p>Documentation is sparse for now. See the top of
+the <a href="../addon/tern/tern.js">script</a> for a rough API
+overview.</p>
+
+<script>
+  function getURL(url, c) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", url, true);
+    xhr.send();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState != 4) return;
+      if (xhr.status < 400) return c(null, xhr.responseText);
+      var e = new Error(xhr.responseText || "No response");
+      e.status = xhr.status;
+      c(e);
+    };
+  }
+
+  var server;
+  getURL("https://unpkg.com/tern/defs/ecmascript.json", function(err, code) {
+    if (err) throw new Error("Request for ecmascript.json: " + err);
+    server = new CodeMirror.TernServer({defs: [JSON.parse(code)]});
+    editor.setOption("extraKeys", {
+      "Ctrl-Space": function(cm) { server.complete(cm); },
+      "Ctrl-I": function(cm) { server.showType(cm); },
+      "Ctrl-O": function(cm) { server.showDocs(cm); },
+      "Alt-.": function(cm) { server.jumpToDef(cm); },
+      "Alt-,": function(cm) { server.jumpBack(cm); },
+      "Ctrl-Q": function(cm) { server.rename(cm); },
+      "Ctrl-.": function(cm) { server.selectName(cm); }
+    })
+    editor.on("cursorActivity", function(cm) { server.updateArgHints(cm); });
+  });
+
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript"
+  });
+</script>
+
+  </article>
+<!doctype html>
+
+<title>CodeMirror: Theme Demo</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="../doc/docs.css">
+
+<link rel="stylesheet" href="../lib/codemirror.css">
+<link rel="stylesheet" href="../theme/3024-day.css">
+<link rel="stylesheet" href="../theme/3024-night.css">
+<link rel="stylesheet" href="../theme/abbott.css">
+<link rel="stylesheet" href="../theme/abcdef.css">
+<link rel="stylesheet" href="../theme/ambiance.css">
+<link rel="stylesheet" href="../theme/ayu-dark.css">
+<link rel="stylesheet" href="../theme/ayu-mirage.css">
+<link rel="stylesheet" href="../theme/base16-dark.css">
+<link rel="stylesheet" href="../theme/bespin.css">
+<link rel="stylesheet" href="../theme/base16-light.css">
+<link rel="stylesheet" href="../theme/blackboard.css">
+<link rel="stylesheet" href="../theme/cobalt.css">
+<link rel="stylesheet" href="../theme/colorforth.css">
+<link rel="stylesheet" href="../theme/dracula.css">
+<link rel="stylesheet" href="../theme/duotone-dark.css">
+<link rel="stylesheet" href="../theme/duotone-light.css">
+<link rel="stylesheet" href="../theme/eclipse.css">
+<link rel="stylesheet" href="../theme/elegant.css">
+<link rel="stylesheet" href="../theme/erlang-dark.css">
+<link rel="stylesheet" href="../theme/gruvbox-dark.css">
+<link rel="stylesheet" href="../theme/hopscotch.css">
+<link rel="stylesheet" href="../theme/icecoder.css">
+<link rel="stylesheet" href="../theme/isotope.css">
+<link rel="stylesheet" href="../theme/juejin.css">
+<link rel="stylesheet" href="../theme/lesser-dark.css">
+<link rel="stylesheet" href="../theme/liquibyte.css">
+<link rel="stylesheet" href="../theme/lucario.css">
+<link rel="stylesheet" href="../theme/material.css">
+<link rel="stylesheet" href="../theme/material-darker.css">
+<link rel="stylesheet" href="../theme/material-palenight.css">
+<link rel="stylesheet" href="../theme/material-ocean.css">
+<link rel="stylesheet" href="../theme/mbo.css">
+<link rel="stylesheet" href="../theme/mdn-like.css">
+<link rel="stylesheet" href="../theme/midnight.css">
+<link rel="stylesheet" href="../theme/monokai.css">
+<link rel="stylesheet" href="../theme/moxer.css">
+<link rel="stylesheet" href="../theme/neat.css">
+<link rel="stylesheet" href="../theme/neo.css">
+<link rel="stylesheet" href="../theme/night.css">
+<link rel="stylesheet" href="../theme/nord.css">
+<link rel="stylesheet" href="../theme/oceanic-next.css">
+<link rel="stylesheet" href="../theme/panda-syntax.css">
+<link rel="stylesheet" href="../theme/paraiso-dark.css">
+<link rel="stylesheet" href="../theme/paraiso-light.css">
+<link rel="stylesheet" href="../theme/pastel-on-dark.css">
+<link rel="stylesheet" href="../theme/railscasts.css">
+<link rel="stylesheet" href="../theme/rubyblue.css">
+<link rel="stylesheet" href="../theme/seti.css">
+<link rel="stylesheet" href="../theme/shadowfox.css">
+<link rel="stylesheet" href="../theme/solarized.css">
+<link rel="stylesheet" href="../theme/the-matrix.css">
+<link rel="stylesheet" href="../theme/tomorrow-night-bright.css">
+<link rel="stylesheet" href="../theme/tomorrow-night-eighties.css">
+<link rel="stylesheet" href="../theme/ttcn.css">
+<link rel="stylesheet" href="../theme/twilight.css">
+<link rel="stylesheet" href="../theme/vibrant-ink.css">
+<link rel="stylesheet" href="../theme/xq-dark.css">
+<link rel="stylesheet" href="../theme/xq-light.css">
+<link rel="stylesheet" href="../theme/yeti.css">
+<link rel="stylesheet" href="../theme/idea.css">
+<link rel="stylesheet" href="../theme/darcula.css">
+<link rel="stylesheet" href="../theme/yonce.css">
+<link rel="stylesheet" href="../theme/zenburn.css">
+<script src="../lib/codemirror.js"></script>
+<script src="../mode/javascript/javascript.js"></script>
+<script src="../addon/selection/active-line.js"></script>
+<script src="../addon/edit/matchbrackets.js"></script>
+<style>
+      .CodeMirror {border: 1px solid black; font-size:13px}
+    </style>
+<div id=nav>
+  <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+
+  <ul>
+    <li><a href="../index.html">Home</a>
+    <li><a href="../doc/manual.html">Manual</a>
+    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+  </ul>
+  <ul>
+    <li><a class=active href="#">Theme</a>
+  </ul>
+</div>
+
+<article>
+<h2>Theme Demo</h2>
+<form><textarea id="code" name="code">
+function findSequence(goal) {
+  function find(start, history) {
+    if (start == goal)
+      return history;
+    else if (start > goal)
+      return null;
+    else
+      return find(start + 5, "(" + history + " + 5)") ||
+             find(start * 3, "(" + history + " * 3)");
+  }
+  return find(1, "1");
+}</textarea></form>
+
+<p>Select a theme: <select onchange="selectTheme()" id=select>
+    <option selected>default</option>
+    <option>3024-day</option>
+    <option>3024-night</option>
+    <option>abbott</option>
+    <option>abcdef</option>
+    <option>ambiance</option>
+    <option>ayu-dark</option>
+    <option>ayu-mirage</option>
+    <option>base16-dark</option>
+    <option>base16-light</option>
+    <option>bespin</option>
+    <option>blackboard</option>
+    <option>cobalt</option>
+    <option>colorforth</option>
+    <option>darcula</option>
+    <option>dracula</option>
+    <option>duotone-dark</option>
+    <option>duotone-light</option>
+    <option>eclipse</option>
+    <option>elegant</option>
+    <option>erlang-dark</option>
+    <option>gruvbox-dark</option>
+    <option>hopscotch</option>
+    <option>icecoder</option>
+    <option>idea</option>
+    <option>isotope</option>
+    <option>juejin</option>
+    <option>lesser-dark</option>
+    <option>liquibyte</option>
+    <option>lucario</option>
+    <option>material</option>
+    <option>material-darker</option>
+    <option>material-palenight</option>
+    <option>material-ocean</option>
+    <option>mbo</option>
+    <option>mdn-like</option>
+    <option>midnight</option>
+    <option>monokai</option>
+    <option>moxer</option>
+    <option>neat</option>
+    <option>neo</option>
+    <option>night</option>
+    <option>nord</option>
+    <option>oceanic-next</option>
+    <option>panda-syntax</option>
+    <option>paraiso-dark</option>
+    <option>paraiso-light</option>
+    <option>pastel-on-dark</option>
+    <option>railscasts</option>
+    <option>rubyblue</option>
+    <option>seti</option>
+    <option>shadowfox</option>
+    <option>solarized dark</option>
+    <option>solarized light</option>
+    <option>the-matrix</option>
+    <option>tomorrow-night-bright</option>
+    <option>tomorrow-night-eighties</option>
+    <option>ttcn</option>
+    <option>twilight</option>
+    <option>vibrant-ink</option>
+    <option>xq-dark</option>
+    <option>xq-light</option>
+    <option>yeti</option>
+    <option>yonce</option>
+    <option>zenburn</option>
+</select>
+</p>
+
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true
+  });
+  var input = document.getElementById("select");
+  function selectTheme() {
+    var theme = input.options[input.selectedIndex].textContent;
+    editor.setOption("theme", theme);
+    location.hash = "#" + theme;
+  }
+  var choice = (location.hash && location.hash.slice(1)) ||
+               (document.location.search &&
+                decodeURIComponent(document.location.search.slice(1)));
+  if (choice) {
+    input.value = choice;
+    editor.setOption("theme", choice);
+  }
+  CodeMirror.on(window, "hashchange", function() {
+    var theme = location.hash.slice(1);
+    if (theme) { input.value = theme; selectTheme(); }
+  });
+</script>
+</article>
+<!doctype html>
+
+<title>CodeMirror: Trailing Whitespace Demo</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="../doc/docs.css">
+
+<link rel="stylesheet" href="../lib/codemirror.css">
+<script src="../lib/codemirror.js"></script>
+<script src="../addon/edit/trailingspace.js"></script>
+<style>
+      .CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
+      .cm-trailingspace {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAACCAYAAAB/qH1jAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUXCToH00Y1UgAAACFJREFUCNdjPMDBUc/AwNDAAAFMTAwMDA0OP34wQgX/AQBYgwYEx4f9lQAAAABJRU5ErkJggg==);
+        background-position: bottom left;
+        background-repeat: repeat-x;
+      }
+    </style>
+<div id=nav>
+  <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+
+  <ul>
+    <li><a href="../index.html">Home</a>
+    <li><a href="../doc/manual.html">Manual</a>
+    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+  </ul>
+  <ul>
+    <li><a class=active href="#">Trailing Whitespace</a>
+  </ul>
+</div>
+
+<article>
+<h2>Trailing Whitespace Demo</h2>
+<form><textarea id="code" name="code">This text  
+ has some	 
+trailing whitespace!</textarea></form>
+
+    <script>
+var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+  lineNumbers: true,
+  showTrailingSpace: true
+});
+</script>
+
+<p>Uses
+the <a href="../doc/manual.html#addon_trailingspace">trailingspace</a>
+addon to highlight trailing whitespace.</p>
+
+  </article>
+<!doctype html>
+
+<title>CodeMirror: Variable Height Demo</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="../doc/docs.css">
+
+<link rel="stylesheet" href="../lib/codemirror.css">
+<script src="../lib/codemirror.js"></script>
+<script src="../mode/markdown/markdown.js"></script>
+<script src="../mode/xml/xml.js"></script>
+<style>
+      .CodeMirror {border: 1px solid silver; border-width: 1px 2px; }
+      .cm-header { font-family: arial; }
+      .cm-header-1 { font-size: 150%; }
+      .cm-header-2 { font-size: 130%; }
+      .cm-header-3 { font-size: 120%; }
+      .cm-header-4 { font-size: 110%; }
+      .cm-header-5 { font-size: 100%; }
+      .cm-header-6 { font-size: 90%; }
+      .cm-strong { font-size: 140%; }
+    </style>
+<div id=nav>
+  <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+
+  <ul>
+    <li><a href="../index.html">Home</a>
+    <li><a href="../doc/manual.html">Manual</a>
+    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+  </ul>
+  <ul>
+    <li><a class=active href="#">Variable Height</a>
+  </ul>
+</div>
+
+<article>
+<h2>Variable Height Demo</h2>
+<form><textarea id="code" name="code"># A First Level Header
+
+**Bold** text in a normal-size paragraph.
+
+And a very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long, wrapped line with a piece of **big** text inside of it.
+
+## A Second Level Header
+
+Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.
+
+The quick brown fox jumped over the lazy
+dog's back.
+
+### Header 3
+
+> This is a blockquote.
+> 
+> This is the second paragraph in the blockquote.
+>
+> ## This is an H2 in a blockquote       
+</textarea></form>
+    <script id="script">
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        lineWrapping: true,
+        mode: "markdown"
+      });
+    </script>
+  </article>
+<!doctype html>
+
+<title>CodeMirror: Vim bindings demo</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="../doc/docs.css">
+
+<link rel="stylesheet" href="../lib/codemirror.css">
+<link rel="stylesheet" href="../addon/dialog/dialog.css">
+<script src="../lib/codemirror.js"></script>
+<script src="../addon/dialog/dialog.js"></script>
+<script src="../addon/search/searchcursor.js"></script>
+<script src="../mode/clike/clike.js"></script>
+<script src="../addon/edit/matchbrackets.js"></script>
+<script src="../keymap/vim.js"></script>
+<style>
+      .CodeMirror {border-top: 1px solid #eee; border-bottom: 1px solid #eee;}
+    </style>
+<div id=nav>
+  <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+
+  <ul>
+    <li><a href="../index.html">Home</a>
+    <li><a href="../doc/manual.html">Manual</a>
+    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+  </ul>
+  <ul>
+    <li><a class=active href="#">Vim bindings</a>
+  </ul>
+</div>
+
+<article>
+<h2>Vim bindings demo</h2>
+
+<p><strong style="color: #c33; text-decoration: none">Note:</strong> The CodeMirror vim bindings do not have an
+active maintainer. That means that if you report bugs in it, they are
+likely to go unanswered. It also means that if you want to help, you
+are very welcome to look
+at <a href="https://github.com/codemirror/codemirror/issues?q=is%3Aissue+is%3Aopen+label%3Avim">the
+open issues</a> and see which ones you can solve.</p>
+
+<form><textarea id="code" name="code">
+#include "syscalls.h"
+/* getchar:  simple buffered version */
+int getchar(void)
+{
+  static char buf[BUFSIZ];
+  static char *bufp = buf;
+  static int n = 0;
+  if (n == 0) {  /* buffer is empty */
+    n = read(0, buf, sizeof buf);
+    bufp = buf;
+  }
+  return (--n >= 0) ? (unsigned char) *bufp++ : EOF;
+}
+</textarea></form>
+<div style="font-size: 13px; width: 300px; height: 30px;">Key buffer: <span id="command-display"></span></div>
+<div style="font-size: 13px; width: 300px; height: 30px;">Vim mode: <span id="vim-mode"></span></div>
+
+<p>The vim keybindings are enabled by including <code><a
+href="../keymap/vim.js">keymap/vim.js</a></code> and setting the
+<code>keyMap</code> option to <code>vim</code>.</p>
+
+<p><strong>Features</strong></p>
+
+<ul>
+  <li>All common motions and operators, including text objects</li>
+  <li>Operator motion orthogonality</li>
+  <li>Visual mode - characterwise, linewise, blockwise</li>
+  <li>Full macro support (q, @)</li>
+  <li>Incremental highlighted search (/, ?, #, *, g#, g*)</li>
+  <li>Search/replace with confirm (:substitute, :%s)</li>
+  <li>Search history</li>
+  <li>Jump lists (Ctrl-o, Ctrl-i)</li>
+  <li>Key/command mapping with API (:map, :nmap, :vmap)</li>
+  <li>Sort (:sort)</li>
+  <li>Marks (`, ')</li>
+  <li>:global</li>
+  <li>Insert mode behaves identical to base CodeMirror</li>
+  <li>Cross-buffer yank/paste</li>
+</ul>
+
+<p>For the full list of key mappings and Ex commands, refer to the
+<code>defaultKeymap</code> and <code>defaultExCommandMap</code> at the
+top of <code><a href="../keymap/vim.js">keymap/vim.js</a></code>.
+
+<p>Note that while the vim mode tries to emulate the most useful
+features of vim as faithfully as possible, it does not strive to
+become a complete vim implementation</p>
+
+    <script>
+      CodeMirror.commands.save = function(){ alert("Saving"); };
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        mode: "text/x-csrc",
+        keyMap: "vim",
+        matchBrackets: true,
+        showCursorWhenSelecting: true
+      });
+      var commandDisplay = document.getElementById('command-display');
+      var keys = '';
+      CodeMirror.on(editor, 'vim-keypress', function(key) {
+        keys = keys + key;
+        commandDisplay.innerText = keys;
+      });
+      CodeMirror.on(editor, 'vim-command-done', function(e) {
+        keys = '';
+        commandDisplay.innerHTML = keys;
+      });
+      var vimMode = document.getElementById('vim-mode');
+      CodeMirror.on(editor, 'vim-mode-change', function(e) {
+        vimMode.innerText = JSON.stringify(e);
+      });
+    </script>
+
+  </article>
+<!doctype html>
+
+<title>CodeMirror: Visible tabs demo</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="../doc/docs.css">
+
+<link rel="stylesheet" href="../lib/codemirror.css">
+<script src="../lib/codemirror.js"></script>
+<script src="../mode/clike/clike.js"></script>
+<style>
+      .CodeMirror {border-top: 1px solid #eee; border-bottom: 1px solid #eee;}
+      .cm-tab {
+         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+         background-position: right;
+         background-repeat: no-repeat;
+      }
+    </style>
+<div id=nav>
+  <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+
+  <ul>
+    <li><a href="../index.html">Home</a>
+    <li><a href="../doc/manual.html">Manual</a>
+    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+  </ul>
+  <ul>
+    <li><a class=active href="#">Visible tabs</a>
+  </ul>
+</div>
+
+<article>
+<h2>Visible tabs demo</h2>
+<form><textarea id="code" name="code">
+#include "syscalls.h"
+/* getchar:  simple buffered version */
+int getchar(void)
+{
+	static char buf[BUFSIZ];
+	static char *bufp = buf;
+	static int n = 0;
+	if (n == 0) {  /* buffer is empty */
+		n = read(0, buf, sizeof buf);
+		bufp = buf;
+	}
+	return (--n >= 0) ? (unsigned char) *bufp++ : EOF;
+}
+</textarea></form>
+
+<p>Tabs inside the editor are spans with the
+class <code>cm-tab</code>, and can be styled.</p>
+
+    <script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        tabSize: 4,
+        indentUnit: 4,
+        indentWithTabs: true,
+        mode: "text/x-csrc"
+      });
+    </script>
+
+  </article>
+<!doctype html>
+
+<title>CodeMirror: Inline Widget Demo</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="../doc/docs.css">
+
+<link rel="stylesheet" href="../lib/codemirror.css">
+<script src="../lib/codemirror.js"></script>
+<script src="../mode/javascript/javascript.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jshint/2.9.5/jshint.min.js"></script>
+<style>
+      .CodeMirror {border: 1px solid black;}
+      .lint-error {font-family: arial; font-size: 70%; background: #ffa; color: #a00; padding: 2px 5px 3px; }
+      .lint-error-icon {color: white; background-color: red; font-weight: bold; border-radius: 50%; padding: 0 3px; margin-right: 7px;}
+    </style>
+<div id=nav>
+  <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+
+  <ul>
+    <li><a href="../index.html">Home</a>
+    <li><a href="../doc/manual.html">Manual</a>
+    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+  </ul>
+  <ul>
+    <li><a class=active href="#">Inline Widget</a>
+  </ul>
+</div>
+
+<article>
+<h2>Inline Widget Demo</h2>
+
+
+    <div id=code></div>
+    <script id="script">var widgets = []
+function updateHints() {
+  editor.operation(function(){
+    for (var i = 0; i < widgets.length; ++i)
+      editor.removeLineWidget(widgets[i]);
+    widgets.length = 0;
+
+    JSHINT(editor.getValue());
+    for (var i = 0; i < JSHINT.errors.length; ++i) {
+      var err = JSHINT.errors[i];
+      if (!err) continue;
+      var msg = document.createElement("div");
+      var icon = msg.appendChild(document.createElement("span"));
+      icon.innerHTML = "!!";
+      icon.className = "lint-error-icon";
+      msg.appendChild(document.createTextNode(err.reason));
+      msg.className = "lint-error";
+      widgets.push(editor.addLineWidget(err.line - 1, msg, {coverGutter: false, noHScroll: true}));
+    }
+  });
+  var info = editor.getScrollInfo();
+  var after = editor.charCoords({line: editor.getCursor().line + 1, ch: 0}, "local").top;
+  if (info.top + info.clientHeight < after)
+    editor.scrollTo(null, after - info.clientHeight + 3);
+}
+
+window.onload = function() {
+  var sc = document.getElementById("script");
+  var content = sc.textContent || sc.innerText || sc.innerHTML;
+
+  window.editor = CodeMirror(document.getElementById("code"), {
+    lineNumbers: true,
+    mode: "javascript",
+    value: content
+  });
+
+  var waiting;
+  editor.on("change", function() {
+    clearTimeout(waiting);
+    waiting = setTimeout(updateHints, 500);
+  });
+
+  setTimeout(updateHints, 100);
+};
+
+"long line to create a horizontal scrollbar, in order to test whether the (non-inline) widgets stay in place when scrolling to the right";
+</script>
+<p>This demo runs <a href="http://jshint.com">JSHint</a> over the code
+in the editor (which is the script used on this page), and
+inserts <a href="../doc/manual.html#addLineWidget">line widgets</a> to
+display the warnings that JSHint comes up with.</p>
+  </article>
+ï»¿<!doctype html>
+
+<title>CodeMirror: XML Autocomplete Demo</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="../doc/docs.css">
+
+<link rel="stylesheet" href="../lib/codemirror.css">
+<link rel="stylesheet" href="../addon/hint/show-hint.css">
+<script src="../lib/codemirror.js"></script>
+<script src="../addon/hint/show-hint.js"></script>
+<script src="../addon/hint/xml-hint.js"></script>
+<script src="../mode/xml/xml.js"></script>
+<style>
+      .CodeMirror { border: 1px solid #eee; }
+    </style>
+<div id=nav>
+  <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+
+  <ul>
+    <li><a href="../index.html">Home</a>
+    <li><a href="../doc/manual.html">Manual</a>
+    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+  </ul>
+  <ul>
+    <li><a class=active href="#">XML Autocomplete</a>
+  </ul>
+</div>
+
+<article>
+<h2>XML Autocomplete Demo</h2>
+<form><textarea id="code" name="code"><!-- write some xml below -->
+</textarea></form>
+
+    <p>Press <strong>ctrl-space</strong>, or type a '&lt;' character to
+    activate autocompletion. This demo defines a simple schema that
+    guides completion. The schema can be customizedâ€”see
+    the <a href="../doc/manual.html#addon_xml-hint">manual</a>.</p>
+
+    <p>Development of the <code>xml-hint</code> addon was kindly
+    sponsored
+    by <a href="http://www.xperiment.mobi">www.xperiment.mobi</a>.</p>
+
+    <script>
+      var dummy = {
+        attrs: {
+          color: ["red", "green", "blue", "purple", "white", "black", "yellow"],
+          size: ["large", "medium", "small"],
+          description: null
+        },
+        children: []
+      };
+
+      var tags = {
+        "!top": ["top"],
+        "!attrs": {
+          id: null,
+          class: ["A", "B", "C"]
+        },
+        top: {
+          attrs: {
+            lang: ["en", "de", "fr", "nl"],
+            freeform: null
+          },
+          children: ["animal", "plant"]
+        },
+        animal: {
+          attrs: {
+            name: null,
+            isduck: ["yes", "no"]
+          },
+          children: ["wings", "feet", "body", "head", "tail"]
+        },
+        plant: {
+          attrs: {name: null},
+          children: ["leaves", "stem", "flowers"]
+        },
+        wings: dummy, feet: dummy, body: dummy, head: dummy, tail: dummy,
+        leaves: dummy, stem: dummy, flowers: dummy
+      };
+
+      function completeAfter(cm, pred) {
+        var cur = cm.getCursor();
+        if (!pred || pred()) setTimeout(function() {
+          if (!cm.state.completionActive)
+            cm.showHint({completeSingle: false});
+        }, 100);
+        return CodeMirror.Pass;
+      }
+
+      function completeIfAfterLt(cm) {
+        return completeAfter(cm, function() {
+          var cur = cm.getCursor();
+          return cm.getRange(CodeMirror.Pos(cur.line, cur.ch - 1), cur) == "<";
+        });
+      }
+
+      function completeIfInTag(cm) {
+        return completeAfter(cm, function() {
+          var tok = cm.getTokenAt(cm.getCursor());
+          if (tok.type == "string" && (!/['"]/.test(tok.string.charAt(tok.string.length - 1)) || tok.string.length == 1)) return false;
+          var inner = CodeMirror.innerMode(cm.getMode(), tok.state).state;
+          return inner.tagName;
+        });
+      }
+
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        mode: "xml",
+        lineNumbers: true,
+        extraKeys: {
+          "'<'": completeAfter,
+          "'/'": completeIfAfterLt,
+          "' '": completeIfInTag,
+          "'='": completeIfInTag,
+          "Ctrl-Space": "autocomplete"
+        },
+        hintOptions: {schemaInfo: tags}
+      });
+    </script>
+  </article>
+// Kludge in HTML5 tag recognition in IE8
+document.createElement("section");
+document.createElement("article");
+
+(function() {
+  if (!window.addEventListener) return;
+  var pending = false, prevVal = null;
+
+  function updateSoon() {
+    if (!pending) {
+      pending = true;
+      setTimeout(update, 250);
+    }
+  }
+
+  function update() {
+    pending = false;
+    var marks = document.getElementById("nav").getElementsByTagName("a"), found;
+    for (var i = 0; i < marks.length; ++i) {
+      var mark = marks[i], m;
+      if (mark.getAttribute("data-default")) {
+        if (found == null) found = i;
+      } else if (m = mark.href.match(/#(.*)/)) {
+        var ref = document.getElementById(m[1]);
+        if (ref && ref.getBoundingClientRect().top < 50)
+          found = i;
+      }
+    }
+    if (found != null && found != prevVal) {
+      prevVal = found;
+      var lis = document.getElementById("nav").getElementsByTagName("li");
+      for (var i = 0; i < lis.length; ++i) lis[i].className = "";
+      for (var i = 0; i < marks.length; ++i) {
+        if (found == i) {
+          marks[i].className = "active";
+          for (var n = marks[i]; n; n = n.parentNode)
+            if (n.nodeName == "LI") n.className = "active";
+        } else {
+          marks[i].className = "";
+        }
+      }
+    }
+  }
+
+  window.addEventListener("scroll", updateSoon);
+  window.addEventListener("load", updateSoon);
+  window.addEventListener("hashchange", function() {
+    setTimeout(function() {
+      var hash = document.location.hash, found = null, m;
+      var marks = document.getElementById("nav").getElementsByTagName("a");
+      for (var i = 0; i < marks.length; i++)
+        if ((m = marks[i].href.match(/(#.*)/)) && m[1] == hash) { found = i; break; }
+      if (found != null) for (var i = 0; i < marks.length; i++)
+        marks[i].className = i == found ? "active" : "";
+    }, 300);
+  });
+})();
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Sans Pro'), local('SourceSansPro-Regular'), url(source_sans.woff) format('woff');
+}
+
+body, html { margin: 0; padding: 0; height: 100%; }
+section, article { display: block; padding: 0; }
+
+body {
+  background: #f8f8f8;
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+p { margin-top: 0; }
+
+h2, h3, h1 {
+  font-weight: normal;
+  margin-bottom: .7em;
+}
+h1 { font-size: 140%; }
+h2 { font-size: 120%; }
+h3 { font-size: 110%; }
+article > h2:first-child, section:first-child > h2 { margin-top: 0; }
+
+#nav h1 {
+  margin-right: 12px;
+  margin-top: 0;
+  margin-bottom: 2px;
+  color: #d30707;
+  letter-spacing: .5px;
+}
+
+a, a:visited, a:link, .quasilink {
+  color: #A21313;
+}
+
+em {
+  padding-right: 2px;
+}
+
+.quasilink {
+  cursor: pointer;
+}
+
+article {
+  max-width: 700px;
+  margin: 0 0 0 160px;
+  border-left: 2px solid #E30808;
+  border-right: 1px solid #ddd;
+  padding: 30px 50px 100px 50px;
+  background: white;
+  z-index: 2;
+  position: relative;
+  min-height: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+#nav {
+  position: fixed;
+  padding-top: 30px;
+  max-height: 100%;
+  box-sizing: -moz-border-box;
+  box-sizing: border-box;
+  overflow-y: auto;
+  left: 0; right: none;
+  width: 160px;
+  text-align: right;
+  z-index: 1;
+}
+
+@media screen and (min-width: 1000px) {
+  article {
+    margin: 0 auto;
+  }
+  #nav {
+    right: 50%;
+    width: auto;
+    border-right: 349px solid transparent;
+  }
+}
+
+#nav ul {
+  display: block;
+  margin: 0; padding: 0;
+  margin-bottom: 32px;
+}
+
+#nav a {
+  text-decoration: none;
+}
+
+#nav li {
+  display: block;
+  margin-bottom: 4px;
+}
+
+#nav li ul {
+  font-size: 80%;
+  margin-bottom: 0;
+  display: none;
+}
+
+#nav li.active ul {
+  display: block;
+}
+
+#nav li li a {
+  padding-right: 20px;
+  display: inline-block;
+}
+
+#nav ul a {
+  color: black;
+  padding: 0 7px 1px 11px;
+}
+
+#nav ul a.active, #nav ul a:hover {
+  border-bottom: 1px solid #E30808;
+  margin-bottom: -1px;
+  color: #E30808;
+}
+
+#logo {
+  border: 0;
+  margin-right: 12px;
+  margin-bottom: 25px;
+}
+
+section {
+  border-top: 1px solid #E30808;
+  margin: 1.5em 0;
+}
+
+section.first {
+  border: none;
+  margin-top: 0;
+}
+
+#demo {
+  position: relative;
+}
+
+#demolist {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 25;
+}
+
+.yinyang {
+  position: absolute;
+  top: -10px;
+  left: 0; right: 0;
+  margin: auto;
+  display: block;
+  height: 120px;
+}
+
+.actions {
+  margin: 1em 0 0;
+  min-height: 100px;
+  position: relative;
+}
+
+.actionspicture {
+  pointer-events: none;
+  position: absolute;
+  height: 100px;
+  top: 0; left: 0; right: 0;
+}
+
+.actionlink {
+  pointer-events: auto;
+  font-family: arial;
+  font-size: 80%;
+  font-weight: bold;
+  position: absolute;
+  top: 0; bottom: 0;
+  line-height: 1;
+  height: 1em;
+  margin: auto;
+}
+
+.actionlink.download {
+  color: white;
+  right: 50%;
+  margin-right: 13px;
+  text-shadow: -1px 1px 3px #b00, -1px -1px 3px #b00, 1px 0px 3px #b00;
+}
+
+.actionlink.fund {
+  color: #b00;
+  left: 50%;
+  margin-left: 15px;
+}
+
+.actionlink:hover {
+  text-decoration: underline;
+}
+
+.actionlink a {
+  color: inherit;
+}
+
+.actionsleft {
+  float: left;
+}
+
+.actionsright {
+  float: right;
+  text-align: right;
+}
+
+@media screen and (max-width: 800px) {
+  .actions {
+    padding-top: 120px;
+  }
+  .actionsleft, .actionsright {
+    float: none;
+    text-align: left;
+    margin-bottom: 1em;
+  }
+}
+
+th {
+  text-decoration: underline;
+  font-weight: normal;
+  text-align: left;
+}
+
+#features ul {
+  list-style: none;
+  margin: 0 0 1em;
+  padding: 0 0 0 1.2em;
+}
+
+#features li:before {
+  content: "-";
+  width: 1em;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  margin-left: -1em;
+}
+
+.rel {
+  margin-bottom: 0;
+}
+.rel-note {
+  margin-top: 0;
+  color: #555;
+}
+
+pre {
+  padding-left: 15px;
+  border-left: 2px solid #ddd;
+}
+
+code {
+  padding: 0 2px;
+}
+
+strong {
+  text-decoration: underline;
+  font-weight: normal;
+}
+
+.field {
+  border: 1px solid #A21313;
+}
+ï»¿<!doctype html>
+
+<title>CodeMirror: Internals</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="docs.css">
+<style>dl dl {margin: 0;} .update {color: #d40 !important}</style>
+<script src="activebookmark.js"></script>
+
+<div id=nav>
+  <a href="https://codemirror.net"><h1>CodeMirror</h1><img id=logo src="logo.png"></a>
+
+  <ul>
+    <li><a href="../index.html">Home</a>
+    <li><a href="manual.html">Manual</a>
+    <li><a href="https://github.com/codemirror/codemirror">Code</a>
+  </ul>
+  <ul>
+    <li><a href="#top">Introduction</a></li>
+    <li><a href="#approach">General Approach</a></li>
+    <li><a href="#input">Input</a></li>
+    <li><a href="#selection">Selection</a></li>
+    <li><a href="#update">Intelligent Updating</a></li>
+    <li><a href="#parse">Parsing</a></li>
+    <li><a href="#summary">What Gives?</a></li>
+    <li><a href="#btree">Content Representation</a></li>
+    <li><a href="#keymap">Key Maps</a></li>
+  </ul>
+</div>
+
+<article>
+
+<h2 id=top>(Re-) Implementing A Syntax-Highlighting Editor in JavaScript</h2>
+
+<p style="font-size: 85%" id="intro">
+  <strong>Topic:</strong> JavaScript, code editor implementation<br>
+  <strong>Author:</strong> Marijn Haverbeke<br>
+  <strong>Date:</strong> March 2nd 2011 (updated November 13th 2011)
+</p>
+
+<p style="padding: 0 3em 0 2em"><strong>Caution</strong>: this text was written briefly after
+version 2 was initially written. It no longer (even including the
+update at the bottom) fully represents the current implementation. I'm
+leaving it here as a historic document. For more up-to-date
+information, look at the entries
+tagged <a href="http://marijnhaverbeke.nl/blog/#cm-internals">cm-internals</a>
+on my blog.</p>
+
+<p>This is a followup to
+my <a href="https://codemirror.net/story.html">Brutal Odyssey to the
+Dark Side of the DOM Tree</a> story. That one describes the
+mind-bending process of implementing (what would become) CodeMirror 1.
+This one describes the internals of CodeMirror 2, a complete rewrite
+and rethink of the old code base. I wanted to give this piece another
+Hunter Thompson copycat subtitle, but somehow that would be out of
+placeâ€”the process this time around was one of straightforward
+engineering, requiring no serious mind-bending whatsoever.</p>
+
+<p>So, what is wrong with CodeMirror 1? I'd estimate, by mailing list
+activity and general search-engine presence, that it has been
+integrated into about a thousand systems by now. The most prominent
+one, since a few weeks,
+being <a href="http://googlecode.blogspot.com/2011/01/make-quick-fixes-quicker-on-google.html">Google
+code's project hosting</a>. It works, and it's being used widely.</p>
+
+<p>Still, I did not start replacing it because I was bored. CodeMirror
+1 was heavily reliant on <code>designMode</code>
+or <code>contentEditable</code> (depending on the browser). Neither of
+these are well specified (HTML5 tries
+to <a href="http://www.w3.org/TR/html5/editing.html#contenteditable">specify</a>
+their basics), and, more importantly, they tend to be one of the more
+obscure and buggy areas of browser functionalityâ€”CodeMirror, by using
+this functionality in a non-typical way, was constantly running up
+against browser bugs. WebKit wouldn't show an empty line at the end of
+the document, and in some releases would suddenly get unbearably slow.
+Firefox would show the cursor in the wrong place. Internet Explorer
+would insist on linkifying everything that looked like a URL or email
+address, a behaviour that can't be turned off. Some bugs I managed to
+work around (which was often a frustrating, painful process), others,
+such as the Firefox cursor placement, I gave up on, and had to tell
+user after user that they were known problems, but not something I
+could help.</p>
+
+<p>Also, there is the fact that <code>designMode</code> (which seemed
+to be less buggy than <code>contentEditable</code> in Webkit and
+Firefox, and was thus used by CodeMirror 1 in those browsers) requires
+a frame. Frames are another tricky area. It takes some effort to
+prevent getting tripped up by domain restrictions, they don't
+initialize synchronously, behave strangely in response to the back
+button, and, on several browsers, can't be moved around the DOM
+without having them re-initialize. They did provide a very nice way to
+namespace the library, thoughâ€”CodeMirror 1 could freely pollute the
+namespace inside the frame.</p>
+
+<p>Finally, working with an editable document means working with
+selection in arbitrary DOM structures. Internet Explorer (8 and
+before) has an utterly different (and awkward) selection API than all
+of the other browsers, and even among the different implementations of
+<code>document.selection</code>, details about how exactly a selection
+is represented vary quite a bit. Add to that the fact that Opera's
+selection support tended to be very buggy until recently, and you can
+imagine why CodeMirror 1 contains 700 lines of selection-handling
+code.</p>
+
+<p>And that brings us to the main issue with the CodeMirror 1
+code base: The proportion of browser-bug-workarounds to real
+application code was getting dangerously high. By building on top of a
+few dodgy features, I put the system in a vulnerable positionâ€”any
+incompatibility and bugginess in these features, I had to paper over
+with my own code. Not only did I have to do some serious stunt-work to
+get it to work on older browsers (as detailed in the
+previous <a href="https://codemirror.net/story.html">story</a>), things
+also kept breaking in newly released versions, requiring me to come up
+with <em>new</em> scary hacks in order to keep up. This was starting
+to lose its appeal.</p>
+
+<section id=approach>
+  <h2>General Approach</h2>
+
+<p>What CodeMirror 2 does is try to sidestep most of the hairy hacks
+that came up in version 1. I owe a lot to the
+<a href="http://ace.ajax.org">ACE</a> editor for inspiration on how to
+approach this.</p>
+
+<p>I absolutely did not want to be completely reliant on key events to
+generate my input. Every JavaScript programmer knows that key event
+information is horrible and incomplete. Some people (most awesomely
+Mihai Bazon with <a href="http://ymacs.org">Ymacs</a>) have been able
+to build more or less functioning editors by directly reading key
+events, but it takes a lot of work (the kind of never-ending, fragile
+work I described earlier), and will never be able to properly support
+things like multi-keystoke international character
+input. <a href="#keymap" class="update">[see below for caveat]</a></p>
+
+<p>So what I do is focus a hidden textarea, and let the browser
+believe that the user is typing into that. What we show to the user is
+a DOM structure we built to represent his document. If this is updated
+quickly enough, and shows some kind of believable cursor, it feels
+like a real text-input control.</p>
+
+<p>Another big win is that this DOM representation does not have to
+span the whole document. Some CodeMirror 1 users insisted that they
+needed to put a 30 thousand line XML document into CodeMirror. Putting
+all that into the DOM takes a while, especially since, for some
+reason, an editable DOM tree is slower than a normal one on most
+browsers. If we have full control over what we show, we must only
+ensure that the visible part of the document has been added, and can
+do the rest only when needed. (Fortunately, the <code>onscroll</code>
+event works almost the same on all browsers, and lends itself well to
+displaying things only as they are scrolled into view.)</p>
+</section>
+<section id="input">
+  <h2>Input</h2>
+
+<p>ACE uses its hidden textarea only as a text input shim, and does
+all cursor movement and things like text deletion itself by directly
+handling key events. CodeMirror's way is to let the browser do its
+thing as much as possible, and not, for example, define its own set of
+key bindings. One way to do this would have been to have the whole
+document inside the hidden textarea, and after each key event update
+the display DOM to reflect what's in that textarea.</p>
+
+<p>That'd be simple, but it is not realistic. For even medium-sized
+document the editor would be constantly munging huge strings, and get
+terribly slow. What CodeMirror 2 does is put the current selection,
+along with an extra line on the top and on the bottom, into the
+textarea.</p>
+
+<p>This means that the arrow keys (and their ctrl-variations), home,
+end, etcetera, do not have to be handled specially. We just read the
+cursor position in the textarea, and update our cursor to match it.
+Also, copy and paste work pretty much for free, and people get their
+native key bindings, without any special work on my part. For example,
+I have emacs key bindings configured for Chrome and Firefox. There is
+no way for a script to detect this. <a class="update"
+href="#keymap">[no longer the case]</a></p>
+
+<p>Of course, since only a small part of the document sits in the
+textarea, keys like page up and ctrl-end won't do the right thing.
+CodeMirror is catching those events and handling them itself.</p>
+</section>
+<section id="selection">
+  <h2>Selection</h2>
+
+<p>Getting and setting the selection range of a textarea in modern
+browsers is trivialâ€”you just use the <code>selectionStart</code>
+and <code>selectionEnd</code> properties. On IE you have to do some
+insane stuff with temporary ranges and compensating for the fact that
+moving the selection by a 'character' will treat \r\n as a single
+character, but even there it is possible to build functions that
+reliably set and get the selection range.</p>
+
+<p>But consider this typical case: When I'm somewhere in my document,
+press shift, and press the up arrow, something gets selected. Then, if
+I, still holding shift, press the up arrow again, the top of my
+selection is adjusted. The selection remembers where its <em>head</em>
+and its <em>anchor</em> are, and moves the head when we shift-move.
+This is a generally accepted property of selections, and done right by
+every editing component built in the past twenty years.</p>
+
+<p>But not something that the browser selection APIs expose.</p>
+
+<p>Great. So when someone creates an 'upside-down' selection, the next
+time CodeMirror has to update the textarea, it'll re-create the
+selection as an 'upside-up' selection, with the anchor at the top, and
+the next cursor motion will behave in an unexpected wayâ€”our second
+up-arrow press in the example above will not do anything, since it is
+interpreted in exactly the same way as the first.</p>
+
+<p>No problem. We'll just, ehm, detect that the selection is
+upside-down (you can tell by the way it was created), and then, when
+an upside-down selection is present, and a cursor-moving key is
+pressed in combination with shift, we quickly collapse the selection
+in the textarea to its start, allow the key to take effect, and then
+combine its new head with its old anchor to get the <em>real</em>
+selection.</p>
+
+<p>In short, scary hacks could not be avoided entirely in CodeMirror
+2.</p>
+
+<p>And, the observant reader might ask, how do you even know that a
+key combo is a cursor-moving combo, if you claim you support any
+native key bindings? Well, we don't, but we can learn. The editor
+keeps a set known cursor-movement combos (initialized to the
+predictable defaults), and updates this set when it observes that
+pressing a certain key had (only) the effect of moving the cursor.
+This, of course, doesn't work if the first time the key is used was
+for extending an inverted selection, but it works most of the
+time.</p>
+</section>
+<section id="update">
+  <h2>Intelligent Updating</h2>
+
+<p>One thing that always comes up when you have a complicated internal
+state that's reflected in some user-visible external representation
+(in this case, the displayed code and the textarea's content) is
+keeping the two in sync. The naive way is to just update the display
+every time you change your state, but this is not only error prone
+(you'll forget), it also easily leads to duplicate work on big,
+composite operations. Then you start passing around flags indicating
+whether the display should be updated in an attempt to be efficient
+again and, well, at that point you might as well give up completely.</p>
+
+<p>I did go down that road, but then switched to a much simpler model:
+simply keep track of all the things that have been changed during an
+action, and then, only at the end, use this information to update the
+user-visible display.</p>
+
+<p>CodeMirror uses a concept of <em>operations</em>, which start by
+calling a specific set-up function that clears the state and end by
+calling another function that reads this state and does the required
+updating. Most event handlers, and all the user-visible methods that
+change state are wrapped like this. There's a method
+called <code>operation</code> that accepts a function, and returns
+another function that wraps the given function as an operation.</p>
+
+<p>It's trivial to extend this (as CodeMirror does) to detect nesting,
+and, when an operation is started inside an operation, simply
+increment the nesting count, and only do the updating when this count
+reaches zero again.</p>
+
+<p>If we have a set of changed ranges and know the currently shown
+range, we can (with some awkward code to deal with the fact that
+changes can add and remove lines, so we're dealing with a changing
+coordinate system) construct a map of the ranges that were left
+intact. We can then compare this map with the part of the document
+that's currently visible (based on scroll offset and editor height) to
+determine whether something needs to be updated.</p>
+
+<p>CodeMirror uses two update algorithmsâ€”a full refresh, where it just
+discards the whole part of the DOM that contains the edited text and
+rebuilds it, and a patch algorithm, where it uses the information
+about changed and intact ranges to update only the out-of-date parts
+of the DOM. When more than 30 percent (which is the current heuristic,
+might change) of the lines need to be updated, the full refresh is
+chosen (since it's faster to do than painstakingly finding and
+updating all the changed lines), in the other case it does the
+patching (so that, if you scroll a line or select another character,
+the whole screen doesn't have to be
+re-rendered). <span class="update">[the full-refresh
+algorithm was dropped, it wasn't really faster than the patching
+one]</span></p>
+
+<p>All updating uses <code>innerHTML</code> rather than direct DOM
+manipulation, since that still seems to be by far the fastest way to
+build documents. There's a per-line function that combines the
+highlighting, <a href="manual.html#markText">marking</a>, and
+selection info for that line into a snippet of HTML. The patch updater
+uses this to reset individual lines, the refresh updater builds an
+HTML chunk for the whole visible document at once, and then uses a
+single <code>innerHTML</code> update to do the refresh.</p>
+</section>
+<section id="parse">
+  <h2>Parsers can be Simple</h2>
+
+<p>When I wrote CodeMirror 1, I
+thought <a href="https://codemirror.net/story.html#parser">interruptible
+parsers</a> were a hugely scary and complicated thing, and I used a
+bunch of heavyweight abstractions to keep this supposed complexity
+under control: parsers
+were <a href="http://bob.pythonmac.org/archives/2005/07/06/iteration-in-javascript/">iterators</a>
+that consumed input from another iterator, and used funny
+closure-resetting tricks to copy and resume themselves.</p>
+
+<p>This made for a rather nice system, in that parsers formed strictly
+separate modules, and could be composed in predictable ways.
+Unfortunately, it was quite slow (stacking three or four iterators on
+top of each other), and extremely intimidating to people not used to a
+functional programming style.</p>
+
+<p>With a few small changes, however, we can keep all those
+advantages, but simplify the API and make the whole thing less
+indirect and inefficient. CodeMirror
+2's <a href="manual.html#modeapi">mode API</a> uses explicit state
+objects, and makes the parser/tokenizer a function that simply takes a
+state and a character stream abstraction, advances the stream one
+token, and returns the way the token should be styled. This state may
+be copied, optionally in a mode-defined way, in order to be able to
+continue a parse at a given point. Even someone who's never touched a
+lambda in his life can understand this approach. Additionally, far
+fewer objects are allocated in the course of parsing now.</p>
+
+<p>The biggest speedup comes from the fact that the parsing no longer
+has to touch the DOM though. In CodeMirror 1, on an older browser, you
+could <em>see</em> the parser work its way through the document,
+managing some twenty lines in each 50-millisecond time slice it got. It
+was reading its input from the DOM, and updating the DOM as it went
+along, which any experienced JavaScript programmer will immediately
+spot as a recipe for slowness. In CodeMirror 2, the parser usually
+finishes the whole document in a single 100-millisecond time sliceâ€”it
+manages some 1500 lines during that time on Chrome. All it has to do
+is munge strings, so there is no real reason for it to be slow
+anymore.</p>
+</section>
+<section id="summary">
+  <h2>What Gives?</h2>
+
+<p>Given all this, what can you expect from CodeMirror 2?</p>
+
+<ul>
+
+<li><strong>Small.</strong> the base library is
+some <span class="update">45k</span> when minified
+now, <span class="update">17k</span> when gzipped. It's smaller than
+its own logo.</li>
+
+<li><strong>Lightweight.</strong> CodeMirror 2 initializes very
+quickly, and does almost no work when it is not focused. This means
+you can treat it almost like a textarea, have multiple instances on a
+page without trouble.</li>
+
+<li><strong>Huge document support.</strong> Since highlighting is
+really fast, and no DOM structure is being built for non-visible
+content, you don't have to worry about locking up your browser when a
+user enters a megabyte-sized document.</li>
+
+<li><strong>Extended API.</strong> Some things kept coming up in the
+mailing list, such as marking pieces of text or lines, which were
+extremely hard to do with CodeMirror 1. The new version has proper
+support for these built in.</li>
+
+<li><strong>Tab support.</strong> Tabs inside editable documents were,
+for some reason, a no-go. At least six different people announced they
+were going to add tab support to CodeMirror 1, none survived (I mean,
+none delivered a working version). CodeMirror 2 no longer removes tabs
+from your document.</li>
+
+<li><strong>Sane styling.</strong> <code>iframe</code> nodes aren't
+really known for respecting document flow. Now that an editor instance
+is a plain <code>div</code> element, it is much easier to size it to
+fit the surrounding elements. You don't even have to make it scroll if
+you do not <a href="../demo/resize.html">want to</a>.</li>
+
+</ul>
+
+<p>On the downside, a CodeMirror 2 instance is <em>not</em> a native
+editable component. Though it does its best to emulate such a
+component as much as possible, there is functionality that browsers
+just do not allow us to hook into. Doing select-all from the context
+menu, for example, is not currently detected by CodeMirror.</p>
+
+<p id="changes" style="margin-top: 2em;"><span style="font-weight:
+bold">[Updates from November 13th 2011]</span> Recently, I've made
+some changes to the codebase that cause some of the text above to no
+longer be current. I've left the text intact, but added markers at the
+passages that are now inaccurate. The new situation is described
+below.</p>
+</section>
+<section id="btree">
+  <h2>Content Representation</h2>
+
+<p>The original implementation of CodeMirror 2 represented the
+document as a flat array of line objects. This worked wellâ€”splicing
+arrays will require the part of the array after the splice to be
+moved, but this is basically just a simple <code>memmove</code> of a
+bunch of pointers, so it is cheap even for huge documents.</p>
+
+<p>However, I recently added line wrapping and code folding (line
+collapsing, basically). Once lines start taking up a non-constant
+amount of vertical space, looking up a line by vertical position
+(which is needed when someone clicks the document, and to determine
+the visible part of the document during scrolling) can only be done
+with a linear scan through the whole array, summing up line heights as
+you go. Seeing how I've been going out of my way to make big documents
+fast, this is not acceptable.</p>
+
+<p>The new representation is based on a B-tree. The leaves of the tree
+contain arrays of line objects, with a fixed minimum and maximum size,
+and the non-leaf nodes simply hold arrays of child nodes. Each node
+stores both the amount of lines that live below them and the vertical
+space taken up by these lines. This allows the tree to be indexed both
+by line number and by vertical position, and all access has
+logarithmic complexity in relation to the document size.</p>
+
+<p>I gave line objects and tree nodes parent pointers, to the node
+above them. When a line has to update its height, it can simply walk
+these pointers to the top of the tree, adding or subtracting the
+difference in height from each node it encounters. The parent pointers
+also make it cheaper (in complexity terms, the difference is probably
+tiny in normal-sized documents) to find the current line number when
+given a line object. In the old approach, the whole document array had
+to be searched. Now, we can just walk up the tree and count the sizes
+of the nodes coming before us at each level.</p>
+
+<p>I chose B-trees, not regular binary trees, mostly because they
+allow for very fast bulk insertions and deletions. When there is a big
+change to a document, it typically involves adding, deleting, or
+replacing a chunk of subsequent lines. In a regular balanced tree, all
+these inserts or deletes would have to be done separately, which could
+be really expensive. In a B-tree, to insert a chunk, you just walk
+down the tree once to find where it should go, insert them all in one
+shot, and then break up the node if needed. This breaking up might
+involve breaking up nodes further up, but only requires a single pass
+back up the tree. For deletion, I'm somewhat lax in keeping things
+balancedâ€”I just collapse nodes into a leaf when their child count goes
+below a given number. This means that there are some weird editing
+patterns that may result in a seriously unbalanced tree, but even such
+an unbalanced tree will perform well, unless you spend a day making
+strangely repeating edits to a really big document.</p>
+</section>
+<section id="keymap">
+  <h2>Keymaps</h2>
+
+<p><a href="#approach">Above</a>, I claimed that directly catching key
+events for things like cursor movement is impractical because it
+requires some browser-specific kludges. I then proceeded to explain
+some awful <a href="#selection">hacks</a> that were needed to make it
+possible for the selection changes to be detected through the
+textarea. In fact, the second hack is about as bad as the first.</p>
+
+<p>On top of that, in the presence of user-configurable tab sizes and
+collapsed and wrapped lines, lining up cursor movement in the textarea
+with what's visible on the screen becomes a nightmare. Thus, I've
+decided to move to a model where the textarea's selection is no longer
+depended on.</p>
+
+<p>So I moved to a model where all cursor movement is handled by my
+own code. This adds support for a goal column, proper interaction of
+cursor movement with collapsed lines, and makes it possible for
+vertical movement to move through wrapped lines properly, instead of
+just treating them like non-wrapped lines.</p>
+
+<p>The key event handlers now translate the key event into a string,
+something like <code>Ctrl-Home</code> or <code>Shift-Cmd-R</code>, and
+use that string to look up an action to perform. To make keybinding
+customizable, this lookup goes through
+a <a href="manual.html#option_keyMap">table</a>, using a scheme that
+allows such tables to be chained together (for example, the default
+Mac bindings fall through to a table named 'emacsy', which defines
+basic Emacs-style bindings like <code>Ctrl-F</code>, and which is also
+used by the custom Emacs bindings).</p>
+
+<p>A new
+option <a href="manual.html#option_extraKeys"><code>extraKeys</code></a>
+allows ad-hoc keybindings to be defined in a much nicer way than what
+was possible with the
+old <a href="manual.html#option_onKeyEvent"><code>onKeyEvent</code></a>
+callback. You simply provide an object mapping key identifiers to
+functions, instead of painstakingly looking at raw key events.</p>
+
+<p>Built-in commands map to strings, rather than functions, for
+example <code>"goLineUp"</code> is the default action bound to the up
+arrow key. This allows new keymaps to refer to them without
+duplicating any code. New commands can be defined by assigning to
+the <code>CodeMirror.commands</code> object, which maps such commands
+to functions.</p>
+
+<p>The hidden textarea now only holds the current selection, with no
+extra characters around it. This has a nice advantage: polling for
+input becomes much, much faster. If there's a big selection, this text
+does not have to be read from the textarea every timeâ€”when we poll,
+just noticing that something is still selected is enough to tell us
+that no new text was typed.</p>
+
+<p>The reason that cheap polling is important is that many browsers do
+not fire useful events on IME (input method engine) input, which is
+the thing where people inputting a language like Japanese or Chinese
+use multiple keystrokes to create a character or sequence of
+characters. Most modern browsers fire <code>input</code> when the
+composing is finished, but many don't fire anything when the character
+is updated <em>during</em> composition. So we poll, whenever the
+editor is focused, to provide immediate updates of the display.</p>
+
+</section>
+</article>
+‰PNG
+
+   IHDR   q   i   ûÌ&   bKGD ÿ ÿ ÿ ½§“   	pHYs    ÿÄ   tIMEŞ
+1;‹Ú     IDATxÚíw|TE×Ç¿sw7½ )Ri»!A¤…k@EAôåQPAQ@Ÿ×Â6P¤ˆ…Ş‹¤‰…G!²»i¡JKO6Ùì÷lÂ&$!e×óùì'Ù™Ù;÷ÎïÎÌ9gNRJîBˆ–Í›µ¶#ú€ÒLé)$Rà)% =AXAÄH) °Çl6›îøç¾ÓAlÔ¨‘Ÿ·»{˜ŠÒGQD¸ªªÕJy‰X_£(‹M&SÂ? ŞbÒëõ©é „İË.„6À7À{ÔèQ³¬V«röìYÎ;Ç¹3g¹pá™™™7»Ü%!•—bÇ®úÄÛHF½Á{ãæM¿×¯_¿¹s¹”’Ó§OóË/¿ğëŸÙ š¬¬¬"–dÖÛìöQqqqşñö€øèW_/Ò´¸vV«•ßöş—åK—±÷·ÿÖ$Q
+ÆšÍæEwÂs+Ü]Ô7%%Å÷f<<<x¤Kgæ.˜Ïª5«	ïÛFãÜ¤Š,4ê?Æ€@¼u³°'ğ,ª¼§4¿kÜ¸1S¦LaãæM‡´*XİUnõÿg9­x õÀ¯BßŸ~Ú#üÊ6yTUeñâÅÌúb&6›Í¹ê¿*2Ìb±¤ş3+ÀšÀfÀ¯Y³fÖ² (
+Ï=÷K—/£FÎow[ñÍ?ËiÅ 8P«ÕÆõ ò	OW\·qãÆ|õõbQ ÈÇÃğ–S× §xyyõöõõò÷ßësËFâÍ7ßti_çÎã¹aÏª.\È}ÙSQD“ÉtâË^ƒúõëIHH–””ä]®<3h ãÇGáò~Ïœ9ÃÓO>¥¦§§;€”KMË @,9p­|¼¼ûëÜİ&$$Ô)Xß¥[Wşõ¯Ñ¨Q£
+½mQ[y}ÜyüèÍfó‘Ê2NÚJšè$„èçææ¥¦§AzZ^›ÚujÑ­{ááá4iÒä–ÜW½øå×½lX·@ÑHşøg&^N !Š¢<¥ªª_Á6uëÖ¥{0ºwïNóæÍoË}fddğX¿GíÎ_Ô RQ5ÆCq‡,ÿ¯A4ê÷C€Á@ı‚õõÔ£[÷0ÂÂÂnÙŒs–åFÆ}Ó¦ML|k‚c/fU¬ÙñÿD£ŞPèï ¯]Áú   z÷	§OŸ><ğÀ·e@TU%6&–ààBë|üIyüø_ÈV‘u-ËÅÿ{¢QoxôÜë|¼¼éÚ£;}úô¡uëÖ…Î€[I6›=?ï)DEQ=z´3f4€VA
+|xWƒhÔÚo=
+Öİ#LïŞ½qww¯4ÌUbb"£Yß¹kgHHH ä »D£Şğ0èR°®MÛ‡:t(íÛ·¯¹®Ü &\ãôéÓEÖgee9ŸxÜw×‰F½! ˜
+<ä!¤ÕjéÑ«'C‡½åLJiéêµHIIÁ×7ÿ©ÖùóçùôÓO¹råJnÑßB!]ÈX´lÙ²v½ºuGètî>Ç[ûÇ-Ñ¨7¦AÎåí;<Ì„	¨[·î¡J¼–@||<Í›7'ùÊïŞÃömQløıwl¼4BÄ#í\	à ıÃ«®ìÛ¯Ÿ×šU«Q£[4oÑ;öpìÎ
+Ñ¨7T¾+¸ïñæ[ãéÖ=Œ;‰ş¾ü7 ‹§~ÌÙS'‰KL 'ğšK©Øÿc“êB‹å°Ë¦zvëÙÇfÏZ÷í’ï´µjÕ"--…_.pSŸ Á¢QoÖ÷æ–i4dÔ¨Qxyyq§‘é` IãhF
+ÎMR¤İf²˜?weŸƒ!ÜM«[7cæÚZµj9Ö>[†††úGGG'¹D£Ş0˜xä–éş÷ÿ÷¶Éx® ı¿ïS¥O•ªŒ«Y—İ)	\µÛvX™|»”µ›5kv«©C]F»zÄÈçµíÚµCfÛZçÎËkc·Û…Kg¢QoP€À¿œËÃûöáİwßÅÍÍíğÈ‘#$§§) >Z-5tn¬‘Wïç¦cŞåó¸)J(°É}úzû~U½z5·‘Ï'sÙÜÂ:#ªUå|üÙ_C)%€øÒ@!£^úS¦L¹£X½re.ÓÂn7/÷¯Zƒ@­.YEyĞ%Ì`3ãc©©)]_ÿ†’µìø3H€§Nâ´EI—|<—ûÅİİ>ş_|‘;ÒÒÒØ¼~ƒ
+ìéo~ë7 t^¬v·ùBppp•òô§×ë}´nš¹íÛ¶£mí{±ù3oRX,g1&¹aÃ†©.Ñ¨7L^ÎıÈ‚EéÑ³×môÓ§O“””ä²ëM›6Í–a³) øOÿ@ˆ@5;{jyúSP>°ÛíA¯}¬?æ ¨Ñ |}Ø±c‡sÓŸW®\i/7ˆF½a"ğ¦óœ5g6-Z´¸m3çŞ{ïeÆŒÌ˜1ƒË—/—ëZ[6oaÕŠ•:€†nô¬RµÈ¶>Úùø*R2²Eó]ËÒ_pÓàú _zì‰Ç	º–„ıêUHMC	ªŠ‚?lÏk+?–{O4êaÀûÎeï½÷şm;×sŞ‹'NœHVV=Ãz0iÒ$=Zªk¨ªÊŠ+ì'NÈÊåò&Õª»(~XzøW€BİX íû8!„æ¹‘"ñ`Ò–zé2š¦ùóÏ?‰w~ÎİåÒØõ†@à+gÚğçGĞ+¼•EaÜ¸qôÍy{Ò;l\¿  ‡JHH÷İwß:ÚÄÄDL&³¾˜i?räˆĞ(Àè Ú4r¿¹Á\ß*=¼1YÓ¼¤P7Æ&“iOIî¹E‹A ‡wèÔI­uñoåXzÕÎ]@(´F=;åóH4›Í1åU»Íjå~éøH'^~ùåJÇ”ôèÙ‹ïã•Ñc8{ö,Û¶F±mk şşşÔªSN‡V«åâùœ?>ñğšìwê4Ğ>èå[²U@J^©Y—çOÁ.„ª\c0Ú˜Íæã7ıÙê!ğˆèÓ‡ì¸£¤Z3±Ûlh5Dñğ`ÇÎû¡Ø)¥TË¢Qo<å¼}øá‡·ı¼¯(zàX½vË–-ãë¯¿&ñZ«aRRR±P+/ëÛµzTS4¥ê¯‘»'£ƒêğùås¨PUH1x´Øß4jäçåáù¯&Mš¨~§Î(R*¤''¡ñöFøúrúôişúë˜Ó~(—YN4êu/œËÆ‡··w¥¼¼¼>|8QQQLzçmº…u§J`Ñá“ï©Ïçu•À\z"0ˆwï©N;È7kïéîş¢”ÒXä %ŞdFdXI¶Z!¨º`#Û·own~¡iÓ¦[KrEÍÄ	@ÁRëPéÒù‘ù¼¼¼ˆˆˆ "")%çÏŸ'**ŠÏ§–¯]ªj/ÕuSìv–%\"6-™)iäéEVv6
+Rã)”¿‹ûmDD„”1¾¾>™Íª¹G§¥"…@«h@«AÓ¨!;>ûÔéòë›‰EÎD£Şpğ¬3øÚãîX!^AíÚµéÜùÆ—pŞÕ‹Yû3RQKpƒÖ4†:Ê·W/b²¦s,3ƒ-‰WÙ–lÔº²cïv•^Wµz…÷ÖÄŸ8I5«áíE€¯/š€ .eew]Kc×}UÒg,l&¾†“L¯ğŞ·]œp5hĞ _oRÒ®+?Rl6ûkñÇ¨¦ÕÑÕ·
+a~<à‘ÿä%>+“u	—X—t»Ó‰†ü$¤\”jµ®‹9fJ¾93$$<<\{tóV:¢Fuª\¼€öÁ¶n‹r…?Ç‰ù³L :DŠ<šV«eôèÑÜ$„ ZPuRN^Ñ&0¹%èJ¶­ÁŠ„Ë¬H¸Ì½nÜ£Ña’»c™/eRk‰İPÒ¾CCC½@>f¼ÿ~ïİ—ÿ¦k­Z(^^T¯M±tì+ÎËãÂÒiòÓhÀ'÷Kû“{¾u7¿A_QyñJjr3­Ó”œãBâ³¬ü‘ÂÁôÔB ”§¤ kìá’mµ>
+ø„÷í£±ˆÅfWñ
+@fføX8›¶náÒ¥K¹Í/¦ef./ÍõµN³PŒr®ïİ‹»‰üªxƒEòÉ“'­ÀX½^¿\«"º©Ğğu(9Î€<(„ØŸnÍüâØ±cÉeXôíŞÃÃ~ÈB]ÿYøú¢­YƒÅ‹œ·?ñù±cÇ2Ë"Ğ¨ûÅÃÃƒNt¾«@ÌÎÎÎ/x#ò ±X,ûıNË¯hÛ¶­ÇŞ½{3ÊÓ§Ãç¿‡¿¿Ê}¯êîN=__š`»víâÔ©SyÛ´F§™[Ú>œA|Ü¹¢SçGğôô¼«@<}òTÁ¢"Å‡TFùßBPĞ=øP›İ|ÅÇ›ºŞhÔGãïÇ"'5›Ì‰‰I,µúÑéÿÇò-¥½zßU Úl6gu[ÎÃËì*^Á« Ú·ò²ŸÉ9­¯¦hĞ´	aÏ=XLæë|–F3½L]8öÃ89µh4Ú¶owWxöìYT5ŸDøwlÜ‘}· k#@põKNi³!<=±Taê¦8Ïı%‡:Wf.¥4¬T¦õ® Ÿş¹€ÈÁyK¼‰„ÁÃÃ#£®.ÇtE¦¤¢iÉüùó¡¬»îİ2OvÇß|L£Æ¸ÛhıÚõ˜6ßÙTš5lØ0YI¿¾½ó÷.À‘ÊbÄœ*/ˆçÂ;Ùä°0:l6ç; ²¤”¾6oŞ\xÖkPß]Ú²Ñ¸{ ãı)SœãäÄûøù•ÏÔÃ¨7Ôò©ú7n|W¸zíÚ¼†\t+Y,–, µ^½z~jbº^İX¼qû~ûİI§Œ+¯£-8+óL”R–Ú“*>>ëó)XR¥NóïòÜGçÎµ×.]k+…ì (¸ån­*\SemllìY§%5¡fÍš>nİ»sàÈfÎp>á“;]šSè4AAA•Ä«—/S­”÷öñÇñå#íö¥ƒáK­V»­¤r™ÑhlèëëÛ×ßÏw`ZJj°ªÀ™á€´«ÓzÃORğºÙlyùâÅ‹µÏ\½ª¼1îugù Šò´kX§æú¯Éq¿À×Û‡_ÿo¥055•“ÇObha(ñoöîİË‹#_(®‰ä^P¾Ga‹››Ûq@—––¦Õh4îîKKIk—’–ZrÎ*|¨íÚµ£}»¶V­FFF‡b²}ÇN¶mÊ*ä›Rï ß*oegÛ¼R¯GÙ¯ÑiÃÊ"ØâO@‡Ü‚jÕª±ëÇİ•Ä…Ò¯_?ªU+YtèÌÌL"zš“'Oæ.k”G¢¸ï¾û2l(áááÅZºÿñÇ|<åCöEçhğ¤à¨4ÉYmQAlpóp^œƒLY¸Ó|6•QÕ–™™É–ï7—@)%o¿ıv€^^^¼6n,÷ß_:ÑIQÚ´}ˆ™³g±vı:üñ›º*4nÜ˜‹1í³éÔ®][uPRéo²˜r%€¹{b>s]ª*w¹z5AUK¾Î=›¨-[óõ“iŸR¯^=Ì÷›7±í‡íÜÓòVP4 WxozöìYfş [·ntìØQùæ›o˜9ã¡ªR•Â^!Ì†04×Çyn¼†F–,YRi <~ü8ƒÈØ×ÇñôÓ7ç6oŞÌ„7ßàéş¼ñÆ…jŸìv;q–8ş:ñ^^^x{{ãííM5\~†ºoß>^{åU599YQTùÉ¡8Ëë.íÀĞ\ÅĞ\/s?C"ËÊB)))²Oï>²MëejjêMÛoX·A†·’m[·‘Q[·TÈ=eggË¤¤¤Rÿ.>>^öîÙK54×KCSC7)%®úÜ°œ&''WŠ(¥düøñœ>}Š'z²XsÉÌÌL&OÌ»v3dØPàR1);;›-›·°iÃöˆFUUê7¨G¯Ş9“J nİº|:}šˆ8qÄhuÕršèrªW¯ÎÎİ»n;ˆ³fÍbŞœœóÑe+–i¬uáÜy-şŠ¦M›îRÅ½İngãÆÌŸ7—sgÏÚF£Ñ00r£F*‘]î‚˜=sVúÁC1.3âÕ—€Ú•i&®\¹’ùsçå1ÅYÛÕ¬u'Ntiÿªªµ%Š9sæpú´³^ZéÔqúÛ¯¿aÛÖmD‰¤W¯^Ô¨Q£8WUUõoW36Ñ@ˆsáşÑ·å(Ên·3uêTV,Ë±rwwgÉ²¥·L(¥dÇ;˜5k&'N\.,ëQ”7cccÿèÜ¹³6áòåÇT”ÿyC°%!Á!­hÓ¦O>ùd¾eıÊ¥KôéÓ7;--ı#óas™ß<£ŞÌÌ@¸¸!À\JRî·XõÏ»oÿ›ı¢óÊÆ¾>î–øã®İÌš5‹?şøÃ¼ƒ¨Ê+±–Ø¼ÃÈİ»wg«Õz½ş^!Dw!eKÀGQ4}UU­z0ú £°mkë7^×Û.X´ˆôôt­re9 ¾ÜÈ‰Øõl¡ &$%•ZGYuÚ¼yóXúİ’|:ÎÎ]»0`@ÅÇ…ıå—_˜õÅL>œï=–‚IMš6Uœ)½Åb‰6mÚ´ªVÑTU5Ÿ‰Ë¥‹ùWÍ‹/JEQÍfSy2Å}ä 0—+Ä?©ğÌ™™™¬ZµŠ/çÍw»sR8xyòŞ{ïUhÿûöícæŒ/8tèPÁq¢UÆ”ÆTB§ÑM9¢`y`µüÇ'OOUUõÇ²Zõ†Z@§Å÷kSÇŠ¥OßG+dğ¬V++V¬`ñ¢¯¸zõj¡m²¬™\¼p¾cßò3,»wíä›o¿#æÀÁ‚úÇsvÁf³éûRï¥Bş$$7€øÂ‹#óşÚºE:yÚ³$îÛÅPn4øĞ¿ly(æ ËÁËÈÈÈïÚµk7ìÿLÂü_º„ÁJJH`Õš5¬\¾‚‹1«*â³©ô ˜Íæo[Z“RíâÄ…kZ{İºu¬]»ÖsH"Áºr<Ê3…”ù)%F½á2PÍ™Ãúeï¯7D,+Ç·lÙ2æÎ›çøYéõzâââòY¤3cæe‘=Â’¥ËØúı–Bó'Ö©S›³gÏå21KbÍæÈr0q
+dØ»¤ ,çŒ±L×¿8VHÕÅ\ãáŸq²x“RËÃ?\. Ïœ9Ã;ï¼ÃıEßw@@ ã^KßGû±hÑ">›vİô2&&†!‘ƒyõÕWiÛ¾İMgå•+WˆÎùìÛŸOLp&ÿ€*¼2úZ…¶¢ŸcÛ’°ĞĞP¯èèèôÒ>g‹-ãt&üØQRˆ5V«u{iÍóĞSE”ÿ](ˆ¹XV¥”,_¾œÏ¦M'#£póOOOú?3€#Fàç—ãÏúÜsÏ‘””ÄW¯[EŸ<y’Ñ£GãééIûÓ²eË\ÎOœ8Aô¾ıÎæğEjWìv;iéÕ¢AƒÔ«W?W ¯eÍz‹œHÉ¥{^»ıCÚ<-jïXI4/¢ü\îrŠ“äÛ[ºti™¸Î—_~™ßönàëíCÿAÏ0dÈªT)<èÏüùó™?w^‘ÙFKC¾¾¾ôèF—nİØ²e›7æ„dÓétÌš3›Œ´1½¬B£4‹=YÊ¥ÎæĞ~¡ÀŠC³Ke#£ŞPˆÇ)Š‰MÊ}{:å…¼´˜Ì6›in0”ªÃ>ø P ıüü48’ÈÈÈ›îµ#G$,,Œyóæ±{ç.ÒÓK¾ÂİsÏ=è†œ^¯Ï[†~øaêÔ©ÃÜÙs°Ùl|4õ#Ö¬[C‡NùyÏO ÒnŸN—†›‘‚üñ¾\‘ŠRnÕ‹ `w^J£ŞğğçÚ^á½ùğÃ’Ç)_±b“ßÿ _™——CŸÆàÁƒñññ)“Hòë/?óç±¿8sæçÎœÅfÏÆËÍwoO<==©W¯FƒæzÃMOÿ“èÒ¥kbáÓO§Ñ´ySï÷Xó#“bÍæÉT2êÀ	 faº ĞÄ àŒ3G¥Ñhˆúa[±
+]ç=tø³Ïå¹ét:"ôgäÈ‘T®Œ®ãÇgë÷[ x0´5/â»ï¾ã£©:«ÜFÅšÍs*ˆ£É	ŒX}n²˜_ÉãLó%`UA…ôòå%sZ:u*ÙÙÙ(ŠÂ£õcÓ÷›?~|… ˜––ÆÑ£G9pà {öìaÏ»9~üx‰÷Ğv]w:}&'Wdd$Ïw–Ä¬6!!ÏŞf İ7Š¨¶ŸÂfùÒÊ­^¹Š^x¡XÛ›3gÎpäpAAALŸşY©Ì
+Kªi‰‹‹cïŞ½ìİ»—Ø˜CØíö¼Õ"´U»<‚Á`Àh4Ş4`’³r¦í:ğ¯¾ú*)))¬^¹
+)¥ÈÈÌZÔ©S§×’““ÇÄÄÄÜCÖçp:&,@ßš,æ37€h²˜ÿkÔ~%Çk8gIJbãÆDDiûöí´
+aÚ´iºì	¤”Dm‰bÆŸİp(Ûîáö„÷îEÇN”Z¬=GàÏŸÑoÒ¤I¤§§³esò&áê5=°³S‡—­Vë«5ãšc/ŠvÍÎôì/i¼™RÎÂ*Åˆ;*NIU
+ò#îÀü¹óèÙ³g<W?ÎìÙ³]¸İf³ñÊ+¯äryT¿~}ŞœğíÚ•İò§¯ÇÒ«Z5¿’ZQ¦NÊ#<Â—óçqêäiìv;RÊêZESİIuı˜Tì;z¬Eó¯—6C	h:PT¦òµ&‹9/DJ¡	¿ŒzÃœÔÇ©&''“””äò¼o½õßoÚœË}qÔÿ‰V[ö$“‰ÈÈÁ¨ªŠoO/V­[CíÚµ‹\r—_UUYºti>È©å{&‹åß.š…=âB‚…˜,æƒ×EœÂém
+Qmı~QQQ…Ê®ğÄ‰yË@•*UX¹zÃ†+€™™™L˜8!O?+¥$5=×^{­H³çısß¾}¬[»¦¨ö²±-  /0¿˜&k,D“ÅœÜ`9ùı¸r=ŞJ…Ñ’%KòLîµZ-Ÿ>ƒ{ï½·üëÓôéœ:yÚ‰»{#rĞ@ÎÄ#*æ@OEÈ‘#çØŸ9|	Ä& RÜx¦Xú';àtn<ò*’3YÌßÛò	ÊIILzç
+099™M6æ}ïÒ­k¡iğJKûöícÙ’¥Îrà'*jgE•3 yêäi0PîŞy£Ê§Ó?åèÑ#Âé·[UÓ6Ölªa²˜5YÌ-Ud [9ga7`d1"E“ÅœPbÔ=ù´Ê{ù•+V”ùF³ÃºvÖµ›ÈÚEæÎ=Ø]õºcûX­Ö¼ï}û„»ÀW_ãt .æÄšÍ,KÖ¡8Ë)èòTrr²3f4#FŒÈg®áëü²t5›ÃÅú-ß^k±üªÁ^ › +‹Q¯½a²˜/t!¿™¥€Qoh	ìò<m<<<øúÛohÚ´iÉ8ÍıÈşí ÙM¨Eì=šÚµĞuïÄ„ÛØ¾sgøÛ¾ßËu0¼eó&Mš(³³³EÎ³ÈgQĞD¢I“&¾nZ·f:€zõêÓ*´q–Ã*9_…—À®'jÿ¥´¼Zg²˜Ÿ(Rî-‰¹‡Qoˆ$ÇÂ*CóåÂÅi¿p‘Œ9‹°.Y€uèsâ0)¼Q£F¬Y·¶Ìƒ³hÑ"ùùôÏœQ|c>l~¶¸Ì¡¨essIJ"‹Ø›@,ñ^llì% èìZÅç­|JÙAttö99üJ¤ıÜyÒ&~€L)¹k|lF*/Å_?¼îÛïQ&O.½úøñãL<9#zß~ÏëŠbùšÉbù²4×	nü@¶6»‹"TO@ *¿iÜ5?ºÂAÔ¨7hÉIWTTÔâ, Éb>PÜuJÃ¯š9oŞÉÉÉ<?|D¡@¦2³T ¬I¸’ï{I—ë\JLLdÆŒÖ5«V»I)sÜ+CÌfËñÒ²#æèŸTÍ-ÀL#sàf)qTv“ÅœMN ò¹Éç‡àÈ‘#ù˜µ	« Ì©ìNÉÏx—0yJzz:sçÎµuëÒ5sõÊURJH‚7š4kÚ±$Qòo±b[õ†áE4Iz›,æiJ¢İ¨7x ë)ôÒyiMŸ½ÛÎ=¥ºî‹ñp8ãúáo­ZµˆúaÛM…÷åË—Ë9sæd¦§¦y\ ñ¹F§ùÄU>ñ.Ğø(ŠQ¹ô2YÌ%YVêü&‹ÙJNªõ­…ÍÈwíF–2‡ÓÆÄkù èŞ#¬X½êŠ+³}úñ'Â ä4­›®¡ÉbšTI¬üR€€¥°L3Ñé†Ü5À²Qø}­xâu“T*ğåå³|w-®'EQXµfu¡Vè‡düø7å…rå)›¢Ê…¸i?(k€»[`[`P£.´»Éb>QÚk‹òD”0ên¥¡ÁºšZ7&ÔªG°gá&©ªÊ»çNò[úrãÓı#xûíOa~Üµ›±cÇª6Gv5à¬Š|Âp–Jà‡>´(÷°À2YÈ	W4ê/Ÿ¼IxƒÆ)  ßIDAT: :#ƒjãæPDœÈ²ò}Âe¶%]#©q-00›6ŞpF¸gÏF¿ô²”R:f ˆ‘Bö2›ÍEúú5hĞÀÃÇÇÇßn·{ ÄÅÅ¾Åài€)¢‡vä&‹ùZYû®ŠéH½¸¯`¿ĞĞÀÓ‹Äì,Nem?ëççÇ‚EiÒ¤I¾r)%=Ãz$_¸pÁïú"û²X6Ş ¬‡†ê²­Ö'UDĞ§œÇÀ%?¡0Õd2¨` ÃÉñ`jV”D¼ìĞQ—‹\–øÉ!Ï„ã»—’¤Cé©ÅX§Næ}9ÿ víÚ…3€ ÙrÃÀ²¬™±*b9Æ¶mJ‚@>…*3ã*¼`£Ş°“œPœEè]`i…ı’ ™<]øòZøŒ÷õõ¥ÿ3xá…ŠÔ‘?¾ _
+b}‹æ-FH4+ölUh'€,‰+×%Ó„¤Ÿ^¯_o±Xşr!ç9ˆ¤h%v
+0Öd1éÊq×VÄÛh²˜gõ†]äœL¼nİº¼ğÂ‹ôîÓ»ØÃŞÆ¶bøI¡®DUhŠzIR\_-®g’Rú™›;èõz7€ç¼¼RÈÌÏÇ—Ïš,æS®oQÑ”zC˜E)x	
+
+â™Ayê©§
+5zÊÌÌ¤{×n1‰‰‰%8X¿+¨³¥Fó»ÉdúSJ)#""4Gãù>à$T­^-Èáº]Öçªu€W½˜¦IÀ;À&‹¹B[ÜŠ0ØÔîËM‘ñ[<<<x¸cZ·nMëÖ­óe!ÍÈÈXÛ¦uëdƒq2âr¢#¨b´)Î´£¨ë7kÖìĞu‘ÂŞÊd±Œ-Ãsx8ÏİoÂS\>æ˜,æ
+IrK@,  MNj¿›¦8¯@HH¡¡¡¹ voÙ²¥Y¨…À[E$K!£Üİİ7EGGÛ*à]Ÿ%¸ï¿üÀb“Åœy+Æõ–‚è40şäx½Ú”ôw~~~Ø•œœ¼	øœä$W]õ¦;\š8>mÀ•4òS0Xm²˜Õ[9·Ä×Øæ`Š¶v¾Ù€«À§¿W
+”¥“Í›œ¤f¹Ÿ@ ±ãSŸƒİÀT“ÅüÃíÃÛ¢˜
+9g•C2^eÍqd~rÈz[MóÑÛ}C•ÄBØö®ÀCe-”o1u€¶Øc²˜3*ÓxUJU4w šlSWjœ
+våg²˜OWæñ¹#@,X_‡ìYÓ±—÷	tÌä4‡ Õñ7ÅÁwp•ÇŸ%ÓUı¸ Ù•ÏÍÚ    IEND®B`‚<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640">
+  <path d="M292.4 53.2s8.7 18.6-3.6 39.2c-6.2 10.2-163.1 43.6-224.3 128.6-37.5 58.7-95 228.7 88.7 341.2 82.5 42.5 117.5 41.2 117.5 41.2s-55-38.7-20-65 86.2-38.7 100-75c16.2 12.5 42.5 38.7 67.5 36.2-2.5-16.2-8.7-22.5 11.2-25s30-2.5 30-2.5-18.7-15-40-16.2-61.2-42.5-60-60c26.2-15 60-40 80-32.5s40 20 43.7 31.2c0 7.5-3.7 20 12.5 10s12.5-16.2 18.7-30 7.5-16.2-6.2-27.5-46.2-37.5-72.5-30-81.2 28.7-108.7 2.5c11.2-25 28.7-65 20-92.5 16.2-12.5 35-26.2 37.5-48.7 18.7-2.5 58.7-13.7 51.2-33.7S374.9 36.0 293.6 53.5" fill="#fff"/>
+  <path d="M551.9 257.4c13.7-36.2 36.2-97.5 15-100s-45 55-51.2 70-31.2 90-17.5 100 53.7-70 53.7-70" fill="#fff"/>
+  <path d="M435.6 159.9c3.9-6.1 7.2-.8-9.6.4-16.8 1.2-37.0 6.4-40.4 13.8-6.4 13.7-8.6 47.6-33.0 55.1-1.2 8.7 0 28.7 34.3 32.5s35.6-18.7 55.6-18.1 18.1-6.8 11.2-12.5-30.6-43.7-30.6-56.2 8.1-8.1 12.5-15M128.7 536.8s-10.6-28.1 20.6-43.1 59.3-3.1 65 7.5-9.3 53.1-63.1 53.7c-13.1-10.6-22.5-18.1-22.5-18.1" fill="#da687d"/>
+  <g opacity=".7" transform="matrix(1.25 0 0 -1.25 -26.846 640)">
+    <path d="M466.2 369.8c.4-1.5.2-3.1.2-4.8-.0-1.6-.1-3.3-.6-4.9.1-.3-.0-.8-.0-1.2-.4-.5-.1-.9-.2-1.3.6-.6 1.5-1.3 1.1-2.1-.2-.5-.8-.7-1.4-.9-.3-1.4-.7-3.0-1.0-4.6-.0-.4-.0-1.0-.1-1.4-.3-1.0-.6-1.9-.9-3.0-.2-.9.0-2.6-1.0-2.8-.4-1.0-.6-1.8-1.1-2.8-.2-.1-.4.1-.6.0-.3-.3-.2-.8-.5-1.1-.2-.2-.5-.1-.6-.3-.3-.5-.2-1.2-.5-1.9a4.7 4.7 0 0 1-1.1-1.4c-.5-1.1-.6-2.6-1.5-3.5-.2-.2-.7-.3-1.0-.6-.2-.2-.4-.6-.6-.9-.3-.4-.6-1.0-.9-1.5-1.0-1.7-2.3-3.7-3.3-5.6-.1-.3-.2-.8-.3-1.1-.3-.8-.9-1.5-1.2-2.3-.5-1.2-1.3-3.3-2.5-4.4-.1-.1-.4-.2-.6-.4-.1-.2-.1-.5-.3-.8-.0-.1-.4-.1-.5-.3-.2-.2-.3-.4-.4-.6-.4-.3-1.0-.5-1.3-.9-.2-.3-.3-.7-.6-1.1-.3-.4-.7-.7-1.0-1.2-.9-1.2-1.3-2.8-2.7-3.3-.3-.1-.8-.1-1.2-.2-.3.3-.0.8-.1 1.1-.0.2-.2.3-.3.5-.1.4-.3 1.3-.3 1.8.0.5.3.9.3 1.6.0.5-.1 1.2-.1 1.8-.0.3.0.6.0.9-.0.5-.0.8.0 1.4.0.7-.0 1.4-.1 2.1.3 1.7.5 3.0 1.0 4.9.2.8.7 2.3 1.1 3.3.8 1.8 1.6 3.9 2.6 5.9.3.6.8 1.1 1.1 1.8.1.3.2.8.3 1.2 1.6 3.3 3.8 6.2 5.5 9.7 1.4 2.8 2.8 5.4 4.7 8.5.8 1.4 1.5 2.9 2.4 4.0.6.8 1.6 2.4 2.3 3.9.2.5.2 1.0 1.0 1.1.7.9 1.3 2.0 2.1 2.8.2.2.5.3.7.4.2.2.3.5.6.7.5.4 1.4.8 2.0 1.6.1.2.2.4.4.6.4.5 1.1 1.8 1.8 2.0.0.0.2.0.3-.0" fill="#da687d"/>
+  </g>
+  <g opacity=".7" transform="matrix(1.25 0 0 -1.25 -26.846 640)">
+    <path d="M459.8 349.4c.6-1.9.7-4.1.9-6.2-.0-2.1-.1-4.5-.7-6.9.0-.4-.1-1.1-.1-1.6-.5-.7-.2-1.2-.4-1.8.7-.8 1.6-1.6 1.1-2.8-.3-.8-1.1-1.0-1.8-1.4-.6-1.9-1.2-4.2-1.8-6.3-.1-.6-.2-1.3-.4-1.9-.5-1.3-1.1-2.6-1.5-4.1-.4-1.2-.3-3.4-1.6-3.6-.6-1.3-.9-2.3-1.6-3.6-.3-.2-.5.1-.8-.0-.3-.4-.4-1.0-.7-1.4-.2-.2-.5-.2-.7-.5-.4-.6-.3-1.5-.7-2.4a6.5 6.5 0 0 1-1.1-1.3l-.1-.2-.0-.1-.0-.0-.0-.0v-.0l.0.1-.0-.0-.0-.0-.0-.0-.0-.0-.0-.0c-.6-1.6-.8-3.6-1.8-4.9-.3-.4-.8-.5-1.1-.9-.2-.3-.4-.9-.7-1.3-.3-.6-.7-1.4-1.0-2.1-1.0-2.4-2.5-5.2-3.5-8.0-.1-.5-.2-1.1-.3-1.6-.4-1.1-1.0-2.2-1.3-3.3-.6-1.7-1.4-4.7-3.0-6.3-.1-.2-.5-.4-.7-.6-.2-.3-.1-.7-.4-1.1-.1-.1-.4-.2-.6-.4-.2-.3-.3-.6-.5-.9-.5-.5-1.2-.8-1.7-1.4-.3-.4-.5-1.0-.9-1.5-.4-.5-.9-1.1-1.4-1.6l-1.8-2.6c-.5-.8-1.2-1.5-2.0-1.8-.4-.2-1.0-.1-1.5-.2-.3.4.0 1.0.0 1.5-.0.2-.2.5-.2.7-.0.6-.1 1.7-.0 2.3.0.6.5 1.1.7 2.0.1.7-.0 1.5-.0 2.3.0.3.1.7.1 1.2.0.6-.0.9.1 1.7.1.9-.0 1.8-.1 2.7.4 2.1.6 3.8 1.2 6.3.2 1.1.7 3.1 1.2 4.4.4 1.3.9 2.6 1.3 4.0.4 1.4.9 2.8 1.4 4.2.3.9.8 1.7 1.2 2.7.2.5.2 1.1.4 1.7.4 1.2.9 2.5 1.5 3.6a147.5 147.5 0 0 0 1.7 3.3l.9 1.8c.3.5.6 1.1.9 1.7a75.5 75.5 0 0 1 1.8 3.6 129.6 129.6 0 0 0 3.1 5.7 340.1 340.1 0 0 0 3.6 5.8c1.1 1.8 2.2 3.8 3.3 5.3.8 1.1 2.1 3.1 3.0 5.1.3.7.3 1.3 1.1 1.4.9 1.2 1.6 2.6 2.4 3.7.2.2.5.4.8.7.2.3.4.7.6 1.0.5.6 1.6 1.2 2.2 2.5.1.3.1.6.3 1.0.3.8 1.0 2.7 1.7 3.1.0.0.2.0.3.0" fill="#da687d"/>
+  </g>
+  <path d="M520.8 231.2s-10 38.3-5.8 70l5.8-70m11.8-25.9c-.7-2.6-5.7 74.3-4.2 77.0 1.4 2.6 8.9-60.7 4.2-77.0" fill="#fff"/>
+  <path d="M294.0 57.9s5.8 33.2-48.3 50.7-128.8 32.4-183.8 98.3c-55 65.8-65 174.9-27.5 246.6 37.5 71.6 129.1 160.8 294.1 160.8S624.6 487.7 624.6 400.2c0-45.8-25.1-35.6-33.8 7.3-7.8 38.8-80.5 183.6-263.0 183.6-182.5 0-275.8-110.8-287.5-205.8-11.6-95 14.8-176.8 110.7-226.0 95.8-49.1 156.6-29.5 143.3-101.2" fill="#2d2b2c"/>
+  <path d="M248.5 314.5s-10.8 50.0-63.3 74.1c-52.5 24.1-75 37.5-82.5 79.1 20-33.3 78.3-40 110.8-72.5s35-80.8 35-80.8m14.1-115.8s45 58.3 98.3 30c53.3-28.3 25.8-94.1 25-98.3-.8-4.1 5.8 73.3-34.1 86.6-40 13.3-89.1-18.3-89.1-18.3M145.2 547.0s28.3 1.6 49.1-21.6c20.8-23.3 9.1-60 43.3-73.3 34.1-13.3 57.5-5 57.5-5s-60.8 8.3-65.8 43.3-13.3 50.8-26.6 61.6c-13.3 10.8-30.8 12.5-30.8 12.5l-26.6-17.5z" fill="#2d2b2c"/>
+  <path d="M273.7 365.6s50.6-8.4 73.7-60c18.9-42.2 6.2-78.7 6.2-78.7l-25.6 3.7s10.6 30.6 2.5 58.1-26.8 59.3-56.8 76.8m272.6-117.0c-18.0 45.1-44.7 77.5-47.8 75.8-5.6-3.1-.4-42.5 17.6-87.7 18.0-45.1 40.5-79.5 48.8-76.2 8.3 3.2-.6 42.9-18.6 88.1m26.2-90.6c-20.5-11.1-45.8 30.5-66.5 79.1-20.7 48.6-23.1 87.7-7.1 94.7 21.3 9.3 41.4-27.8 62.1-76.4s30-87.5 11.5-97.5" fill="#2d2b2c"/>
+  <path d="M199.4 402.9s12.9 38.7 77.5 30.8c60.8-7.5 86.9-30.9 124.1-54.1 26.6-16.6 25-9.1 28.3-8.3 3.3.8 18.3 10 34.1 8.3.8 8.3-7.4 1.6-10.8 9.1-1.6 5 12.6 28.5 33.3 25 34.1-5.8 24.5-20 31.2-35.8 6.6-15.8 11.2-24.1-22.0-46.6-25.8-23.3-40-17.4-52.5-17.4s-45 17.4-67.5 13.3-36.6-12.5-36.6-12.5l-14.9 16.6s27.4 20.8 59.1 13.3c31.6-7.5 55.0-31.6 82.5-19.1 27.5 12.5 32.8 20.8 41.2 27.0 9.5 7.0 10.4 14.5 3.7 21.2-6.6 6.6.0 11.6-4.1 19.1-4.1 7.5-25 10.8-25 10.8s22.8-29.3-5-31.6c-20-1.6-32.5-28.3-60.8-14.1-40.6 20.3-98.3 55-138.3 59.1-38.9 4.0-53.3-8.3-63.3-31.6-11.6 10-14.1 17.5-14.1 17.5" fill="#2d2b2c"/>
+  <path d="M342.7 411.2s28.3 15 20 47.5-45.8 55-70 65.8c-24.1 10.8-42.1 25.1-24.1 34.1 15 7.5 23.3-11.6 45-15 21.6-3.3 40.8 5 42.5 17.5-9.1-5-15.8-5-15.8-5s7.5 5 8.3 13.3c.8 8.3-.8 4.1-5.8 4.1-12.5 0-14.1-10.8-25-9.1-27.5 2.5-29.1 14.1-44.1 15.8-15 1.6-40-6.6-36.6-25.8 3.3-19.1 29.1-32.5 53.3-42.5 24.1-10 60.8-41.6 55.8-70-5-28.3-26.6-22.5-26.6-22.5l23.3-8.3zm71.0-235.9s11.8 5.9 19.3 35.9c5 10.8 11.6 19.5 17.5 22.0 5.8 2.5-2.5 5-6.6 4.1-4.1-.8-12.9-4.5-18.7.4s-20 18.3-40 15c-20-3.3-37.0-16.0-37.0-16.0s7.5 33.1 52.0 31.0c30.9-1.4 24.1-17.5 45-20.8 20.8-3.3 18.6-13.8 14.1-22.5-7.0-13.7-29.1-17.0-31.6-57.2-2.5-4.1-18.1.5-13.9 8.0m71.2 209.1c1.8 1.8-14.7 39.3-14.7 39.3s-3.3 9.1-12.2 5.9c-9.1-3.3-6.7-9.9-6.7-9.9l21.2-38.5s11.6 2.3 12.5 3.2m23.4-53.3l-4.1 12.5-13.6-10.4 3.6-7.9 14.1 5.8z" fill="#2d2b2c"/>
+  <path d="M356.0 403.7c-2.5 9.1 29.1 62.5 50.8 59.1 21.6-3.3 24.9 3.3 18.3 7.5-6.6 4.1-18.3 5.8-16.6 11.6 1.6 5.8 6.2 11.6-4.5 10-10.8-1.6-32.9-13.3-46.2-35.8-4.1 13.3-5.8 17.5-5.8 17.5s42.5 44.1 85.8 25.8c-7.5-5.8-28.3-4.1-10.8-14.1s30.8-13.3 39.1 2.5c4.1-.8 4.1-37.5-50.8-35-19.1-2.5-45-40-45-59.1-5 5-11.6.8-14.1 10m169.4-184.3s-10.9 32.8-6.3 60l6.3-60m11.2-19.4c-.5-2.0-5.0 57.2-4.0 59.2 1.0 2.0 7.3-46.6 4.0-59.2m-145.6-32.8s47.0-4.1 38.7-22.9c-25.1-56.5-72.9-89.5-161.2-86.2 50-20 92.5-17.5 133.3 17.5 20.4 17.5 29.8 38.8 37.1 55.1 11.6 26 8.2 28.4-4.6 35.7-15.7 8.8-42.7 3.2-43.3.8" fill="#2d2b2c"/>
+  <path d="M395.8 174.2s12.9 8.9 23.1 1.6c4.6-4.8 7.7-7.4-5.4-6.8l-16.1-.6c-11.1-2.2-10.9 1.1-1.5 5.8z" fill="#2d2b2c"/>
+</svg>
+<svg fill-rule="evenodd" viewBox="10538 7547.8 6693 4459" xmlns="http://www.w3.org/2000/svg"><rect fill="#062341" x="10538" y="7547.8" width="6693.4" height="4459.4"/><path fill="#fefefe" d="m15757 9524c-11.38-73.68-40.63-133.26-87.74-178.76-47.13-45.5-109.68-68.26-187.68-68.26s-140.98 22.39-188.91 67.18c-47.94 44.78-79.21 104.72-93.86 179.84h558.19zm-2797.1-489.69h369.08v166.12c21.04-24.93 44.1-48.39 69.19-71.15 25.08-22.38 53.02-42.25 83.76-59.94 30.77-17.35 65.16-31.06 103.19-41.53 38.04-10.12 80.54-15.17 127.47-15.17 85.8 0 159.84 15.88 222.16 48.02 62.33 32.15 110.49 77.64 144.49 137.6 56.64-61.38 119.77-107.26 189.37-138.68 69.59-31.42 148.93-46.94 237.95-46.94 137.58 0 245.22 36.12 322.93 108.33 48.42 45.04 81.78 103.28 100 174.71 24.57-38.29 53.4-73.42 86.51-105.37 56.87-54.89 124.72-98.22 203.53-130 78.8-31.79 166.14-47.67 262.02-47.67 108.86 0 203.12 17.34 282.73 52 79.64 34.66 145.85 81.26 198.66 139.76 52.81 58.51 91.79 125.67 117 201.52 25.19 75.84 37.77 154.92 37.77 237.27 0 12.99-0.4 26.71-1.21 41.17-0.81 14.43-2.04 29.6-3.68 45.49h-909.14c17.86 75.11 54.83 131.82 110.9 170.09 56.06 38.29 125.53 57.43 208.39 57.43 61.76 0 117.01-9.4 165.77-28.18 48.74-18.78 99.11-49.11 151.1-91l212.06 166.84c-61.76 67.89-136.5 120.98-224.26 159.26-87.72 38.27-190.92 57.41-309.53 57.41-97.51 0-188.1-14.44-271.78-43.33-83.69-28.89-156-70.06-216.93-123.5-31.34-27.5-59.13-57.55-83.39-90.2v231.03h-369.04v-646.42c0-77.65-18.61-136.51-55.83-175.87-37.24-39.72-90.65-59.58-160.27-59.58-69.6 0-124.23 19.86-163.88 59.58-39.68 39.36-59.48 98.22-59.48 175.87v646.42h-369.06v-646.42c0-77.65-18.62-136.51-55.86-175.87-37.22-39.72-90.63-59.58-160.23-59.58s-124.24 19.86-163.9 59.58c-39.66 39.36-59.48 98.22-59.48 175.87v646.42h-563.64v325.09h-318.66v-325.09h-795.02l-0.53-238.52 827.03-922.87h287.18v888.19h194.56v-888.19zm-513.22 888.19v-472.57l-403.19 472.57h403.19z"/><path fill="#fefefe" d="m16236 9012.7c66.1 0 119.69 53.6 119.69 119.7 0 66.11-53.59 119.7-119.69 119.7-66.11 0-119.7-53.59-119.7-119.7 0-66.1 53.59-119.7 119.7-119.7zm0 24.2c52.74 0 95.51 42.77 95.51 95.5 0 52.74-42.77 95.52-95.51 95.52s-95.52-42.78-95.52-95.52c0-52.73 42.78-95.5 95.52-95.5z"/><path fill="#fefefe" d="m16297 9193.9h-32.6l-19.55-32.41c-1.49-2.45-2.88-4.63-4.24-6.59-1.35-1.93-2.71-3.57-4.07-4.95-1.39-1.37-2.83-2.42-4.32-3.18-1.5-0.71-3.11-1.06-4.85-1.06h-7.65v48.19h-28.38v-125.91h44.96c30.57 0 45.86 11.41 45.86 34.23 0 4.39-0.69 8.44-2.05 12.16-1.34 3.71-3.24 7.08-5.69 10.07-2.45 2.97-5.42 5.55-8.9 7.71-3.5 2.18-7.37 3.86-11.67 5.08v0.36c1.9 0.6 3.7 1.54 5.46 2.86 1.78 1.31 3.46 2.85 5.09 4.62 1.66 1.77 3.22 3.65 4.72 5.66 1.49 2.01 2.85 3.98 4.08 5.93l23.8 37.23zm-77.28-104.66v35.03h12.28c6.1 0 11-1.77 14.67-5.28 3.75-3.56 5.62-8 5.62-13.25 0-11.03-6.59-16.5-19.77-16.5h-12.8z"/></svg>
+‰PNG
+
+   IHDR  _   d   !3[   gAMA  ±üa    cHRM  z&  €„  ú   €è  u0  ê`  :˜  pœºQ<   bKGD ÿ ÿ ÿ ½§“   	pHYs  ×  ×B(›x   tIMEå˜–†  $IDATxÚíyœu™ÿßOUwOÏ‘dÂä¾	$$“P@ğ@ğB ¢(®è‚.«¸²ËêO]Y»«(ŞÇŠºúC! Ş€àŠÈ%r@rM’™L&É\}T=¿?îœ]=W_“|ß¯We’tOõ·ª«>õ|Ÿë+Ô8~Ş³¿«€ ¹M «B_2AsĞE˜nB½,Š JhoTA=¿/ÆŠKÇUû‡©ö åÄ{ÚÈf}TEêú©WeŒz4‰Ğ„’D‰!Ä@“(õŠ„ˆö	¤É
+’QÂ>Ğn”îÀKt{‰~é¯CDÄgÅã«}È‡ã(¤6Ä÷Ÿ•ÖWí”0|?l
+C™&¢³UeÀL`&Â`Ğ‚RĞ¨¹c¼)Œ†Šôô*ÚlFÙ‚ÈFQ¶(´‰°Q<ÙA7âí³¨Ÿ½`bµÏ„Ãá8J¨ªø.¹»ƒ Tb‰€l:6ôĞV`ªÌÑ… Óò²Šväš“ba¿&›L«J‡«gVÏ¨Ç^H—¢d%ËÚ§Uó´8£€ªˆïñ·weIø~"„KT9G„3ÅªÌ|‘}’[bÍ‹¸Y<#ğWEïO{é§’a"ƒ§¬¸`r5NÃá8
+¨˜ø.¸³ƒù'uğÜßZ¼ŒzM1?xÀÅ ‹Ag«Ò(RÑ!û5¾GÑø©
+JßÔÇv‡[OÇ³9—„Ãá(eWºyËÚ‰ªâ‡cb¾¾Bá½ˆ¾eˆHµ=Ïû-aPBDw Eå‡¡Ï}de¯xú~ŒgÎw:‡Ã1rÊ*{‹–í ¡B¿0å\à}§ ŒAñj$ÜwšûC İ£ÈŸ€oªğ™=¾—`å›&T{˜‡c”Sù[´¬|ÂDV½ÅWŠr™Âx‘Z”Ü"(ªè.Dnø>¡¿‚t,ãñô%-ÕÃá¥”VU™wï.â½!„á„7«Ê•"œXí-Ñ>ƒÊ·Q~¦1İá…ÂŠ¥Îìp8†NIÅ÷ø{Ú³]I·ÄÏP¸Vá"xµ²”(Ú#*·	|CC}ÜO†,?oJµ‡åp8F%ßÅwl£'Ô%Ó‰K®^Ríƒ+
+*~%Şü¢¯Ÿìš§V{P‡c1bñm]Ö'¡„“CÏ»V‘+P¦ µR>Wz‹ÌmTá»_‹©·'$¦«–:?°Ãá˜éã‚eÛñˆ‹ÌRôã(—#Ô¹²{0–¡¦{›€ÿÊR¿#N¯®\êŠ3Gq†­’–uÒ/>uó®½D‘øÑ!»‡¢)EnùT†¾’Ôë3K]:šÃáˆÆÎ/µ.ë />u‹A?¼£Vx¤x—~ººã''ZdáÛ«=(‡ÃQÃY/ßÕ/éÀ?áó«}µ€U)+¢òÿı¸lÃov.‡Ãq8C¶|Ã0 ú³Eøw7Vû j«L};ğÑ@uR¶©¡ÚÃr85ÊÄwñ²mˆ0EÑëA/åh‰¬TÄşáÃ^:3vÂ×U{X‡£´ø¶.k%©x×¢\®ˆ_íÁ×"Ö˜Mˆ¼Gƒàš¸ïÅİÕ^ía9cPâ;ÿ®vTñü·ïB$éLŞâ(ŒÕ«š“õçŞI¿ŞZí!9G êr[¡(@ì€ıÄ(ñL?6˜7e=$¦¼åE&;á˜Ü9šƒÈ¿¨êúk§>Uí19G8ã3€i˜wO¶Á ö^ÌÃâéÏ÷ç~fK1Øu´uY;!Ìğà‹(oU¡êíwGª„"z“x|ÕÎºì‡£Lş¸H²V¯˜X® >üØ×éÀÀÉì'®şRŠu;´ŞİªIK€7á„wÈˆà¡r‰†,=Òš95Ä{·c°ûÌÏm1LŒO>L`?1à5˜ 'rÿåşşàÍ³>âPŠî$Ö"'
+¼'÷áa Ğ¼'Pæ·.sÁ7‡£ÄÄ—¼o7üjÄ¬èBHîµd))¾îè Û3FáJ”å8cG" Êé oWhZâØá(%q`0Iõ0n€÷äƒlÅöQ’L¯b–oÌËğZà­.›wäˆˆˆÊ»N¥DÓ‡Ã@
+hcÿjŒQ¤Õl‚"°èöˆŒşQ·bd‰Paª*WeT›æß¾Ã=ÒÒ ·ÛŠ¼'Ü<^íÁæ)˜j–mbıÁë€S]ˆ­äœr²ˆ>Pí8Gwcî‡k°4±|^n ì–_öT{ y
+çùfdè»Ä"‡aÕoŒE¹R|ï ·ÚcrŒj±àO/ĞWíÁ”˜|†AšÁåÕöaÖï/c±À˜ìÖ]¹}Õ‡‰ïâÛ;}=ÈÉˆ:³·ä¨/"ç §.úéöW\V•¼ß& »¸Ëù+ÁnLnëú«qĞE¨gZ’ÏÈ}òaî˜ƒÜÏRoK…:+&XüxŠsXG' ¯Ä´X…¹vğ{YÌ²}*·È@şàŠs˜øŠ’¸XE[\ßœ2`½''€¾İëÊş/•½YWç¶ã°q9¿äf™ôaG[0ÿÜ6`]îß• É~«h|n›€¥Æs¯çs;Gr³¹cNç~vaØ®Üñ·/0<kµ¸+8î€ÿ?ø VPsB3¾ÈÁ·ß¾ÇbŒšc?L|ƒxx"°Ïio4ÊiÁ”ÄL|*A°ø,0«Ú§¤­Às˜`üx«R2Ëí|fQÌ Ém•B1áí6ceª«1íÑÜùfs¸ğœ	\¼÷ÑH3ğaàu‡üÿdà:Ì
+ş>µ7s‰oëİh+0»–tWuÔ<ÌC
+,Egçœt[çº'/©ˆŒŞNm/ØÖ´bVÎ¥ÀƒÀw€¿1òÁàMÀ¹Ï˜IñüÍr#˜«§ëp6ö Ù¬Ä|•wPÜ²ÌÍ03âõ7b³gô	”\…]…bQc°^·plqìûnÅf2;1—ÅVjÌ*>ô 'ƒœj}µ¬^UEDğøüæ:‹f&3Š*ÚQ~¶¡Ÿ=™0B€9Fàl½™ÊKâœ`^-|Ì*=óe~	ø	Ã³‚cÀYÀ¿ /ÃÄ®V©Ã„x^nÌ7`½2Ş¯˜õ·{¸J¸X|Ñãÿõ°qşñÅf
+Å„·¸³ş[°ë*…åö^=ÜÓX§"ìßîÙY}±À¢¨7WÂéIógÔQTalBxı´:šb£G|7÷ürsŠ=™ˆ7ˆJk6.©ÀvÂÄmPİìª€,>…Y:ßahê:ÌÚı0—ÑUÌÒ‚	P+æV¸ƒÃ>
+lnÆRª
+}“0ßïs˜+§¦¬½öóÇGñ$ğs¢3„ò3‹ë°ïş@¦ÿ
+<ÁÀA»Š±ïË¡xY¿U”™…r{Uï‹´d¦5x¼cn=Í‰ı“¨)|íÒ‰¾î-íLg©Ê’EwodÅeÏzØ‹YCS€s°ŒŸòGU5÷>f™¦¹Ğt¬{Ô&,?s0âaQnÀ|ºƒ%Ä¬L¥ôV‘—ÛâîA ˜/÷ó˜…WèØ÷b§Àë#ö³›M˜×20‹÷•D_‹Û°XÅrŠ_³)<# «,­¦Ûé0ö‰o¬76t"‘7‡/ğÒ	qæ4•o‹PaV£OcLˆ{£Kló¨Âß:3¤B-úÀPe¼ñˆSxšYÒaaÁ½`–Æb,û¡â›ï,5	kn2»QŠ9»çbÇD¤’ÛçõÜµ*•ÛßÌ¸‚e(½û'Ÿ=1MÈƒYÍşğ‡‹gş{ÌN[#ÎÇë€Âü¿]%>®RQ¼#·E=œö_î¡¸E0—EÔõ\GÍ„ö‰¯ 3y3¥Ğ±eTşşøz¦Ö»U„$*{2JW:díŞ€[Ö÷h¯	 óÉÊ˜R @ğpn«‚ùw_…µç{ÑÉË€×b{1<àb¬‘vÔÍ—Å|©¿şŒõwİ^ácŸŠ=ô^;®—-K°”²OxM±ÌÏaVò”ïñ1Q{øµ€ósçàŸ‰îF–ÂlÿÃX”ßv°§èB"Ô×:s	¿İš¦>&|`A#“’5õ ©ªÊöşM=!›zÚú:S&¼)e]w–öş0wŞ¢ËÜŠÇóÕ|]•ßZ@±¤ùUXcëë€wbnCiNÃ|}Å|uù4º(Ï`şuLt«E[nû=p'|…¸ÂµP8"‹¹%æcşÒBÕ¨ã1q[ƒùk%Ø$˜ÛäßˆÎÜPì!ùEŠ÷lµÄÀ¦É­Ë˜	L(æV@•»7¥BøÀÂ†£ÂVU:RÊ3]YVíÉòBwÀö¾”m]éLØU•ÿ9Hõl*©¬Ã,»	XÃşBäÓÄŠ‰ïLÌxˆ:ábÓôÕ>àxø–áqZÄ{¦aâµrÂ¬øàxÌò/€›‡¹6aYÕÀ	öPø·"ÇMn¬ŸÄÒG$1€%¿ ^|f®˜XH‡Ê=[Rôd•÷ĞÀ¼±>Ş(†CUÉ*t¥•¿´§y¸#ÃÚ=Yv¦”İ™ŒbæŠä„¶n8‘H±ŠBÜzÇvYyÑäJÜrÀ•+cTÌgwè1¶a–í™~Í :ˆ’g:ÑÍşCÌB¬ÅÂƒ5˜%Bcqì[±Ø,“¥gab÷Aªïÿaq‡¥EŞ³ø–sÄ}ÆmşDŞı	•{·¥ÙŞrõüzÎ˜˜ ÕªJo k÷dùÕ–iOÓ‘Rº³J&Ô}Šå	ø¥zØ˜ïaºZ©oOKØ¿Šk˜ˆYTã°©jå]Ş(ßYªK©ÛÌáÁÅ'°\ÌBâÛLa—Ä4İàZsû®•)÷ôS¼´:õˆ•X°ñ{.¢ñ€‹rï»‘ê5˜ñ·bÅQÍÏû¯·S›ßYÉ°iŠĞÄ År²¡*Ë»2|â©€‹g'yÓÌ$Ó¼Ò	SéË*ÏìÎòóı<ÔfwFÉ†û4¯¼ØMKiÅ7	íñX€ç4,ØsûS µ‚ËEŞê}›JŞÎÁĞF´EVÇÀ‡Æ_«7ñ@émÂà"ôŠ¹V¾€YÁ…ŠiÆ`¹Ák1s5
+0NÆ|ĞQ©€!Öò[@wÆWQò>¢&`úPï@Ùçıïµ}<Ú‘áâÙINi‰3½Şc´ôŞŞpÇ¦·mèg{.Pf%•X1T™0–ÒL=,WôÌzfñVBdb!&s°ÿ±èhvş!á(Nøæ#¾šÂ¬ÀG0_û“ß4,¸zj‘÷<‚=œ+…R,àf7gËp®ğ|P)á±–we9cbœ³'×±d|Œ9M>ÉvGlê	øÖê^îŞœ"Ğıy¹•,èáÁL/¢ëeğ˜µ[‹ÑĞXªÙóì·úò)pá£X îÌÿ{AÄûNÆrˆ¯ÃüÅ•`,vM^Pä=ë0á]Aõƒ‚! ö³!:Çw`D@Rro[š?ïÈĞÚcÑ¸‹šm›Óä“¨‘Â	U¥+£|su/woî'ÔêUĞ©ùõFZòÛŒT®¦pŞg­:(\¹•c:†Ï&l‰ôiØré‡âceÌ«°{Ë<8Öîò=Dûyw`)e÷3zúQŒ˜Ø?Gly™+Xˆ	dBå‰Ø™a|ÇœFŸi3|æ4ùÌhô˜XçÓR'Œ‰Wş~SàöúùíÖTU…TëA‡ôlæò!¬¢i àT5énÂ¬›Co²4N|KbÌ€ÿ¢p ®	³DWaş÷Á¬18	suD-ÇŞÜ‚5R:ÒVã(J.ÏWë)©M*9VUv§Cş–
+y¢’¾06.Œ‰I_¨÷…„1¡Á÷—¦Ô{×ä³¸9FKÒË¥t•V×ì	¸kSŠ¾@«îPh@G”qğ6à½,¼û#ìm˜ÕPŞi`şÈ­XPè
+[[åÇÑD\‡=”à¦ÅÜ?Sús/¹Ï¸ë¥\ˆ¸ËÀØUí“Viòn‡†r]õ"²/=KÕÊpw¦” û¿qOÀË	vÜ3‘PçqÎÔo™djÒ+™ «ÂıÛRlé†RQÔ¬î$2l·Ã±˜«¡X>hÖ´ûg˜ ¶c7h¥O1Ë6ïZ(„ßÒÒƒeÌ.§°[ëD¬ ã}Ø¹”ç¿«à{m‘÷,şƒÚ*~©¹€›
+!å*çSÔö}Jî/Ö©RQU2
+™z²Jg*dCwÀò®,[ÜÄìÆÒp*TÜ•¥;£eïÒ6H”á_øc¥šQlÃVmıÖ@¦¦,Ñ9p¦«ì›‹Zzµçğ\ƒù‰Kåÿõ· ï&ºä{ğŸXãü£@ĞŞj^ö’kyàfsVM÷p{†>ßKªD®øí}»Óšûìêªoîãûßm,ÖŠ/j•éNlÚ÷,}§V…×Q>Ö`YÏG¼Àü¿o¡t}OÇ\Q]ëö_Æ:•ÕjvÙ±à†h‘l­ÙyQÜaoFKÒĞ}oFé¯_ï>”^tX-%P¼8æ'À/°ÚûvBû°ŒÎˆ÷4cåÇg•àóÅø'D¼b×åM”~½¾QE.²,Y ¯vÔè`T•¬Ò-é›ğ…˜W#jdù}}È°ÄwÑÖÅ.àWDßp£‡ [ıâ»D÷|«ˆ.-XüWíÃü-–…ÑUí“RmL|U³¨Öl’»ÔÇ 1Vš,¤c¾Ô†ø½ÃßñDçN®çmÅç½˜ïÿç¯{XaÎµoUç8¸œè´Õ¿as6TûdÔyË·¤½FlÁÃ„Ó“’øhÇ×	sÇÄ¨ó¤VVFngxÍ¢ëˆöÓuS{´Õ¥+¬ˆjQ™dÿÊ‰Áî³rÏÂú6D-Xº9÷ÙpRÃP•nµ“Ss¨*Í	áâ9I’%*–õE8wJ‚Iõ…Ø«¨¿j]Í¶²g¿^¬_Cˆ»È£XO‡/`3£BŒÃ*%ÏağëÎÍÃ\Q~ŞàûXüÁ}s˜øš•Ts+)„ªÔÇ„+«ç¤ññ’ö~éÄ8çLIäúNhÕl~ût¶AÙË<°¬š_b9ÀQ×Ü\lÎVÎ?õç=;âõ [‰ùëK„\ªİ›kbY»A¨ŒWÌ­çâYIJ½`F\àÊãëyåäñªº„¶PzÁ`WøuŒœü²J·m‰YÀ‹ì'uÎ{7…›8å—ú,ÖÏÃq yñµ]µú9wª¶JÄ´Ÿ˜ßÀÇÕ3¾®tÕmyD„II-jäÂ™uŒKxdÃÒ¤²í€e(ÛÖ^<±V}Õ¢™ò6uwL'ÖÌæ
+»§óışÑşßWbù¼Q`>‡å¯¤VJUÄXyÑTØ$"[«uŠT•PO„Ó'$øÈâFŞql=ãå3†D„é>×µ6òşhËù€+ytªårùÔhòàa4bKª¢ĞÒCÒ°Ë>Xñz+~c×Z±Òä¨<ó]˜où¾jd­r@¤\7*¬‘A¯hQ*TÍç:£ÁgéÌ:^7­ycKUl30Í	·›dqsŒ[7ôó‡¶İY-KCŸCY‹D?"Kt…P#Ñ¥µF+Öƒ¶)Vcp<€5¸ÿ*…3¦aØ_
+<ø0VÉVèÉb>å[pAßHö)œ—ÉnÒXìY„×TêÃ5×¼¼¥Îã5Óê8oz‹ÆÅ¨Nğòj¡¦ ¯9ğŠ¾/>&ÎŒŸ3&Æ¹mC?ÏteÉ–ßæZ&“;‡ù»»±t²B]«ÃÖD{ŠÚ¶}¬¿Àüˆ×wQş³G3ŠÄæ Ÿ °‹á$,›á˜ïöJ¬9ÊMt+ğMFoƒüŠÜ/ûÄ·cÜ¸ş–ŞÕ(½*Ú ˜±
+gLˆsõüz‹ÚÅª’¡£?dEW–•»³´÷‡tel	÷†˜µ­<¶ÑgÉø8óÇú4Æ„Ø šfNLzœ?½S[â<´#ÃÖõ±®»ô®pDd‡À³Ãı€-˜8M.ğÚ1Øb…OR|‘Æjâc]¯şèÄüM¸`M¹éÃ/-ÀŠ$½óØWOc½ ¢Ú—>ˆù’+µJF©IS<?>™ÛFlìßsŸ|’'æÍ[¬dQ%2æñ9q|œ†AZ»½YeÅî,wnìçáë÷	•@!Ô|µ®µ¨Œ‹•ÏnôY:«s¦$˜Pç˜²æ{æ~í4áátYÄWÌå°xjÕyÍÃİÍ³X~vTW³Ë0ëãË˜ˆÕRFÅ8,¢ş	,O4ŠÔ`äÈ6L4çgx=	¼»†&GìcÖÄıij{¶UŒ~lFÅœÜ9jéíßèLİ±óI•p9hk¥V¿J8mSOÀmúùÅ¦~v§-@WÅ„8ôÊòŒ²zO–¶¥¹z~‹›cƒ²‚ıR.ÈøQ}J:õÙìª³4Î¤°åX‡5Y?kfò¿¹ßéÁ|©Y*w“øØ<˜¼›ºCt`°37fçv(?Šõ×ı¶tûÜïi.òû»1¿ñoİÊ²˜Õ¡°[åD,½n#l hTk¯
+yƒ(ã*+ÌÇ¬Ù“åë«z¹o[:·ìÏĞ‚a© Ø¦3¥|hQ#§´ÄU´QeR¬œ›{ÇŞ¼{$	ÅükçaÁBÄ°•^„Ó¬ÆšWïÄD¸‘üRG1+w~îßÅÈ¯rp?£×Šm„À°2àObƒ!…­œüCFpT±Ô¸õCøÀU¹÷İŒÍ>‡Õí ñ]qQ—í¸¸
+‘g‡C%«Ğ*^Pø ½?ä««z¹[z_n¨H®”ì©]nZÛË1uÌlô	#nkR!eH;Ëe½â=ğ—ûætwk°eX¾ˆ­\Œ&lQÅSÚi°‹˜Vßáh%e)ÌÇ½hmÇ øvvU{ğ%âi¬ÿÅñœÅRğ^üx»71„.‚‡ås5ö§ÖôÖ%UhÑx9SEctdøôÓİÄ¼è.c»R!td†-¼yDåáŸYŞÃ¤¤WÔìË†Êò]¥_[P‘~à‰ÌöíòLX¯':ek4±
+ó?0È÷–|æÑÂ.,N0x…«×ò¬ÀRÕ†›.Y‹ìÄ¬Ú3‰n±)ÀKs[;Ö¬~Kn[‰ñ_sû*Èaâ›‰Å…‹ôéå<BO„uİYÖîÍXŠ˜P—"çVDÈ„ÊŸv¤n¨“ÿ\J˜ï«€èÖĞã'Olœ<âİåÈ`ËV¬$ô\J·*A%Ébı^o şÄà]"­ÿVIßöP	x­Zy²ë±e~fa~ÎBlş/ğh•Æx(i¢¿çb¯âOX‘È'‰. Ê3‘ƒË°»1A~óŸÿßãa7èSo™ÊÂe;şªÈƒ —Hñ§ŞˆñE*¾šˆ¯­”A¹S½p5W—tiL¸^\ågæÛNÖªu˜ÅOc¯~ÃĞTl#ÚïÖGm§ªíÊ±Ğô~/%ˆª€Ç±.¿Íá=ú€Ï¿¦6lŠeşDùœ724t
+3hËqÉàï¡¦Üv,P^Ikº °¶\ş± t§À…İ¬Û1İ®ğ!	ü¶[?_ØE­ïÄ„ì…ÜÿÇ1Î¯Zr°Å¨eÚBL`ó"ÛY]XíÿX„ıFÌÏ6œ•7º€EØñÀ">àöÜV«	ÿì&=–ƒ¡^l%’ÿ¡zËí(VÙ–^ÂşÄ^Ì¢û6µ“‰"Øyšuó™
+
+ìş³f‡âGÌ`n•G°xÊJËØy¾Ğ‡¡â…ú˜¨şáÒÚ5šFªjëW‰>×/«±Á¬½NìÂù¶Èælì&Ÿ…¥%±2äzÊÓÔFscéÆÄ¯Ë'}Ë	İÁ~QÉôºø–Éqv“ìÂ"ğÕ´bV¾»8æìÄºİLõÅ­®.,o\€Ÿ·Q[6Å®±aBw:v.Û±iÿOŞC¬ÏK±¬¢Ë±¼úÉÎ0ÍF§HU]rG›Š–Šü«ïvŒ…UŠ^º	–÷,Té©Z­>AKuŠ_-L‹GóØ£ÆWcìXG:Şü~0wŞ«s?§b.™c°Â¡C½	¿Á„û°ÅŠeÂP¼ÇP½	ôã"âz­ÕÈ7ğdMª:½ÛkñFqÇ7:Æ^ëã«ÄXóûíÁf%Æ„væîš…©“1‹»›Áü˜ˆÙKQk¨uY(' á÷PÎ¬PÑÛ‰ªş’PŞ¯16®ºpâÈwèp8j•¼+¯è:ŠE­Ù•K'àùá:UùŠt®`mKg{ADnJ'u‹^‡ãˆ§‹¹í¥2 +AU2ªş]¢ú#FwÍvUÑ~Ğ‰ğ{?+îü9`â»âÂ‰ôù}»Eø&ğ{´Š«M2rÙ÷ ú w³zGAÑÆgÆâ‰<ÊWÖ¨8õ-†æşëüÿy/–İºÂ	¯Ãá8€A‰ï“oƒBèoOüF…o ÎúÆÂ’º	¸ôQ|w¶ÇA)}á%—)ïlKÖeb×|„ènöG/aÛ‰ÈôéùÖúWÏ)}g‡Ã1êRîî£?¥ßóÂ¯©ê×TµZeµLp£'şMa&ã„×ápdÈ…cÔ#æÇö€Ş("ßÅe@H¿"_F½o’ík]a Ãá(ÌÅwùùSèM¥èêŞÙòYE¿ÚWí©*ª¨²W•4Ôã	º’é$O½¡±Ú#s85Ê°KÖİÕA<ÛKÊoh½VTÿ	‘±:’VTw*|)ï‰»ûö*Ï]æ²G4#ÒÉwíBû¶A¢y¬/ş5TeR‰…ç«K>}AàToèO{7#èïVX{iÉš¤;#”5ËYuáxüúÉAzo*‘ı’Âõ"òô‘.¼¨-ı.ğ˜
+éÛıíu_lIuM8áu8ƒ¢d:yìo¶0qƒÒ=­î,”Åz_–£GlÕ8À¥ÒÜ%ğ¥À“GvMÚÆöÓW{x‡cQR#uâª¦¬î#C8Ûƒ«Uå]Àdôûmé5Pt=Â÷ğüïûÙL›z>+–:ÿ®Ãá%×ÄîjbŒQñÎ®ByVuÙ´‘£ª}"ò+EoJg³L$ıêÅXõÆæjÍápŒBÊ¢‡§,{>êYù¼°h®Î
+á"yŸ¢Çş(ÇŠ®Bù:"w'Ò{¶ôÅYsÑ”jËápŒbÊª‚‹ïjGÅ#‚¤',P[Q÷bA&qğB‡5„yvU5%ÈDo	Ñ‡Êz_¼”ŠÇª[ª=H‡Ã1Ê©ˆ	ºğÎ$ÈHJâIïxQ}'ªKfˆH=µœËS¡Øˆê2Bï§›Rãûw×u²êM“ª<H‡Ãq¤P1Ék]¶Cˆ'„tCô„KE8˜‹ÊLP¯ÒK™æj(°X«È}
+·©†ë½L<”dZ³²æBW*ìp8JGUìÍ…·v ññ a¼ÀªòZ„“¹Ó*c(ùğbÿ ‘ ØŒò<ğ$¢ÄçÏH§Ûè¦ké±Õ8=‡ã( Ú“}.Û +§N”móZAO Y ,t®ÂÄ\srP•ş;Ü‘Ø8W8 ±¹ı£Máy„gÕ‚®FeE˜l_ï¥&€+Ïw®‡ÃQ~ª.¾yNXÖ¾¯Ü.¤‘c<t– SQ™€0Ua&Êt HJ½@ƒ*ŠĞ+hJĞ«B{Î°YUÚéPØølLdÃ=¡¨ ÙFëYqIÍœ‡Ãq„S“j3Ù<Ìº”0PO2Öc$ĞF­W$†!Äsâ›4#JV!«¢}İõu™ît6YÔƒ¬ÀsL¨ö¡:£”šßCyñ÷3d&ì¶ÆÁ¡"bJ»Ï@Îı &ÖV‰*Š @Ûæ&v¾Ïµxt8µÁÿö€ãòR$u   %tEXtdate:create 2021-12-15T16:00:50+00:00‚’   %tEXtdate:modify 2020-03-31T12:09:34+00:00XãÎõ    IEND®B`‚<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70.5 70.5"><path fill="#fefefe" d="M64.4 114.7V79.5h70.5V150H64.4zm37.6 34.6-1.7-24.2v-.3h-1a9 9 0 0 1-1.7-.3 1079.2 1079.2 0 0 0-7.8 23.2l.8.3a35.6 35.6 0 0 0 11.4 1.3zm-18.5-7.7 3.4-1.9 1 .5a29 29 0 0 0 2.7 1.1l1.5-4.6-.7-.3a23.3 23.3 0 0 1 6.1-44.8v-2.4l-.3-2.4c0-.1-.3-.1-2 .1a27 27 0 0 0-7.2 2.3l-.9.4-3.4-1.9-3.5-1.9a38.4 38.4 0 0 0-9.1 9l-.3.5 2 3.4 2 3.4-.4 1a34 34 0 0 0-.8 1.8l-.3 1-3.9 1.2-3.8 1.1s-.3 1.2-.4 2.6a55.7 55.7 0 0 0 .4 10.7s1 .4 3.9 1.1l3.8 1 .3.8.7 1.7.3 1a432.5 432.5 0 0 1-3.9 6.7c0 .2.8 1.4 2 3a47.7 47.7 0 0 0 7.3 6.6l3.5-1.9zm21.6.3a25.8 25.8 0 0 0 6.8-2.2 1286.7 1286.7 0 0 0-7.8-15.6l-.7.1-1.3.4-.7.1v.4a1616.2 1616.2 0 0 0 1.3 17h.6l1.7-.2zm-10.5-12.4 1.8-5.5-.6-.3a10 10 0 0 1 2.3-18.9c.4 0 .6-.1.6-.2l-1-11.5h-1A21.8 21.8 0 0 0 79.7 122a22.3 22.3 0 0 0 13 13c.1 0 1-2.4 2-5.4zm17.4 4.7 2.6-1.8c1-.8 2.4-2.2 2.4-2.4l-3.6-3.2-4.8-4-1.2-1-.6.4a14.3 14.3 0 0 1-1.6 1.3 391 391 0 0 0 5.8 11.3l1-.6zm12.5-.7a31.1 31.1 0 0 0 4.7-8.8 337.7 337.7 0 0 0-19.6-6.3l-.4.6-.7 1.2-.4.6.3.2a2416.5 2416.5 0 0 1 15.5 13l.5-.5zm-22.7-10a8.6 8.6 0 0 0 4.6-2.5 8.6 8.6 0 0 0 2.6-6.3c0-1.2 0-1.5-.2-2.2-.4-1.6-1.1-2.9-2.2-4a8.9 8.9 0 0 0-8.7-2.6 9 9 0 0 0 4 17.6zm24.9-1.3a29.8 29.8 0 0 0 1-9c-.1-.1-2.5 0-8.6.5l-8.6.8h-.3v.8l-.2 1.4-.1.5 1 .3 15.6 5 .2-.4zm-4.7-9.8 12.1-1h.4v-.6a36.7 36.7 0 0 0-3.4-11.3l-21.6 11.1.2.8.3 1.4.2.6 11.8-1zm-6.5-6.2 4.6-2.4-1.2-2c-.8-1.1-1.8-2.4-2.8-3.3l-.8-.8-4 4.7-4 4.8c-.1.1-.1.2.4.8l.9 1.1.3.5 1-.5 5.6-2.9zm-3-7.1 6.7-7.8.3-.4-.8-.7a31 31 0 0 0-8.6-4.5l-6.3 19.5.8.4a11.1 11.1 0 0 1 1.6 1l6.4-7.5zm-6.1-5.8 3.6-11.6-1.4-.4a40.4 40.4 0 0 0-10.7-1l2 24.2h.7l1.2.2.7.1c.2 0 .6-1.2 3.9-11.5z" transform="translate(-64.4 -79.5)"/><path fill="#efd1cf" d="M102.7 141.2v-.1.2-.1zm-.1-1.1v-.1.2-.1zm-.1-1.1v-.1.2-.1zm0-1.1v-.1.2-.1zm-.2-1.1v-.1c.1 0 .1.1 0 .2v-.1zm0-1.1v-.1.2-.1zm-.1-1.1v-.1.2-.1zm-.1-1.1v-.1.2-.1zm0-1.1v-.1.2-.1zm-.2-1.1v-.1c.1 0 .1.1 0 .2v-.1zm14.4-.5.6-.5-.5.5-.6.6.5-.6zm-14.4-.6v-.1.2zm-.1-1.1v-.1.2zm-.1-1.1v-.1.2zm0-1.1v-.1.2zm-.2-1.1v-.1.2zm-.4-2.2h.1-.1zm4.7-1.9v-.1c.2-.1.2-.1.1 0l-.2.1zm-12.1-.6-.4-.5.4.4.4.5-.4-.4zm33.9-3.8s0-.1 0 0v.1-.1zm0-1.2c0-.1.1-.1.1 0v.2-.2zm-49.2-.3s0-.1 0 0v.2-.1zm12.6-1.1v-.2.4-.2zm20.2-.3h.2-.1c-.1 0-.1 0 0 0zm1 0h.2-.1c-.1 0-.1 0 0 0zm1-.1h.2-.1s-.1 0 0 0zm1-.1h.2-.1zm1 0c.1-.1.2-.1.2 0h-.1zm1-.2h.2-.1zm1 0h.3-.2zm1.1-.1h.2-.2zm1-.1h.2-.1c-.1 0-.1 0 0 0zm1 0c0-.1.2-.1.2 0h-.1c-.1 0-.1 0 0 0zm-42-.3c0-.1 0-.2.1-.1v.2-.1zm43 .1h.2-.1c-.1 0-.1 0 0 0zm6.3-.1v-.1.2-.1zm-5.3 0h.2-.1c-.1 0-.1 0 0 0zm1 0h.2-.1s-.1 0 0 0zm-12.7-.1h.1-.1zm13.8 0h.1-.1zm-12.8 0c0-.1.1-.1.2 0h-.2v-.1zm13.8 0c0-.1.1-.1.2 0h-.2v-.1zm-12.8-.2h.2-.1c-.1 0-.1 0 0 0zm13.8 0h.2-.1c-.1 0-.1 0 0 0zm-12.8 0h.2-.1c-.1 0-.1 0 0 0zm13.8 0h.2-.1c-.1 0-.1 0 0 0zm-12.7-.1h.1-.1s-.1 0 0 0zm1-.1h.1-.1zm1 0c0-.1.1-.1.1 0-.2 0-.2 0-.1-.1zm-23-4.6.4-.4-.4.4-.4.4s0-.2.3-.4zm14-.2c-.1-.2-.1-.2 0 0h.2c0 .1 0 .1-.2 0zm-2-.4.2.2-.1-.1zm2.1-1.2.1-.1c.2-.1.2-.1 0 0l-.1.1zm-6.8-.8h.2-.1c-.1 0-.1 0 0 0zm7.7-.3.2-.1c.1-.1.1-.1 0 0-.1.2-.2.2-.2.1zm-8.6-.8h.4-.4zm9.6-.3.1-.1c.1-.1.1-.1 0 0 0 .2-.1.2-.1.1zm-11.1-.1v-.1.2-.1zm1-.6c0-.1.1-.1.1 0zm11-.4.1-.1c.2-.1.2-.1 0 0 0 .2-.1.2-.1.1zm-11-.6v-.1.2-.1zm12-.4v-.2h.1l-.2.2zm-12-.7v.2-.2zm12.9-.4.1-.2c.1 0 .1 0 0 0l-.1.2zm-13-.6v.1zm-1.2-.5v.1zm15.1 0 .1-.2c.2 0 .2 0 0 0l-.1.2zm-28.7-.6.3-.3-.2.3a2 2 0 0 1-.4.3l.3-.3zm32.3.2-.2-.2.2.1.2.2-.2-.2zm-18.8-.8c0-.1 0-.1 0 0v.1-.1zm-15.3 0 .2-.1c0-.1 0-.1 0 0l-.2.1zm31.4-.2.2-.1c.1-.1.1-.1 0 0-.1.2-.2.2-.2.1zM98.1 98c0-.1 0-.1 0 0zm-14-.1.2-.2-.2.2-.1.1v-.1zm13.9-1v.2-.1zm0-1v.2-.1zm1-.5c0-.1 0-.1 0 0zm0-1c0-.1 0-.2 0 0zm-.1-1v-.1.2-.2zm-1.3-.2h.1-.1zm1.2-.9v.2-.2zM74 91h.2c0-.2 0-.2 0 0-.1 0-.2.1-.2 0zm2-1.9V89c.2-.1.2-.1.1 0l-.2.1zm22.2-2v.2-.1zm0-1v.2-.2zm-.1-1v.1zm-.1-1v.1zm4.5-3.7h.2-.1c-.1 0-.1 0 0 0zm-3.7 0h.5-.4zm1.9 0c.1-.1.3-.1.4 0h-.4z" transform="translate(-64.4 -79.5)"/><path fill="#eac1b8" d="M98.3 149.3h.2-.2zm3.4 0h.2-.2zm-4.7-.1h.2-.1c-.1 0-.1 0 0 0zm4.9-.4c0-.1 0-.1 0 0zm-.1-1.2c0-.1 0-.1 0 0v.1-.1zm0-1.2s0-.1 0 0v.1zm-.2-1.2c.1 0 .1.1 0 .1zm0-1.1v-.1.2-.1zm-.1-1.2c0-.1 0-.1 0 0zm1.3-.9v.1zm-1.4-.3s0-.1 0 0v.1-.1zm1.3-.8v.2-.2zm-1.4-.4v.1zm1.3-.6v-.1.2-.1zm-1.4-.5v-.1c.1 0 .1.1 0 .2v-.1zm1.3-.6c0-.1 0-.1 0 0zm-1.3-.6c0-.1 0-.1 0 0zm1.2-.5c0-.1 0-.1 0 0 .1 0 .1 0 0 0 0 .1 0 0 0 0zm-1.3-.7s0-.1 0 0v.1-.1zm1.3-.4c0-.1 0-.1 0 0zm-1.4-.8v.1zm1.3-.3c0-.1 0-.1 0 0v.1-.1zm-1.4-.8v-.1.2-.1zm1.3-.3s0-.1 0 0v.1-.1zm-1.4-1c0-.1 0-.1 0 0 .1 0 .1 0 0 .1v-.1zm1.3 0v-.1.1zm-1.3-1.2s0-.1 0 0v.1zm1.2 0s0-.1 0 0c.1 0 .1 0 0 .1zm0-1v-.1.1zm-1.3-.2v.1zm-15.3-.3c0-.1 0-.1 0 0l.2.1-.2-.1zm16.5-.7v.1zm-1.3-.1c0-.1 0-.1 0 0zm-16.5-.6c-.1 0-.1 0 0 0l.2.2-.2-.2zm17.7-.4v.2-.2zm-1.3-.2c0-.1 0-.1 0 0v.1-.1zm1.2-.8v-.1.2-.1zm-1.3-.4c.1 0 .1.1 0 .1zm1.2-.7c0-.1 0-.1 0 0zm-1.3-.5c.1 0 .1.1 0 .2v-.2zm1.2-.6c0-.1 0-.1 0 0zm-1.2-.5-.4-.2h-.3.3l.4.1v.2-.1zm-1-1.4c.1 0 0 0 0 0-.1 0-.1 0 0 0zm-6.3-2a2 2 0 0 1-.3-.3l.4.4.3.4-.4-.4zm-28-4v.2-.1zm62.5-.8c.1 0 .1.1 0 .1zm-62.6-.4s0-.1 0 0v.2-.1zm11.8-.3s0-.1 0 0c.1 0 .1 0 0 .1zm51-.8v-.2.5-.3zm-18.7-.3v-.1.2-.1zm1.2-.3v-.2.4-.2zm.2-.4h.2-.2zm1 0h.2-.1c-.1 0-.2 0 0 0zm-2.4-.3v-.1.3-.2zm3.4.1h.2-.1c-.1 0-.1 0 0 0zm15.2-.3v-.1.4-.3zm-14.2.3h.2-.1c-.1 0-.1 0 0 0zm1-.1h.2-.1s-.1 0 0 0zm1-.1h.2-.1zm1 0c.1-.1.2-.1.2 0h-.1zm1-.2h.2-.1zm1 0h.3-.2zm1.1-.1h.2-.2zm1-.1h.2-.1c-.1 0-.1 0 0 0zm1 0c0-.1.2-.1.2 0h-.1c-.1 0-.1 0 0 0zm1-.2h.2-.1c-.1 0-.1 0 0 0zm1 0h.2-.1c-.1 0-.1 0 0 0zm-46.8-.2s0-.1 0 0v.1-.1zm47.9 0h.1l-.1.1s-.1 0 0 0zm1 0h.1-.1zm1 0c0-.1.1-.1.1 0-.2 0-.2 0-.1-.1zm-61.8-.4s0-.1 0 0v.1zm0-1.1c0-.1 0-.1.1 0 0 .1 0 0 0 0zm32.5-23.1v-.1.2-.1zm0-1v-.1.2-.2z" transform="translate(-64.4 -79.5)"/><path fill="#e0a39d" d="M98.7 149.3h.4-.4zm2.5 0h.3H101.2zm-4-.1h.3-.2zm4.7-.1v-.1.2-.1zm0-1.2v-.1.2-.1zm-.2-1.2c0-.1 0-.2 0 0v.1zm0-1.2c0-.1 0-.1 0 0zm-.1-1.2s0-.1 0 0v.1-.1zm-.1-1.2v.1zm-.1-1.2v.1zm1.4-.1c0-.1 0-.1 0 0zm-1.5-1c0-.1 0-.1 0 0zm1.4-.1c0-.1 0-.1 0 0v.1-.1zm-1.5-1.1c0-.1 0-.1 0 0 .1 0 .1 0 0 .1v-.1zm1.4 0c0-.1 0-.1 0 0v.1-.1zm0-1.1c0-.1 0-.1 0 0v.1-.1zm-1.4 0v-.1.1zm1.2-1.1s0-.1 0 0c.1 0 .1 0 0 .1v-.1zm-1.3-.2v.1zm1.2-.9s0-.1.1 0v.1zm-1.3-.2c0-.1 0-.2 0 0zm1.3-.9v.1zm-1.4-.3c0-.1 0-.1 0 0v.1-.1zm1.3-.8v.1zm-1.4-.4v-.1c.1 0 .1.1 0 .2v-.1zm1.3-.7v.1zm-1.3-.5v-.1.2zm1.2-.6c.1 0 .1.1 0 .2v-.2zm-18.5-.6-.2-.3.2.3.3.2-.3-.2zm17.2 0s0-.1 0 0v.1zm1.2-.4c0-.1 0-.2 0 0 .1 0 .1 0 0 0zm-17.2-.9-.5-.6.6.6.5.5-.5-.5zm15.9 0v.2-.1zm1.3-.2c0-.1 0-.2 0 0zm-1.4-.9v.1zm1.3-.2c0-.1 0-.1 0 0zm-1.4-1c.1 0 .1.1 0 .1zm1.3-.1c0-.1 0-.1 0 0zm-1.4-1c0-.1 0-.1.1 0 0 .1 0 0 0 0zm1.3-.1c0-.1 0-.1 0 0v.1-.1zm-1.3-1.1c0-.1 0-.1 0 0v.1-.1zm1.2 0c0-.1 0-.1 0 0 .1 0 .1 0 0 .1v-.1zm-2.2-.4h.2-.2zm.2-1.2h.2-.2zm1 0h.3-.2zm6.7-1.7.1-.1c.2-.1.2-.1 0 0l-.1.1zm-.8-.9.5-.4-.4.4-.4.4zm-41.3-2.5c.1 0 .1.1 0 .1zm0-1v.2-.1zm62.5-.8v.2-.2zm-50.8-.1c0-.1 0-.1 0 0v.1-.1zm-11.8-.3v-.1.2-.1zm26.1-.8s0-.1 0 0c.1 0 .1 0 0 .1v-.1zm-12.6-.3v-.2.4-.2zm31.8.1v.1zm-20.3-.7v-.3.6-.3zm37.7.1v-.1.4-.3zm-18.6 0v-.2.3-.1zm1.6-.2h.2-.1s-.1 0 0 0zm1-.1h.2-.1zm-33.3-.4v-.2.4-.2zm34.4.3h.1-.1zm1 0h.1-.1zm1-.1h.2-.2zm1-.1h.2-.1c-.1 0-.2 0 0 0zm1-.1h.2-.1c-.1 0-.1 0 0 0zm-25.7-.2v.1zm26.7.1h.2-.1c-.1 0-.1 0 0 0zm1 0h.2-.1s-.1 0 0 0zm1-.2h.2-.1zm1 0h.2-.1zm1-.1h.2-.1zm-56.9-.3v-.1.3-.2zm58 .2h.2-.2zm1 0c0-.1.1-.1.2 0h-.1c-.1 0-.1 0 0 0zm-13.5-.2h.1-.1zm14.5 0h.2-.1c-.1 0-.1 0 0 0zm-13.5 0h.2-.2zm14.6 0h.1-.1s-.1 0 0 0zm-13.6-.1h.2-.1c-.1 0-.1 0 0 0zm14.6 0h.1-.1zm-50.2-.2v.1zm36.6 0h.2l-.1.1c-.1 0-.1 0 0 0zm1 0h.2-.1c-.1 0-.1 0 0 0zm1 0h.2-.1c-.1 0-.1 0 0 0zm1-.2h.2-.1s-.1 0 0 0zm1 0h.2-.1zm1-.1h.2-.1zm1 0c.1-.1.2-.1.2 0-.2 0-.2 0-.1-.1zm1-.2h.3-.2zm1.1 0h.2-.2zm1-.1h.2-.1c-.1 0-.1 0 0 0zm1-.1h.2-.1c-.1 0-.1 0 0 0zm1 0c0-.1.2-.1.2 0h-.1c-.1 0-.1 0 0-.1zm1-.2h.2-.1c-.1 0-.1 0 0 0zm1 0h.2-.1s-.1 0 0 0zm1-.1h.2-.1zm1-.1h.2-.1zm1 0c.1-.1.2-.1.2 0-.2 0-.2 0-.1-.1zm1-.2h.3-.2zm1.1 0h.2-.2zm1-.1h.2-.1c-.1 0-.1 0 0 0zm1-.1h.2-.1c-.1 0-.1 0 0 0zm-27.3-3a2 2 0 0 1-.3-.4l.4.4.3.3-.4-.3zm1-.8c-.3-.2-.3-.2-.1-.4.1 0 .1 0 0 0l.1.4.2.3-.2-.3zm.3-.8v-.2h.1c0 .2-.2.2-.2.2zm-8.3-1h.2-.2zm1.1 0h.2-.2zm8-.1.2-.2c.2 0 .2 0 0 0l-.1.2zm-7.8-1.2h.2-.2zm8.8 0h.2c0-.2 0-.2 0 0-.1.1-.2.1-.2 0zm-10.9-.1c0-.1 0-.1 0 0v.1-.1zm1.2 0v-.1.1zm-1.3-1c0-.1 0-.1 0 0zm12 0c.2-.2.2-.2.1 0-.1.1-.2.1-.2 0zm-10.8-.1s0-.1 0 0v.1-.1zm-1.3-1c.1 0 .1.1 0 .2v-.1zm1.2 0c0-.1 0-.1 0 0v.1-.1zm11.8 0h.1c.1-.2.1-.2 0 0 0 .1-.1.2-.1 0zm-13-1v.2-.1zm13.9 0 .1-.1c.2-.1.2-.1 0 0l-.1.1zm-14-1.3c0-.1 0-.2.1-.1v.2-.2zm1.2-.2c0-.1 0-.1 0 0 .1 0 .1 0 0 .1v-.1zm13.8 0 .2-.1c0-.1 0-.1 0 0l-.2.1zm-13.9-1c0-.1 0-.1.1 0zm16.8-.6-.7-.7.7.7zm-2 .5.2-.2c.1 0 .1 0 0 0l-.1.2zm-14.8-1v.2-.2zm-15-.4.1-.2c.1 0 .1 0 0 0l-.1.2zM98 97v.1zm1.2 0V97v.2-.2zm-1.3-1s0-.1 0 0v.1zm1.2 0V96v.1zm-1.3-1s0-.1 0 0v.1-.1zm1.2 0V95v.1zm-1.3-1c0-.1 0-.1 0 0v.1-.1zm1.2 0V94v.1zm-1.4-3.2v.1zm1.2 0v-.1.2-.1zm-24.2-.4.3-.2-.2.2-.2.2.1-.2zm22.9-.6v.1zm1.2 0v-.1.2-.2zm-22.9-.6.3-.2-.2.2-.2.2.1-.2zm21.6-.4s0-.1 0 0v.1-.1zm1.2 0v-.1.1zm-1.3-1c0-.1 0-.1 0 0v.1-.1zm1.2 0v-.1.1zm0-1.1s0-.1 0 0v.1-.1zm-.2-1c0-.1 0-.1 0 0 .1 0 .1 0 0 .1v-.1zm-.2-3.1c0-.1 0-.2 0 0zm0-1v-.1.2-.2zm-.2-1v-.1c.1 0 .1.1 0 .1zm4.5-.4h.2-.2zm-2.5 0h.6-.6z" transform="translate(-64.4 -79.5)"/><path fill="#d6836c" d="m102.8 142.2-1.3-17v-.4l.4-.1 1.2-.3.9-.3a174 174 0 0 1 7.9 15.6 29.9 29.9 0 0 1-9.1 2.5zM76 140.4l-.1-.2.1.2.2.2-.2-.2zm-1.7-1.7c-.1-.1-.1-.1 0 0 .2 0 .2.1.1.1l-.1-.1zm9.6-7-.2-.3.3.2.2.3-.3-.2zm31.7-.2.1-.2v.2l-.3.1.2-.1zm-32.6-.7-.1-.2.2.2.1.2-.2-.2zm33.8-.5.1-.2c.1 0 .1 0 0 0l-.1.2zM99 123.6a9 9 0 0 1-7.8-6.9 9 9 0 0 1 4.9-10.1 9 9 0 0 1 11.3 13.1 9.3 9.3 0 0 1-8.4 3.9zm19-3.8-8.1-2.5v-.6a13 13 0 0 0 .3-2.1l16.8-1.4h.5v1.5a26.9 26.9 0 0 1-1.2 7.7l-8.3-2.5zm-11.2 2.4.2-.2-.1.2-.2.1.1-.1zm-28.5-5.7c0-.1 0-.1 0 0 .1 0 .1 0 0 0zm11.6-1.2c0-.1 0-.1 0 0zm-11.6-.6v-.2.3-.1zM90 114v-.1.2-.1zm20.1-.7v-.1h.1v.1zm1 0h.2-.2zm1-.1h.2-.2zm1-.1h.2-.1c-.1 0-.1 0 0 0zm1 0c0-.1.2-.1.2 0h-.1c-.1 0-.1 0 0 0zm-35.7-.2c0-.1 0-.1 0 0zm36.7 0h.2-.1c-.1 0-.1 0 0 0zm1 0h.2-.1s-.1 0 0 0zm1-.1h.2-.1zm1-.1h.2-.1zm1 0c.1-.1.2-.1.2 0-.2 0-.2 0-.1-.1zm1-.2h.3-.2zm1.1 0h.2-.2zm1-.1h.2-.1c-.1 0-.1 0 0 0zm1-.1h.2-.1c-.1 0-.1 0 0 0zm1 0c0-.1.2-.1.2 0h-.1c-.1 0-.1 0 0-.1zm1-.2h.2-.1c-.1 0-.1 0 0 0zm1 0h.2-.1s-.1 0 0 0zm1-.1h.2-.1zm1-.1h.2-.1zm-19.7-2.7-.9-1.1c-.4-.6-.5-.6-.4-.8.1 0 2-2.2 4-4.8l4-4.6 1 1a22.8 22.8 0 0 1 3.7 5l-11 5.7c-.1 0-.3-.1-.4-.4zm-16-1.3.3-.3.3-.2-.2.2-.3.3zm7.2-3.8v.1zm-1.3-.4s0-.1 0 0v.1zm1.2-.6v.1zm-1.3-.4s0-.1 0 0v.1-.1zm1.2-.6s0-.1 0 0v.1zm0-1s0-.1 0 0v.1-.1zM84 99.9l.2-.2v.2l-.3.1.1-.1zm14-.5s0-.1.1 0v.1-.1zm-12.9-.6.2-.2v.2l-.3.1.1-.1zm12.9-.4c0-.1 0-.1 0 0v.1-.1zm1.1-.6s0-.1.1 0v.1-.1zm-1.2-.4c0-.1 0-.1 0 0zm1.2-.6c0-.1 0-.1 0 0v.1-.1zm-1.3-.4c0-.1 0-.1 0 0zm1.2-.6c0-.1 0-.1 0 0zm-1.3-.4c0-.1 0-.2 0 0zm1.2-.6c0-.1 0-.1 0 0zm-1.3-.5v.2-.2zm1.2-.5c0-.1 0-.2 0 0zm0-1v-.1.2-.2zm-.2-1v-.1c.1 0 .1.1 0 .1zM75.1 90l.4-.4-.3.4-.4.3zm23.5-.4c0-.1 0-.1 0 0v.1-.1zm-.1-1c0-.1 0-.1 0 0zm0-1c0-.1 0-.1 0 0zm-.2-1c0-.1 0-.2 0 0 .1 0 .1 0 0 0zm0-1v-.1.2-.2zm-.1-1v-.1.1zm-.1-1v-.1.1zm-.2-3.2h.2c.2-.1.2 0 0 0H98c0 .1 0 .1 0 0zm5.3 0h.1-.1zm-1.2 0c0-.1.1-.1.2 0h-.2z" transform="translate(-64.4 -79.5)"/><path fill="#c85d4b" d="M99.6 149.3zm-2-.1h.1-.1s-.1 0 0 0zm4.2-1c0-.1 0-.1 0 0v.1-.1zm0-1.2s0-.1 0 0v.1zm-.2-1.2c.1 0 .1.1 0 .1zm0-1.2v.2-.2zm-.1-1.1c0-.1 0-.1 0 0zm-.1-1.2c0-.1 0-.1 0 0v.1-.1zm0-1.2s0-.1 0 0v.1zm-.2-1.2c.1 0 .1.1 0 .1zm0-1.2v.2-.2zm-.1-1.2c0-.1 0-.1 0 0zm-.1-1.2s0-.1 0 0v.1-.1zm0-1.2v.1zm7.2-6-2.9-5.5.5-.4 1-.8.6-.5.2.2a1242.5 1242.5 0 0 0 9.2 7.7l.3.3-.9.8a24.8 24.8 0 0 1-5.2 3.9l-2.8-5.6zm-7.4 4.8c.1 0 .1.1 0 .1zm0-1.1c0-.1 0-.2 0 0zm-.1-1.2c0-.1 0-.1 0 0zm-15-.8c-.1-.1-.1-.1 0 0l.1.1h-.1zm14.9-.4s0-.1 0 0v.1zm-.1-1.2v.1zm-16.6-.2c-.1 0-.1 0 0 0 .2.1.2.2.1.2l-.1-.1zm16.5-1v.2-.2zm0-1.1c0-.1 0-.1 0 0zm-.1-1.2c0-.1 0-.1 0 0v.1-.1zM65 117.5c0-.1 0-.1 0 0 .1 0 .1 0 0 0 0 .1 0 0 0 0zm0-2v-.3.6-.3zm11.7-.6v-.5a15.7 15.7 0 0 1 0 .5zm-11.7-.6v-.3.6-.3zm0-2c.1 0 .1.1 0 .1zm28.2-5h.2c0-.2 0-.2 0 0-.1 0-.2.1-.2 0zm-8.5-8 .4-.3-.4.4-.4.3zm12.8-8.1c0-.1 0-.1 0 0v.1-.1zm-.1-1c0-.1 0-.1 0 0zm0-1c0-.1 0-.1 0 0zm-.2-1c0-.1 0-.2 0 0 .1 0 .1 0 0 0z" transform="translate(-64.4 -79.5)"/><path fill="#c5523e" d="m75.2 139.6-.7-.7.7.6.7.8-.7-.7zm16.6-5A22 22 0 0 1 79 119.9c-.6-2.2-.8-5.2-.6-7.4.5-4.9 2.6-9.3 6-12.9a21.3 21.3 0 0 1 13.1-6.4l1 11.1c0 .3 0 .3-.7.5a10 10 0 0 0-2.2 18.9l.6.3-3.6 11-1-.5zm-7.5-2.6c-.1-.1-.1-.1 0 0l.1.1-.1-.1zm-1.6-1.5c0-.2 0-.2 0 0h.2c0 .1 0 .1-.2 0zm27.4-17.4c-.1-.9-.3-1.5-.5-2l-.2-.4 10.8-5.6 10.9-5.5a30.3 30.3 0 0 1 2.8 8.3l.5 3.2v.2l-12 1-12.2 1v-.2zm-8-8.4-1.3-.2h-1v-.5L98 80.4h2.3a29 29 0 0 1 9.6 1.3l-3.4 11-3.7 11.5-.2.6zm-18.6-6.5.4-.3-.4.4-.4.3z" transform="translate(-64.4 -79.5)"/><path fill="#b4111a" d="M97 149.1a39 39 0 0 1-7.2-1.4l3.8-11.6 3.9-11.6.5.2 1.3.1c.7 0 .9.1.9.2a5523.8 5523.8 0 0 0 1.7 24c0 .2-.2.2-2 .2H97zM79 143a37.9 37.9 0 0 1-7.7-8c-.5-.7-.6-.8-.5-1a155.3 155.3 0 0 1 3.8-6.8l-.4-1a38.9 38.9 0 0 1-1-2.4l-3.6-1-3.7-1h-.3l-.2-1.2a32.9 32.9 0 0 1 0-10.9l.1-1.2.6-.2a395.4 395.4 0 0 1 7-2l.5-1 .8-2 .4-1-2-3.4-2-3.4.5-.7A35.8 35.8 0 0 1 80 86l3.6 1.9 3.5 2 .8-.5a28.5 28.5 0 0 1 9.2-2.5 33.8 33.8 0 0 1 .4 4.4c0 .4 0 .4-.3.4l-3 .5a23.4 23.4 0 0 0-2.2 44.6l-1.5 4.5-2.8-1.1-.8-.4-3.5 1.9c-1.9 1-3.4 1.9-3.4 2l-1-.7zm37.2-15.3-7.8-6.6-.2-.2.4-.5.6-1.2.3-.6 19.6 6.2a27 27 0 0 1-5.1 9.3l-7.8-6.4zm-10.5-21.4-1.9-1a1150.6 1150.6 0 0 1 6.4-19.4 28.3 28.3 0 0 1 9 4.8l.2.3-6.6 7.7a866 866 0 0 1-6.6 7.9l-.5-.3z" transform="translate(-64.4 -79.5)"/></svg>
+<svg width="3311" height="1605" viewBox="400 0 3311 1605" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1133 1602C1182 1602 1191 1602 1189 1579C1153 1301 1125 1076 1098 855L1098 855C1067 601 1037 354 995 41C991 2 973 0 916 0C865 0 854 2 849 34C824 242 798 437 772 636L772 636L772 636L772 636L772 636C734 928 695 1227 653 1581C651 1602 681 1602 715 1602C721 1602 726 1602 732 1602C791 1602 809 1602 811 1579C822 1446 833 1334 847 1206C849 1185 868 1185 905 1186C908 1186 912 1186 916 1186C919 1186 922 1186 925 1186C957 1185 984 1185 986 1206C996 1272 1004 1335 1013 1399L1013 1399C1020 1456 1028 1514 1036 1574C1040 1602 1050 1602 1097 1602C1103 1602 1110 1602 1118 1602C1124 1602 1128 1602 1133 1602ZM264 1602C451 1602 528 1478 528 1334V1195C528 1175 509 1176 470 1176L470 1176C463 1176 455 1177 446 1177C405 1177 376 1177 376 1195V1330C376 1391 342 1448 264 1448C180 1448 148 1387 148 1323V265C148 212 193 143 264 143C332 143 376 217 376 267V374C376 400 403 400 443 399H443H443H443H443H443C447 399 450 399 453 399C494 399 528 397 528 374V271C528 173 453 2 264 2C86 2 0 148 0 271V1336C0 1458 86 1602 264 1602ZM968 1042C959 928 953 837 946 746C942 681 937 615 931 539C931 530 929 514 916 514C904 514 902 530 902 537C896 625 890 707 885 784L885 784C879 874 874 958 868 1039C865 1055 886 1060 918 1060C945 1060 970 1060 968 1042ZM1784 1602C1845 1602 1861 1602 1861 1565V996C1861 992 1861 988 1861 984C1861 936 1861 903 1836 852C1812 804 1767 783 1743 771C1733 766 1727 763 1727 761C1727 758 1734 754 1744 748C1768 736 1810 713 1834 669C1859 623 1859 586 1859 537V537C1859 533 1859 529 1859 525V319C1859 239 1843 146 1775 82C1706 20 1608 2 1535 2H1405C1401 2 1397 1 1393 1C1379 0 1367 -0 1353 11C1339 25 1337 50 1337 73V1570C1337 1602 1353 1602 1405 1602C1474 1602 1483 1602 1483 1565V873C1483 838 1495 838 1586 838H1586H1586L1586 838C1591 838 1597 838 1604 838C1654 838 1715 895 1715 989V1570C1715 1602 1729 1602 1774 1602C1777 1602 1780 1602 1784 1602ZM1711 537V319C1711 267 1702 228 1663 187C1638 164 1624 153 1542 153C1521 153 1501 153 1492 169C1485 182 1485 194 1485 207V635C1485 639 1485 643 1485 648V648V648V648C1484 668 1483 687 1499 699C1510 709 1524 708 1535 708C1536 708 1538 708 1540 708C1565 708 1624 701 1665 658C1711 607 1711 569 1711 537ZM2588 1557L2588 1557C2588 1555 2588 1553 2588 1551V790C2588 788 2589 784 2589 781C2591 773 2592 764 2586 763C2569 760 2496 762 2429 763C2393 764 2359 765 2337 765C2321 765 2319 786 2319 836C2319 884 2321 902 2339 902C2345 902 2352 902 2360 901C2384 900 2414 898 2426 907C2436 915 2436 926 2435 936L2435 936C2435 937 2435 938 2435 938C2435 939 2435 940 2435 941V1334C2435 1382 2412 1453 2323 1453C2232 1453 2207 1384 2207 1327V265C2207 217 2253 143 2323 143C2392 143 2435 217 2435 267C2435 283 2436 303 2436 323C2437 343 2437 363 2437 379C2437 399 2451 402 2508 402C2570 402 2588 395 2588 374V271C2588 189 2524 2 2323 2C2118 2 2059 182 2059 271V1336C2059 1442 2130 1602 2323 1602C2393 1602 2429 1567 2452 1545C2466 1531 2476 1522 2485 1528C2503 1540 2508 1560 2512 1576C2516 1589 2518 1599 2526 1599C2534 1599 2541 1601 2547 1602C2559 1605 2569 1607 2577 1599C2589 1587 2588 1572 2588 1557ZM3310 1316C3310 1464 3249 1602 3046 1602C2856 1602 2781 1464 2781 1316V281C2781 109 2897 2 3046 2C3196 2 3310 121 3310 281V1316ZM3160 281V1309C3160 1373 3137 1448 3046 1448C2943 1448 2929 1375 2929 1309V281C2929 217 2977 143 3046 143C3112 143 3160 217 3160 281Z" fill="black"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138 26"><path fill="none" stroke="black" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" d="M15 8a7 7 0 100 10m7-8.7L33 2l11 7.3v7.4L33 24l-11-7.3zm0 0l11 7.4 11-7.4m0 7.4L33 9.3l-11 7.4M33 2v7.3m0 7.4V24M52 6h5a7 7 0 010 14h-5zm28 0h-9v14h9m-9-7h6m11 1h6a4 4 0 000-8h-6v14m26-14h-9v14h9m-9-7h6m11 7V6l11 14V6"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 107.05 22.17" fill="#187a3d"><path d="M89.91 7.50c-1.62-1.67-3.64-2.53-5.98-2.53-2.34 0-4.36.85-5.99 2.53s-2.45 3.73-2.45 6.1a8.4 8.4 0 0 0 2.43 6.02 8.13 8.13 0 0 0 6.02 2.51c2.37 0 4.4-.85 6-2.51 1.6-1.68 2.43-3.7 2.43-6.05a8.41 8.41 0 0 0-2.46-6.07m-5.98.41c1.47 0 2.72.56 3.81 1.68a5.6 5.6 0 0 1 1.61 4.01c0 1.58-.52 2.88-1.6 3.98-1.06 1.1-2.32 1.63-3.87 1.63-1.53 0-2.8-.53-3.82-1.61-1.05-1.1-1.56-2.4-1.56-3.97 0-1.58.53-2.90 1.61-4.05 1.07-1.13 2.32-1.68 3.80-1.68M15.25 0a1.47 1.47 0 0 0-1.44 1.25l-.00 5.78c-1.27-1.12-2.75-1.8-4.42-1.97h-.04c-.10-.01-.22-.01-.32-.03l-.33-.03a10.1 10.1 0 0 0-.76.01l-.06.01c-.11 0-.23.01-.34.02l-.43.04-.09.02-.28.04c-.14.01-.26.06-.41.08a7.94 7.94 0 0 0-3.55 1.98l-.04.02-.37.4-.18.21a7.34 7.34 0 0 0-.52.65 1.78 1.78 0 0 0-.15.21l-.04.06C.46 10.17 0 11.79 0 13.55l.00.44.07.78.05.33.07.33.05.26c.36 1.41 1.08 2.7 2.15 3.80a8.59 8.59 0 0 0 1.38 1.17l.23.15c.03.02.06.03.09.05l.03.01c.19.12.4.22.57.32l.38.17c.99.41 2.09.62 3.26.62h.04l.39-.01a1.36 1.36 0 0 0 .19-.01h.05l.18-.01c.04-.01.09-.01.12-.01a7.86 7.86 0 0 0 4.42-1.93v.67l.00.07a1.47 1.47 0 0 0 1.26 1.24h.38c.73-.1 1.27-.73 1.27-1.46V1.47c0-.8-.65-1.47-1.46-1.47M13.74 13.59c0 1.57-.51 2.85-1.57 3.94s-2.30 1.62-3.82 1.62a5.39 5.39 0 0 1-1.87-.32c-.02-.00-.04-.00-.05-.01l-.07-.03c-.64-.25-1.26-.67-1.79-1.23a5.46 5.46 0 0 1-1.38-2.58c-.1-.43-.14-.88-.14-1.34 0-1.57.51-2.87 1.58-4.01C5.66 8.48 6.9 7.94 8.36 7.94c1.47 0 2.69.54 3.77 1.67 1.1 1.13 1.60 2.43 1.60 3.97m21.89-.36c0-.2-.02-.43-.03-.65-.13-1.25-.52-2.41-1.15-3.45-.34-.57-.75-1.11-1.25-1.62-1.2-1.24-2.64-2.05-4.26-2.37l-.13-.01c-.11-.03-.24-.04-.35-.06l-.52-.05-.33-.02a11.34 11.34 0 0 0-.82 0c-1.50.07-2.88.50-4.08 1.30a7.49 7.49 0 0 0-.50.36l-.63.54-.32.31a8.49 8.49 0 0 0-2.45 6.10c0 1.1.19 2.17.57 3.14.39 1.03 1.02 2 1.86 2.86l.62.59a9.28 9.28 0 0 0 1.00.74l.72.39a8.75 8.75 0 0 0 1.96.64l.43.07.42.04c.13.01.26.02.40.02l.06.00a4.88 4.88 0 0 0 .37.01h.04l.39-.01.28-.01.12-.01a7.97 7.97 0 0 0 5.15-2.47c.32-.33.61-.68.86-1.04a4.51 4.51 0 0 0 .27-.40l.04-.08a1.45 1.45 0 0 0 .10-.53 1.5 1.5 0 0 0-1.50-1.49c-.5 0-.95.24-1.24.65a5.5 5.5 0 0 1-.71.89c-1.05 1.1-2.32 1.63-3.87 1.63-1.53 0-2.78-.53-3.83-1.61a7.25 7.25 0 0 1-.50-.6l-.05-.09c-.12-.18-.24-.36-.36-.60a5.01 5.01 0 0 1-.50-1.49h12.45l.11-.02c.62-.13 1.1-.65 1.16-1.30v-.04l-.01-.24m-13.64-1.11a5.36 5.36 0 0 1 .68-1.57l.04-.07c.2-.30.43-.58.7-.87 1.07-1.13 2.31-1.68 3.79-1.68s2.73.56 3.81 1.68c.50.53.89 1.11 1.17 1.74a5.44 5.44 0 0 1 .25.76zm51.46-1.14v9.57a1.48 1.48 0 0 1-1.48 1.47c-.75 0-1.39-.55-1.47-1.32v-9.68a3.2 3.2 0 0 0-.91-2.30c-.56-.57-1.19-.9-1.93-.94-.06-.01-.14-.01-.22-.01-.84 0-1.53.31-2.13.95a3.19 3.19 0 0 0-.91 2.14v.13l.00.09-.00.02v9.45a1.47 1.47 0 0 1-1.47 1.47 1.47 1.47 0 0 1-1.48-1.32l-.00-.05.01-9.64c-.01-.07-.01-.12-.01-.17-.02-.46-.41-1.37-.41-1.37s-.30-.53-.50-.74c-.60-.63-1.31-.95-2.15-.95-.83 0-1.52.31-2.13.95a3.2 3.2 0 0 0-.92 2.3v9.73a1.48 1.48 0 0 1-1.47 1.28 1.48 1.48 0 0 1-1.47-1.47V6.33c0-.82.66-1.48 1.47-1.48.60 0 1.14.38 1.37.91l.32-.21a5.89 5.89 0 0 1 2.83-.7c1.5 0 2.82.5 3.92 1.46a3.73 3.73 0 0 1 .34.34l.27.28.26-.28.35-.34a5.76 5.76 0 0 1 3.90-1.46l.50.02c1.3.1 2.45.58 3.42 1.46l.34.33a5.99 5.99 0 0 1 1.74 4.32"/><path d="M50.32 17.13c0 2.74-2.21 4.98-4.94 5.03h-5.98a1.45 1.45 0 0 1-1.44-1.45c0-.8.64-1.44 1.45-1.44h5.91a2.13 2.13 0 0 0 2.1-2.13 2.13 2.13 0 0 0-2.12-2.12h-2.86c-2.77 0-5.03-2.24-5.03-5.02a5.04 5.04 0 0 1 5.03-5.03h5.91a1.46 1.46 0 0 1 1.45 1.46 1.46 1.46 0 0 1-1.45 1.44h-5.91c-1.17 0-2.12.95-2.12 2.12 0 1.15.94 2.1 2.1 2.12h.05c.01 0 .04 0 .09-.00h2.73c.70 0 1.39.14 2.03.43a5.04 5.04 0 0 1 3 4.59m56.74-.00c0 2.74-2.22 5-4.95 5.03h-5.98a1.46 1.46 0 0 1-1.45-1.45 1.45 1.45 0 0 1 1.45-1.44h5.9c1.15-.01 2.10-.96 2.10-2.13a2.13 2.13 0 0 0-2.12-2.12h-2.63c-.07.01-.14.01-.22.01-2.77 0-5.03-2.24-5.03-5.03a5.04 5.04 0 0 1 5.03-5.03h5.90a1.47 1.47 0 0 1 1.45 1.46c0 .79-.65 1.45-1.45 1.45h-5.90a2.13 2.13 0 0 0-2.13 2.12 2.14 2.14 0 0 0 2.10 2.12h.05c.01 0 .05 0 .08-.00h2.74a4.87 4.87 0 0 1 2.03.43c1.82.8 3 2.61 3 4.59"/></svg>
+<svg width="397" height="109" viewBox="0 0 397 109" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><path d="M169.495 63.68c2.8 0 5.254.671 7.36 2.015 2.105 1.344 3.688 3.162 4.751 5.453 1.063 2.292 1.594 4.878 1.594 7.76 0 4.408-1.241 8.054-3.724 10.935-2.483 2.881-5.81 4.322-9.98 4.322-3.953 0-7.18-1.402-9.683-4.206v12.62c0 .271-.085.489-.254.653a.88.88 0 0 1-.64.247h-4.767a.966.966 0 0 1-.656-.232c-.178-.155-.268-.377-.268-.668V65.188c0-.271.09-.489.268-.653a.932.932 0 0 1 .656-.247h4.767a.88.88 0 0 1 .64.247c.17.164.254.382.254.653v3.393h.625c1.986-3.268 5.006-4.902 9.057-4.902zm-.84 24.874c2.752 0 4.865-.86 6.34-2.578 1.473-1.719 2.21-4.034 2.21-6.947 0-2.874-.737-5.156-2.21-6.846-1.475-1.69-3.588-2.534-6.34-2.534-2.576 0-4.625.855-6.148 2.563-1.524 1.71-2.285 3.986-2.285 6.831s.761 5.141 2.285 6.89c1.523 1.747 3.572 2.62 6.148 2.62zm39.147-24.875c3.374 0 6.111.99 8.213 2.968 2.1 1.978 3.151 4.771 3.151 8.379 0 .582-.296.902-.888.96l-4.705.64c-.592.097-.917-.165-.977-.786-.138-2.114-.813-3.67-2.027-4.67-1.213-.998-2.836-1.497-4.868-1.497-1.44 0-2.757.266-3.95.8-1.194.533-2.142 1.183-2.842 1.949-.7.766-1.238 1.513-1.613 2.24-.375.727-.562 1.333-.562 1.818v16.147c0 .271-.084.49-.252.654a.87.87 0 0 1-.636.248h-4.735a.954.954 0 0 1-.651-.233c-.178-.155-.267-.378-.267-.669V65.221c0-.271.09-.49.267-.654a.922.922 0 0 1 .65-.248h4.47c.552 0 .858.3.917.902l.237 3.928h.68c1.086-1.571 2.52-2.876 4.306-3.913 1.786-1.038 3.813-1.557 6.082-1.557zm31.331 30.845c-4.25 0-7.807-1.475-10.673-4.423-2.866-2.95-4.298-6.616-4.298-11s1.432-8.05 4.298-10.999c2.866-2.948 6.423-4.423 10.673-4.423 2.788 0 5.332.674 7.632 2.021 2.3 1.348 4.103 3.203 5.41 5.566 1.306 2.363 1.959 4.975 1.959 7.835 0 2.861-.653 5.468-1.96 7.821-1.306 2.353-3.109 4.209-5.41 5.566-2.3 1.357-4.843 2.036-7.63 2.036zm-6.43-8.608c1.7 1.759 3.847 2.638 6.445 2.638 2.597 0 4.745-.88 6.444-2.638 1.698-1.759 2.547-4.03 2.547-6.814 0-2.785-.849-5.057-2.547-6.815-1.699-1.759-3.847-2.638-6.444-2.638-2.598 0-4.746.88-6.444 2.638-1.699 1.758-2.548 4.03-2.548 6.815 0 2.784.85 5.055 2.548 6.814zm55.522-21.623c.272 0 .487.082.642.248.156.165.234.384.234.657v27.976c0 1.772-.302 3.373-.906 4.804-.603 1.431-1.402 2.6-2.395 3.504-.993.906-2.157 1.67-3.49 2.293a16.713 16.713 0 0 1-4.076 1.314c-1.383.253-2.814.38-4.294.38-2.337 0-4.543-.297-6.617-.891-2.074-.594-3.86-1.397-5.36-2.41-.448-.291-.546-.7-.293-1.226l1.49-2.774c.273-.526.672-.652 1.198-.38 2.707 1.46 5.735 2.19 9.085 2.19 1.169 0 2.293-.116 3.374-.35 1.074-.23 2.107-.62 3.068-1.153a6.016 6.016 0 0 0 2.293-2.235c.564-.953.847-2.073.847-3.358v-3.855c-2.513 3.154-5.726 4.731-9.64 4.731-2.688 0-5.132-.676-7.333-2.03a13.905 13.905 0 0 1-5.112-5.475c-1.207-2.297-1.811-4.809-1.811-7.534 0-2.726.604-5.237 1.811-7.534 1.208-2.298 2.907-4.123 5.098-5.476 2.19-1.353 4.64-2.03 7.347-2.03 3.856 0 7.03 1.548 9.523 4.644l.175-3.125c.059-.604.36-.905.906-.905h4.236zm-13.596 23.266c2.408 0 4.424-.894 6.045-2.68 1.622-1.788 2.433-3.898 2.433-6.332 0-2.396-.811-4.477-2.433-6.246-1.621-1.768-3.637-2.652-6.045-2.652-2.428 0-4.452.86-6.074 2.581-1.622 1.72-2.433 3.826-2.433 6.317 0 2.529.811 4.663 2.433 6.402 1.621 1.74 3.646 2.61 6.074 2.61zm40.073-23.88c3.374 0 6.111.99 8.213 2.968 2.1 1.978 3.151 4.771 3.151 8.379 0 .582-.296.902-.888.96l-4.705.64c-.592.097-.917-.165-.977-.786-.138-2.114-.813-3.67-2.027-4.67-1.213-.998-2.836-1.497-4.868-1.497-1.44 0-2.757.266-3.95.8-1.194.533-2.142 1.183-2.842 1.949-.7.766-1.238 1.513-1.613 2.24-.375.727-.562 1.333-.562 1.818v16.147c0 .271-.084.49-.252.654a.87.87 0 0 1-.636.248h-4.735a.954.954 0 0 1-.651-.233c-.178-.155-.267-.378-.267-.669V65.221c0-.271.09-.49.267-.654a.922.922 0 0 1 .65-.248h4.47c.552 0 .858.3.917.902l.237 3.928h.68c1.086-1.571 2.52-2.876 4.306-3.913 1.786-1.038 3.813-1.557 6.082-1.557zm46.24 24.74c.393.098.673.22.84.367.167.147.25.377.25.69v3.551c0 .626-.569.959-1.708.998-2.2.039-3.826-.343-4.877-1.145-1.051-.802-1.577-2.064-1.577-3.785h-.265c-1.493 1.682-3.399 3.008-5.717 3.976-2.318.968-4.577 1.453-6.778 1.453-3.241 0-5.726-.749-7.455-2.245-1.729-1.497-2.593-3.547-2.593-6.149 0-2.621.835-4.656 2.504-6.104 1.67-1.448 4.214-2.416 7.633-2.906l6.984-1.085c1.355-.196 2.347-.401 2.976-.617.629-.215 1.041-.479 1.238-.792-.079-1.957-.649-3.35-1.71-4.182-1.06-.832-2.622-1.247-4.685-1.247-4.302 0-6.65 1.36-7.043 4.079-.059.45-.353.665-.884.646h-4.48c-.647 0-.942-.304-.883-.91.334-3.326 1.66-5.713 3.978-7.161 2.318-1.448 5.452-2.172 9.4-2.172 4.224 0 7.392.959 9.504 2.876 2.112 1.918 3.168 4.706 3.168 8.364v11.035c-.02 1.35.707 2.172 2.18 2.466zm-19.06.135c4.132 0 7.518-1.307 10.16-3.922v-6.028c-.258.566-1.53 1.024-3.814 1.375l-6.375.995c-1.728.274-2.96.742-3.695 1.405-.735.663-1.102 1.512-1.102 2.546 0 1.132.397 2.02 1.192 2.663.794.644 2.006.966 3.635.966zm48.252-24.875c2.377 0 4.116.796 5.216 2.386 1.1 1.59 1.65 4.248 1.65 7.971v18.59c0 .272-.079.49-.236.655-.157.165-.383.248-.677.248h-4.244a.948.948 0 0 1-.648-.233c-.177-.155-.265-.378-.265-.669v-18.59c0-1.785-.207-3.036-.62-3.754-.412-.717-1.11-1.076-2.091-1.076-1.042 0-1.886.403-2.535 1.207a5.452 5.452 0 0 0-1.178 2.75v19.463c0 .271-.079.49-.236.654-.157.165-.383.248-.678.248h-4.155c-.275 0-.496-.078-.663-.233-.167-.155-.25-.378-.25-.669v-18.59c0-1.804-.207-3.06-.62-3.768-.412-.708-1.11-1.062-2.092-1.062-1.04 0-1.88.398-2.52 1.193a5.675 5.675 0 0 0-1.193 2.764v19.463c0 .271-.083.49-.25.654a.864.864 0 0 1-.634.248h-4.273c-.275 0-.496-.078-.662-.233-.168-.155-.251-.378-.251-.669V65.221c0-.271.083-.49.25-.654.167-.165.388-.248.663-.248h4.008c.57 0 .874.3.914.902l.147 2.386h.442c.943-2.619 2.898-3.928 5.864-3.928 2.849 0 4.745 1.31 5.688 3.928h.353c1.061-2.619 2.986-3.928 5.776-3.928zM162.091 16.126c1.86-.801 3.86-1.201 6.001-1.201 2.141 0 4.112.395 5.914 1.186 1.802.791 3.293 1.86 4.475 3.208 1.182 1.347 2.097 2.905 2.746 4.672.65 1.767.974 3.637.974 5.609 0 1.191-.121 2.04-.363 2.549-.243.507-.76.761-1.555.761h-20.807c.33 2.285 1.385 4.106 3.168 5.463 1.782 1.357 4.01 2.036 6.683 2.036 2.693 0 5.134-.84 7.324-2.52.464-.35.881-.341 1.249.03l1.947 1.992c.465.469.465.918 0 1.347-2.983 3.008-6.713 4.511-11.188 4.511-4.572 0-8.287-1.47-11.144-4.408-2.858-2.94-4.287-6.615-4.287-11.029 0-2.148.373-4.164 1.119-6.048.746-1.885 1.763-3.516 3.051-4.892 1.288-1.377 2.853-2.466 4.694-3.266zm5.71 3.774c-2.28 0-4.202.718-5.767 2.154-1.565 1.437-2.502 3.372-2.812 5.806h16.985c-.232-2.414-1.111-4.344-2.638-5.79-1.526-1.447-3.449-2.17-5.767-2.17zm51.123 22.816c.236.268.3.513.191.733-.107.22-.348.33-.72.33h-5.562c-.47 0-.824-.162-1.06-.488l-8.592-10.002-8.592 10.002c-.255.326-.618.488-1.089.488h-5.532c-.373 0-.613-.11-.72-.33-.109-.22-.045-.465.19-.733l12.036-13.795-11.212-12.933c-.235-.268-.299-.512-.191-.733.108-.22.348-.33.72-.33h5.504c.47 0 .833.172 1.088.517l7.798 9.082 7.798-9.082c.255-.325.618-.498 1.089-.517h5.473c.373 0 .618.105.736.316.117.21.059.46-.177.747l-11.152 12.933 11.976 13.795zm14.101-26.59c1.86-.801 3.86-1.201 6-1.201 2.142 0 4.113.395 5.915 1.186 1.801.791 3.293 1.86 4.475 3.208 1.182 1.347 2.097 2.905 2.746 4.672.65 1.767.974 3.637.974 5.609 0 1.191-.122 2.04-.364 2.549-.242.507-.76.761-1.554.761H230.41c.329 2.285 1.385 4.106 3.167 5.463 1.782 1.357 4.01 2.036 6.684 2.036 2.693 0 5.134-.84 7.323-2.52.465-.35.882-.341 1.25.03l1.947 1.992c.465.469.465.918 0 1.347-2.984 3.008-6.713 4.511-11.189 4.511-4.572 0-8.286-1.47-11.144-4.408-2.858-2.94-4.286-6.615-4.286-11.029 0-2.148.373-4.164 1.118-6.048.746-1.885 1.764-3.516 3.052-4.892 1.288-1.377 2.852-2.466 4.693-3.266zm5.71 3.774c-2.28 0-4.203.718-5.767 2.154-1.566 1.437-2.503 3.372-2.812 5.806h16.984c-.232-2.414-1.11-4.344-2.637-5.79-1.527-1.447-3.45-2.17-5.768-2.17zm37.83 19.894c3.133 0 5.619-1.191 7.457-3.574.348-.45.745-.527 1.19-.234l3.394 1.962c.542.332.639.733.29 1.201-1.315 2.012-3.06 3.618-5.237 4.819-2.176 1.2-4.58 1.801-7.21 1.801-4.392 0-8.043-1.474-10.955-4.423-2.911-2.949-4.367-6.615-4.367-10.999s1.456-8.05 4.367-11c2.912-2.948 6.563-4.422 10.954-4.422 2.631 0 5.04.595 7.225 1.787 2.186 1.19 3.927 2.792 5.224 4.803.328.47.232.87-.29 1.202l-3.396 1.991c-.444.274-.841.196-1.19-.234-1.837-2.382-4.323-3.574-7.457-3.574-2.67 0-4.88.884-6.63 2.651-1.75 1.768-2.626 4.033-2.626 6.796s.875 5.028 2.626 6.796c1.75 1.767 3.96 2.65 6.63 2.65zm46.585-24.87c.276 0 .499.083.666.248.168.165.252.383.252.654v27.379c0 .271-.084.49-.252.654-.167.165-.39.247-.666.247h-4.475c-.573 0-.88-.3-.919-.901l-.237-3.953h-.652c-1.007 1.608-2.35 2.93-4.03 3.968-1.68 1.036-3.674 1.554-5.986 1.554-3.26 0-5.867-1.056-7.823-3.168-1.956-2.112-2.934-5.067-2.934-8.864V15.826c0-.271.08-.49.237-.654.159-.165.376-.247.652-.247h4.742c.276 0 .499.082.666.247.168.165.252.383.252.654v15.956c0 2.403.583 4.18 1.749 5.334 1.165 1.153 2.785 1.73 4.86 1.73 1.343 0 2.573-.258 3.689-.771s1.99-1.129 2.623-1.846c.632-.717 1.116-1.4 1.452-2.049.335-.649.503-1.157.503-1.526V15.826c0-.271.08-.49.237-.654.158-.165.376-.247.652-.247h4.742zm37.595 24.474c.353.446.382.852.088 1.22-.882 1.047-2.172 2.001-3.868 2.863-1.697.862-3.731 1.293-6.104 1.293-8.002 0-12.003-3.932-12.003-11.799V20.537h-7.884a.885.885 0 0 1-.647-.261.864.864 0 0 1-.264-.64v-3.603c0-.272.083-.49.25-.654.166-.165.387-.247.661-.247h7.884l.02-9.285c0-.271.084-.485.25-.64.167-.155.388-.232.662-.232h4.707c.255 0 .466.078.633.233.166.154.25.368.25.639l-.02 9.285h11.943c.255 0 .466.082.632.247.167.164.25.382.25.654v3.603a.89.89 0 0 1-.25.64.837.837 0 0 1-.632.261H345.36v11.741c0 1.337.18 2.465.544 3.386.363.92.873 1.613 1.53 2.077a6.487 6.487 0 0 0 2.059.989c.716.193 1.534.29 2.456.29 1.98 0 3.824-.668 5.53-2.005.452-.426.873-.407 1.265.058l2 2.325zm15.146-23.272c1.86-.801 3.86-1.201 6.001-1.201 2.141 0 4.112.395 5.914 1.186 1.802.791 3.293 1.86 4.475 3.208 1.182 1.347 2.097 2.905 2.746 4.672.65 1.767.974 3.637.974 5.609 0 1.191-.121 2.04-.363 2.549-.243.507-.76.761-1.555.761h-20.807c.33 2.285 1.385 4.106 3.168 5.463 1.782 1.357 4.01 2.036 6.683 2.036 2.693 0 5.134-.84 7.324-2.52.464-.35.881-.341 1.249.03l1.947 1.992c.465.469.465.918 0 1.347-2.983 3.008-6.713 4.511-11.188 4.511-4.572 0-8.287-1.47-11.145-4.408-2.857-2.94-4.286-6.615-4.286-11.029 0-2.148.373-4.164 1.119-6.048.746-1.885 1.763-3.516 3.051-4.892 1.288-1.377 2.853-2.466 4.693-3.266zm5.71 3.774c-2.28 0-4.202.718-5.767 2.154-1.565 1.437-2.502 3.372-2.812 5.806h16.985c-.232-2.414-1.112-4.344-2.638-5.79-1.526-1.447-3.449-2.17-5.768-2.17z" fill="#FFF"/><path d="M102.022 37.886V19.427c0-2.582-1.455-3.873-4.363-3.873H82.51a1.87 1.87 0 0 1-1.333-.515c-.364-.342-.584-.776-.584-1.3V1.875c0-.565.22-1.019.584-1.361A1.87 1.87 0 0 1 82.511 0h26.297c1.171 0 2.312.1 3.423.303 1.11.201 2.282.615 3.514 1.24a11.807 11.807 0 0 1 3.212 2.36c.909.949 1.646 2.23 2.211 3.844.566 1.613.849 3.47.849 5.568v23.421c.04 1.09.262 1.877.666 2.36l12.18 14.102c.645.767.605 1.594-.122 2.481l-12.058 13.799c-.444.484-.666 1.271-.666 2.36V95.14c0 2.622-.414 4.852-1.243 6.688-.828 1.835-1.938 3.207-3.332 4.115-1.394.908-2.787 1.553-4.18 1.937-1.394.383-2.879.575-4.454.575H82.51c-.525 0-.97-.162-1.333-.485a1.716 1.716 0 0 1-.584-1.331V94.715c0-.564.22-1.018.584-1.361a1.87 1.87 0 0 1 1.333-.515H97.66c2.908 0 4.363-1.25 4.363-3.752V70.749c0-1.009.242-1.755.727-2.24l13.31-13.952a.217.217 0 0 0 0-.298l-13.31-14.194c-.485-.444-.728-1.17-.728-2.179zm-32.788-8.585L93.083 53.15a1.523 1.523 0 0 1 0 2.154l-23.85 23.849a1.523 1.523 0 0 1-2.153 0l-23.85-23.85a1.523 1.523 0 0 1 0-2.153L67.08 29.3a1.523 1.523 0 0 1 2.154 0zm-35.937 8.585c0 1.009-.243 1.735-.728 2.18L19.26 54.258a.217.217 0 0 0 0 .298L32.57 68.51c.485.484.728 1.23.728 2.24v18.337c0 2.501 1.454 3.752 4.362 3.752h15.148c.525 0 .97.172 1.333.515.364.343.584.797.584 1.361v11.923c0 .565-.22 1.009-.584 1.331-.363.323-.808.485-1.333.485H26.511c-1.576 0-3.06-.192-4.454-.575-1.394-.384-2.787-1.03-4.18-1.937-1.394-.908-2.505-2.28-3.333-4.115-.828-1.836-1.242-4.065-1.242-6.688v-23.3c0-1.09-.223-1.877-.667-2.36L.577 55.678c-.727-.887-.767-1.715-.12-2.481l12.178-14.101c.404-.485.626-1.271.667-2.36V13.314c0-2.099.282-3.955.848-5.568.565-1.614 1.303-2.895 2.211-3.843a11.807 11.807 0 0 1 3.212-2.36C20.805.917 21.976.503 23.087.302A19.123 19.123 0 0 1 26.511 0h26.296c.525 0 .97.171 1.333.515.364.342.584.796.584 1.361v11.862c0 .525-.22.959-.584 1.301a1.87 1.87 0 0 1-1.333.515H37.66c-2.908 0-4.362 1.291-4.362 3.873v18.459z" fill="#4547E0"/></g></svg>
+<svg viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" style="background: #1649BF"><g transform="translate(-780, -40)" fill="#FFFFFF"><path d="M780,4 L840,4 L840,1 L780,1 L780,4 Z M794,55 L794,84.65 L796.806,84.65 L796.806,72.739 C796.806,69.633 799.325,67.104 802.420,67.104 C805.516,67.104 808.031,69.633 808.031,72.739 L808.031,84.65 L810.838,84.65 L810.838,72.739 C810.838,68.077 807.062,64.288 802.420,64.288 C800.271,64.288 798.311,65.106 796.819,66.447 L796.819,55 L794,55 Z M817.582,63.931 C815.372,63.931 813.367,64.798 811.862,66.199 L812.163,66.653 C812.613,67.33 812.972,68.051 813.248,68.805 C814.281,67.549 815.840,66.746 817.582,66.746 C820.674,66.746 823.193,69.276 823.193,72.382 L823.193,72.385 L823.193,84.293 L826,84.293 L826,72.385 L826,72.379 C826,70.658 825.483,69.057 824.598,67.72 L824.598,67.723 C824.537,67.629 824.473,67.543 824.409,67.452 C824.345,67.365 824.280,67.278 824.213,67.191 C824.139,67.098 824.068,67.008 823.995,66.917 C823.870,66.776 823.744,66.634 823.616,66.502 C823.542,66.424 823.465,66.35 823.385,66.276 C823.289,66.183 823.190,66.093 823.090,66.002 C823.004,65.932 822.917,65.854 822.830,65.787 C822.689,65.671 822.542,65.561 822.394,65.458 C822.320,65.406 822.243,65.354 822.169,65.307 C821.999,65.194 821.829,65.087 821.650,64.991 C821.592,64.955 821.531,64.923 821.473,64.894 C821.307,64.807 821.142,64.726 820.976,64.653 C820.909,64.623 820.845,64.594 820.774,64.566 C820.569,64.478 820.357,64.401 820.138,64.33 C820.084,64.314 820.026,64.298 819.969,64.282 C819.773,64.224 819.577,64.172 819.382,64.131 C819.330,64.118 819.285,64.104 819.234,64.095 C819,64.05 818.766,64.015 818.525,63.985 C818.461,63.979 818.400,63.976 818.339,63.969 C818.095,63.947 817.855,63.931 817.611,63.931 L817.582,63.931 Z"></path></g></svg>
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='39 0 142.7 119'><linearGradient id='SVGID_1_' gradientUnits='userSpaceOnUse' x1='4.7875' y1='6.8451' x2='75.7999' y2='54.4038'><stop offset='0' stop-color='#AA4A9B'/><stop offset='1' stop-color='#F05922'/></linearGradient><path fill='url(#SVGID_1_)' d='M81.3,57.6L18.7,3.1c-1.9-1.8-4.5-3-7.3-3.1C5.2-0.2,0.2,4.6,0,10.7c-0.1,4.3,2.3,8.1,5.8,10l70.4,43.7c0.1,0.1,0.2,0.1,0.3,0.2c2.1,1.1,4.6,0.4,5.8-1.6C83.4,61.2,82.9,58.9,81.3,57.6z'/><linearGradient id='SVGID_2_' gradientUnits='userSpaceOnUse' x1='28.3538' y1='119.6551' x2='139.5938' y2='60.2551'><stop offset='0' stop-color='#FFE42E'/><stop offset='1' stop-color='#ED417C'/></linearGradient><path fill='url(#SVGID_2_)' d='M142.7,66.3c-0.3-8.6-7.6-15.3-16.2-14.9c-2.7,0.1-5.3,0.9-7.5,2.2l-88,50.1c0,0-0.1,0-0.1,0.1c-3,1.2-5,4.2-4.9,7.6c0.2,4.4,3.8,7.8,8.2,7.6c1,0,2-0.3,2.9-0.7l95.9-37c0,0,0.1,0,0.2-0.1C138.9,78.8,142.9,73,142.7,66.3z'/><linearGradient id='SVGID_3_' gradientUnits='userSpaceOnUse' x1='31.6974' y1='114.3816' x2='72.0174' y2='55.3416'><stop offset='0' stop-color='#FFE42E'/><stop offset='1' stop-color='#F05922'/></linearGradient><path fill='url(#SVGID_3_)' d='M71.8,64c1.1-2.1,0.3-4.7-1.8-5.7c-1.9-1-4.2-0.4-5.4,1.3l-37.1,47.1c0,0,0,0.1-0.1,0.2c-1.8,2.7-1.8,6.3,0.3,9c2.6,3.5,7.5,4.2,11,1.7c1-0.8,1.8-1.8,2.4-2.8l30.5-50.2C71.6,64.3,71.7,64.1,71.8,64z'/><rect x='45.5' y='35.7' width='51' height='51'/><rect x='49.9' y='77.1' fill='#fff' width='19.1' height='3.2'/><path fill='#fff' d='M49.7,49.1l1.5-1.4c0.4,0.5,0.8,0.8,1.3,0.8c0.6,0,0.9-0.4,0.9-1.2V42h2.3v5.3c0,1-0.3,1.8-0.8,2.3c-0.5,0.5-1.3,0.8-2.3,0.8C51.2,50.5,50.3,49.9,49.7,49.1z'/><path fill='#fff' d='M56.3,42h6.7V44h-4.4v1.3h4v1.8h-4v1.3H63v2h-6.7V42z'/><path fill='#fff' d='M66,44.1h-2.5v-2h7.3v2h-2.5v6.3H66V44.1z'/><path fill='#fff' d='M49.9,52.3h4.3c1,0,1.8,0.3,2.3,0.7c0.3,0.3,0.5,0.8,0.5,1.4v0c0,1-0.5,1.5-1.3,1.9c1,0.3,1.7,0.9,1.7,2v0c0,1.4-1.2,2.3-3.1,2.3h-4.3V52.3z M54.7,54.9c0-0.5-0.4-0.7-1-0.7h-1.5v1.5h1.4C54.3,55.6,54.7,55.4,54.7,54.9L54.7,54.9z M53.9,57.2h-1.8v1.5h1.8c0.7,0,1.1-0.3,1.1-0.8v0C55,57.5,54.7,57.2,53.9,57.2z'/><path fill='#fff' d='M57.7,52.3h3.9c1.3,0,2.2,0.3,2.7,0.9c0.5,0.5,0.7,1.1,0.7,1.9v0c0,1.3-0.7,2.1-1.7,2.6l2,2.9h-2.6L61,58.1h-1v2.5h-2.3V52.3z M61.5,56.3c0.8,0,1.2-0.4,1.2-1v0c0-0.7-0.5-1-1.2-1H60v2H61.5z'/><path fill='#fff' d='M67.8,52.2H70l3.5,8.4h-2.5l-0.6-1.5h-3.2l-0.6,1.5h-2.4L67.8,52.2z M69.8,57.3L68.9,55l-0.9,2.4H69.8z'/><path fill='#fff' d='M73.8,52.3h2.3v8.3h-2.3V52.3z'/><path fill='#fff' d='M76.7,52.3h2.2l3.4,4.4v-4.4h2.3v8.3h-2L79,56.1v4.6h-2.3V52.3z'/><path fill='#fff' d='M84.7,59.4l1.3-1.5c0.8,0.7,1.7,1,2.7,1c0.6,0,1-0.2,1-0.6v0c0-0.4-0.3-0.5-1.4-0.8c-1.8-0.4-3.1-0.9-3.1-2.6v0c0-1.5,1.2-2.7,3.2-2.7c1.4,0,2.5,0.4,3.4,1.1l-1.2,1.6c-0.8-0.5-1.6-0.8-2.3-0.8c-0.6,0-0.8,0.2-0.8,0.5v0c0,0.4,0.3,0.5,1.4,0.8c1.9,0.4,3.1,1,3.1,2.6v0c0,1.7-1.3,2.7-3.4,2.7C87.1,60.8,85.7,60.3,84.7,59.4z'/></svg>
+<svg viewBox="-3 0 171 28" width="350" height="57" fill="black" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 22.66c-1.15 0-2.15-.25-3-.75a5.09 5.09 0 01-1.94-2.04 10.80 10.80 0 01-.99-2.74A14.74 14.74 0 016.25 14c0-.83.05-1.62.16-2.38.10-.75.30-1.52.60-2.31a7.37 7.37 0 011.12-2.03 5.11 5.11 0 011.80-1.40c.74-.36 1.59-.53 2.54-.53 1.15 0 2.15.25 3 .75.84.50 1.51 1.21 1.94 2.04.45.86.78 1.77.99 2.74.20.96.31 2.00.31 3.12a16.7 16.7 0 01-.16 2.38 10.63 10.63 0 01-.61 2.31c-.30.78-.67 1.46-1.13 2.03-.45.57-1.05 1.04-1.79 1.40-.74.36-1.59.53-2.54.53zm2.20-6.37c.59-.6.93-1.43.91-2.29 0-.89-.29-1.65-.89-2.29-.59-.63-1.34-.95-2.22-.95s-1.63.31-2.23.95A3.23 3.23 0 009.37 14c0 .89.29 1.65.89 2.29.59.63 1.34.95 2.22.95s1.62-.31 2.20-.95zM12.5 27C19.40 27 25 21.18 25 14S19.40 1 12.5 1 0 6.82 0 14s5.59 13 12.5 13z"/><g transform="translate(30, -3.5)"><path d="M6.41 17.75c0 1.09.05 2.09.15 2.98.11.87.29 1.62.53 2.25.23.62.54 1.11.91 1.46.37.33.82.50 1.36.50.54 0 .99-.17 1.36-.50.37-.35.67-.84.91-1.46.23-.62.40-1.37.50-2.25.11-.89.17-1.89.17-2.98 0-1.08-.06-2.06-.17-2.96-.10-.89-.27-1.65-.50-2.27-.23-.64-.54-1.13-.91-1.46-.37-.35-.82-.53-1.36-.53s-.99.17-1.36.53c-.37.33-.67.82-.91 1.46-.23.62-.41 1.38-.53 2.27-.10.89-.15 1.88-.15 2.96zm2.96-8.75c1.06 0 2.08.17 3.06.53a7.36 7.36 0 012.60 1.62c.76.72 1.35 1.63 1.79 2.73.45 1.09.68 2.38.68 3.87 0 1.48-.22 2.77-.68 3.87-.43 1.09-1.03 2.00-1.79 2.73a7.07 7.07 0 01-2.60 1.62 8.92 8.92 0 01-3.06.53 9.14 9.14 0 01-3.08-.53 7.36 7.36 0 01-2.60-1.62c-.74-.72-1.34-1.63-1.79-2.73-.43-1.09-.65-2.38-.65-3.87 0-1.48.21-2.77.65-3.87.45-1.09 1.06-2.00 1.82-2.73a7.36 7.36 0 012.60-1.62 8.92 8.92 0 013.06-.53zm9.32 17.03v-1.29l1.13-.25c.01-.60.02-1.25.02-1.94V10.21l-1.36-.17V8.89l5.77-1.13.43.27-.10 3.51v3.18c.99-.97 2.19-1.46 3.59-1.46.69 0 1.34.13 1.94.40.60.27 1.13.67 1.59 1.21.45.54.81 1.21 1.06 2.02.27.81.40 1.75.40 2.83 0 1.04-.16 1.98-.48 2.80-.30.81-.70 1.50-1.21 2.07a5.24 5.24 0 01-1.74 1.31 4.83 4.83 0 01-2.05.45c-.74 0-1.38-.12-1.92-.38a4.12 4.12 0 01-1.39-1.03l-.50 1.41-5.18-.38zm7.16-2.05c.67 0 1.21-.33 1.62-1.01.40-.69.60-1.76.60-3.21 0-1.45-.20-2.47-.60-3.06-.40-.60-.94-.91-1.62-.91-.40 0-.8.12-1.18.38v7.46c.33.23.73.35 1.19.35zm13.10 2.42c-1.75 0-3.30-.41-4.65-1.24l.12-3.23h2.30l.40 2.63c.28.11.57.21.86.27.30.05.62.07.96.07.64 0 1.13-.09 1.49-.27.35-.20.53-.54.53-1.03 0-.33-.13-.63-.40-.88-.25-.27-.80-.52-1.64-.76l-1.44-.37c-1.01-.27-1.78-.74-2.30-1.41-.50-.67-.75-1.51-.75-2.50 0-.62.11-1.20.35-1.74a3.95 3.95 0 011.08-1.39c.48-.38 1.08-.69 1.77-.91.71-.22 1.51-.33 2.43-.33.77 0 1.49.08 2.15.25.65.16 1.34.42 2.05.75l-.20 2.85H41.75l-.55-2.25a4.91 4.91 0 00-.55-.07 3.89 3.89 0 00-.68-.05c-.48 0-.89.11-1.21.32-.32.20-.48.52-.48.96 0 .13.02.27.07.40.05.11.14.24.27.38a4.3 4.3 0 00.60.37c.27.11.62.23 1.06.35l1.41.38c1.18.32 2.02.81 2.53 1.49.52.65.78 1.49.78 2.50 0 .74-.14 1.39-.43 1.94a3.84 3.84 0 01-1.21 1.39c-.52.37-1.15.64-1.89.83-.74.18-1.57.27-2.50.27zM52.83 13.27c.91 0 1.70.14 2.37.43.67.28 1.24.68 1.69 1.18a4.85 4.85 0 011.01 1.77c.23.67.35 1.39.35 2.15 0 .27-.00.50-.02.71-.01.18-.05.39-.10.63H51.11c.13 1.24.49 2.15 1.08 2.70.59.54 1.26.81 2.02.81.64 0 1.18-.11 1.64-.32a5.07 5.07 0 001.24-.86l.98.96c-.54 1.03-1.27 1.78-2.20 2.25-.92.47-2.02.70-3.29.70a7.82 7.82 0 01-2.63-.43 6.19 6.19 0 01-2.1-1.29 6.34 6.34 0 01-1.36-2.07c-.32-.82-.48-1.76-.48-2.80 0-1.08.19-2.02.58-2.83.40-.82.92-1.51 1.57-2.05a6.61 6.61 0 012.2-1.24 7.71 7.71 0 012.45-.40zm-.30 1.36a.87.87 0 00-.55.20c-.17.11-.32.33-.45.65-.11.32-.22.74-.30 1.26-.06.52-.11 1.17-.12 1.94h1.19c.60 0 1.01-.11 1.21-.35.22-.25.32-.7.32-1.34 0-.87-.13-1.49-.40-1.84-.25-.35-.54-.53-.88-.53zM59.31 26v-1.29l1.21-.27c.01-.60.02-1.24.02-1.92V19.09v-.88c0-.23-.00-.45-.02-.65 0-.20-.00-.39-.02-.58 0-.20-.00-.43-.02-.68l-1.36-.22v-1.03l5.59-1.74.45.27.20 2.91c.33-1.08.81-1.88 1.44-2.40.64-.52 1.26-.78 1.87-.78.62 0 1.14.18 1.56.55.43.35.7.92.78 1.69-.03.69-.23 1.22-.60 1.59-.37.37-.81.55-1.31.55-.42 0-.80-.11-1.13-.32-.32-.21-.64-.57-.98-1.06l-.12-.17c-.30.33-.60.77-.91 1.31a5.62 5.62 0 00-.58 1.67V22.40c0 .65.00 1.28.02 1.87l1.97.43V26h-8.04zm19.93 0h-2.27l-4.50-10.88-1.21-.25v-1.19h7.61v1.19l-1.34.30 2.1 5.79 1.94-5.82-1.39-.27v-1.19h4.75v1.19l-1.51.25L79.25 26zm11.35-1.79c.32 0 .67-.14 1.06-.43v-4.2c-.25.06-.49.16-.73.27a2.55 2.55 0 00-.55.35 2.97 2.97 0 00-.53.50 2.36 2.36 0 00-.40.73c-.1.27-.15.57-.15.91 0 .62.12 1.08.38 1.39.25.30.56.45.93.45zm4.17 2.20c-.81 0-1.45-.15-1.92-.45-.47-.30-.81-.75-1.03-1.34-.25.27-.49.51-.73.73-.22.22-.47.41-.75.58-.27.15-.57.27-.91.35a4.94 4.94 0 01-1.19.12c-1.01 0-1.81-.27-2.40-.83-.59-.57-.88-1.38-.88-2.43 0-.48.07-.93.22-1.34.15-.42.42-.81.81-1.16.40-.35.93-.68 1.59-.98.67-.30 1.52-.59 2.55-.86l.70-.17c.27-.06.54-.14.83-.22v-.91c0-.54-.02-.98-.07-1.34-.05-.37-.15-.66-.30-.88a1.05 1.05 0 00-.58-.45c-.23-.10-.55-.15-.96-.15h-.38v.86c0 1.03-.21 1.76-.63 2.20-.42.42-.90.63-1.44.63-1.03 0-1.67-.45-1.92-1.36 0-1.09.51-1.98 1.54-2.65 1.04-.69 2.59-1.03 4.63-1.03.87 0 1.62.09 2.22.27.60.18 1.09.48 1.46.88.38.38.66.89.83 1.51.16.62.25 1.36.25 2.22v5.79c0 .28.14.43.43.43a.54.54 0 00.30-.10c.1-.06.22-.22.38-.45l.73.40c-.30.77-.71 1.33-1.24 1.67-.52.32-1.24.48-2.15.48zm3.89-.38v-1.29l1.13-.25c.01-.60.02-1.25.02-1.94V10.21l-1.36-.17V8.89l5.77-1.13.43.27-.10 3.51v3.18c.99-.97 2.19-1.46 3.59-1.46.69 0 1.34.13 1.94.40a4.42 4.42 0 011.59 1.21c.45.54.81 1.21 1.06 2.02.27.81.40 1.75.40 2.83 0 1.04-.16 1.98-.48 2.80-.30.81-.70 1.50-1.21 2.07a5.24 5.24 0 01-1.74 1.31 4.83 4.83 0 01-2.04.45c-.74 0-1.38-.12-1.92-.38a4.12 4.12 0 01-1.39-1.03l-.50 1.41-5.18-.38zm7.16-2.05c.67 0 1.21-.33 1.61-1.01.40-.69.60-1.76.60-3.21 0-1.45-.20-2.47-.60-3.06-.40-.60-.94-.91-1.61-.91-.40 0-.80.12-1.19.38v7.46c.33.23.73.35 1.19.35zm8.40-15.08l5.84-1.13.43.27-.10 3.51v11.03l.05 1.89 1.13.22V26h-7.18v-1.29l1.13-.25a70.7 70.7 0 00.02-1.87c.01-.62.02-1.25.02-1.89v-10.4l-1.36-.25V8.89zm15.30 4.37c.91 0 1.70.14 2.37.43.67.28 1.24.68 1.69 1.18a4.84 4.84 0 011.01 1.77c.23.67.35 1.39.35 2.15 0 .27-.00.50-.02.71-.01.18-.05.39-.10.63h-7.03c.13 1.24.49 2.15 1.08 2.70.59.54 1.26.81 2.02.81.64 0 1.18-.11 1.64-.32a5.09 5.09 0 001.24-.86l.98.96c-.53 1.03-1.27 1.78-2.20 2.25-.92.47-2.02.70-3.28.70a7.83 7.83 0 01-2.63-.43 6.18 6.18 0 01-2.1-1.29 6.34 6.34 0 01-1.36-2.07c-.32-.82-.48-1.76-.48-2.80 0-1.08.19-2.02.58-2.83.40-.82.92-1.51 1.56-2.05a6.61 6.61 0 012.20-1.24 7.71 7.71 0 012.45-.40zm-.30 1.36a.87.87 0 00-.55.20c-.16.11-.32.33-.45.65-.11.32-.22.74-.30 1.26-.06.52-.11 1.17-.12 1.94h1.18c.60 0 1.01-.11 1.21-.35.22-.25.32-.7.32-1.34 0-.87-.13-1.49-.40-1.84-.25-.35-.54-.53-.88-.53z"/></g></svg>
+<svg viewBox="0 0 258 66" xmlns="http://www.w3.org/2000/svg"><path d="M17.6 13.8C19.5 11.9 22.7 11.9 24.6 13.8C26.5 15.7 26.6 18.7 24.8 20.7L24.6 20.9L12.0 33.5L35.4 56.8C37.3 58.6 37.4 61.7 35.6 63.6L35.4 63.8C33.6 65.7 30.5 65.8 28.6 64.0L28.4 63.8L1.4 37.1C-0.4 35.2 -0.4 32.1 1.2 30.2L1.4 30.0L17.6 13.8Z" fill="url(#paint0_linear)"></path><path d="M50.0 11C62.4 11 72.5 21.0 72.5 33.5C72.5 46.0 62.4 56.1 50.0 56.1C47.2 56.1 45.0 53.8 45.0 51.1C45.0 48.3 47.2 46.1 50.0 46.1C56.9 46.1 62.5 40.4 62.5 33.5C62.5 26.6 56.9 21 50.0 21C43.2 21 37.6 26.4 37.4 33.3L37.4 33.6L36.9 60.4C36.8 63.2 34.6 65.4 31.8 65.3C29.1 65.2 27.0 63.1 26.9 60.4V60.2L27.4 33.5C27.4 21.0 37.5 11 50.0 11Z" fill="#EE4645"></path><path d="M75.3 13.8C77.2 11.9 80.3 11.9 82.2 13.6L82.4 13.8L98.6 30.0C100.4 31.9 100.5 34.9 98.7 36.9L98.6 37.0L82.4 53.2C80.4 55.1 77.3 55.1 75.3 53.2C73.4 51.3 73.4 48.3 75.2 46.3L75.3 46.1L87.9 33.5L75.3 20.9C73.4 19.0 73.4 16.0 75.2 14.0L75.3 13.8Z" fill="#EE4645"></path><path d="M134.5 19.4C136.8 19.4 138.8 19.9 140.6 21.0C142.5 22.0 143.9 23.4 145.0 25.3C146.0 27.2 146.6 29.4 146.6 31.8C146.6 34.3 146.0 36.5 145.0 38.4C143.9 40.3 142.5 41.7 140.6 42.8C138.8 43.8 136.8 44.3 134.5 44.3C131.4 44.3 129.0 43.3 127.2 41.4V52.7H120.2V19.7H126.9V22.5C128.6 20.4 131.2 19.4 134.5 19.4ZM133.3 38.6C135.1 38.6 136.6 38 137.7 36.8C138.9 35.5 139.5 33.9 139.5 31.8C139.5 29.8 138.9 28.2 137.7 27.0C136.6 25.8 135.1 25.1 133.3 25.1C131.5 25.1 130.0 25.8 128.8 27.0C127.7 28.2 127.1 29.8 127.1 31.8C127.1 33.9 127.7 35.5 128.8 36.8C130.0 38 131.5 38.6 133.3 38.6ZM158.0 22.9C158.8 21.8 159.9 20.9 161.3 20.3C162.8 19.7 164.4 19.4 166.3 19.4V25.9C165.5 25.8 165.0 25.8 164.7 25.8C162.7 25.8 161.1 26.3 160.0 27.5C158.8 28.6 158.3 30.3 158.3 32.5V44H151.3V19.7H158.0V22.9ZM170.5 19.7H177.5V44H170.5V19.7ZM174.0 16.4C172.7 16.4 171.6 16.0 170.8 15.2C170.0 14.5 169.6 13.6 169.6 12.5C169.6 11.3 170.0 10.4 170.8 9.7C171.6 8.9 172.7 8.5 174.0 8.5C175.3 8.5 176.3 8.9 177.1 9.6C177.9 10.3 178.3 11.2 178.3 12.3C178.3 13.5 177.9 14.5 177.1 15.2C176.3 16.0 175.3 16.4 174.0 16.4ZM215.0 19.4C218.0 19.4 220.4 20.3 222.2 22.1C224.0 23.9 224.9 26.5 224.9 30.1V44H217.9V31.2C217.9 29.3 217.5 27.8 216.7 26.9C215.9 25.9 214.8 25.5 213.3 25.5C211.6 25.5 210.3 26.0 209.4 27.1C208.4 28.1 207.9 29.7 207.9 31.8V44H200.9V31.2C200.9 27.4 199.4 25.5 196.3 25.5C194.7 25.5 193.4 26.0 192.5 27.1C191.5 28.1 191.0 29.7 191.0 31.8V44H184.0V19.7H190.7V22.5C191.6 21.5 192.7 20.7 194.0 20.2C195.3 19.7 196.7 19.4 198.3 19.4C200.0 19.4 201.6 19.7 202.9 20.4C204.3 21.1 205.4 22.1 206.3 23.3C207.3 22.1 208.5 21.1 210.0 20.4C211.5 19.7 213.2 19.4 215.0 19.4ZM243.0 44.3C240.4 44.3 238.1 43.8 236.1 42.7C234.1 41.7 232.5 40.2 231.4 38.3C230.2 36.4 229.7 34.2 229.7 31.8C229.7 29.4 230.2 27.3 231.4 25.4C232.5 23.5 234.1 22.1 236.1 21.0C238.1 19.9 240.4 19.4 243.0 19.4C245.5 19.4 247.8 19.9 249.8 21.0C251.8 22.1 253.4 23.5 254.5 25.4C255.7 27.3 256.3 29.4 256.3 31.8C256.3 34.2 255.7 36.4 254.5 38.3C253.4 40.2 251.8 41.7 249.8 42.7C247.8 43.8 245.5 44.3 243.0 44.3ZM243.0 38.6C244.8 38.6 246.3 38 247.4 36.8C248.6 35.5 249.1 33.9 249.1 31.8C249.1 29.8 248.6 28.2 247.4 27.0C246.3 25.8 244.8 25.1 243.0 25.1C241.2 25.1 239.7 25.8 238.5 27.0C237.4 28.2 236.8 29.8 236.8 31.8C236.8 33.9 237.4 35.5 238.5 36.8C239.7 38 241.2 38.6 243.0 38.6Z" fill="#343434"></path><path d="M140.6 21.0L140.4 21.4L140.4 21.4L140.6 21.0ZM145.0 25.3L144.5 25.6L144.6 25.6L145.0 25.3ZM145.0 38.4L145.4 38.7L145.4 38.7L145.0 38.4ZM140.6 42.8L140.9 43.2L140.9 43.2L140.6 42.8ZM127.2 41.4L127.6 41.0L126.7 40.1V41.4H127.2ZM127.2 52.7V53.2H127.7V52.7H127.2ZM120.2 52.7H119.7V53.2H120.2V52.7ZM120.2 19.7V19.2H119.7V19.7H120.2ZM126.9 19.7H127.4V19.2H126.9V19.7ZM126.9 22.5H126.4V23.9L127.3 22.8L126.9 22.5ZM137.7 36.8L137.3 36.4L137.3 36.4L137.7 36.8ZM137.7 27.0L137.3 27.3L137.3 27.3L137.7 27.0ZM128.8 27.0L128.5 26.6L128.5 26.6L128.8 27.0ZM128.8 36.8L128.5 37.1L128.5 37.1L128.8 36.8ZM134.5 19.9C136.7 19.9 138.6 20.4 140.4 21.4L140.9 20.5C139.0 19.4 136.8 18.9 134.5 18.9V19.9ZM140.4 21.4C142.2 22.4 143.5 23.8 144.5 25.6L145.4 25.1C144.3 23.1 142.8 21.6 140.9 20.5L140.4 21.4ZM144.6 25.6C145.6 27.3 146.1 29.4 146.1 31.8H147.1C147.1 29.3 146.5 27.0 145.4 25.1L144.6 25.6ZM146.1 31.8C146.1 34.3 145.6 36.4 144.5 38.2L145.4 38.7C146.5 36.7 147.1 34.4 147.1 31.8H146.1ZM144.6 38.2C143.5 39.9 142.2 41.3 140.4 42.3L140.9 43.2C142.8 42.1 144.3 40.6 145.4 38.7L144.6 38.2ZM140.4 42.3C138.6 43.3 136.7 43.8 134.5 43.8V44.8C136.8 44.8 139.0 44.3 140.9 43.2L140.4 42.3ZM134.5 43.8C131.5 43.8 129.2 42.9 127.6 41.0L126.8 41.7C128.7 43.8 131.3 44.8 134.5 44.8V43.8ZM126.7 41.4V52.7H127.7V41.4H126.7ZM127.2 52.2H120.2V53.2H127.2V52.2ZM120.7 52.7V19.7H119.7V52.7H120.7ZM120.2 20.2H126.9V19.2H120.2V20.2ZM126.4 19.7V22.5H127.4V19.7H126.4ZM127.3 22.8C128.9 20.9 131.3 19.9 134.5 19.9V18.9C131.1 18.9 128.4 20.0 126.5 22.2L127.3 22.8ZM133.3 39.1C135.2 39.1 136.8 38.4 138.1 37.1L137.3 36.4C136.3 37.5 135.0 38.1 133.3 38.1V39.1ZM138.1 37.1C139.3 35.8 140 34.0 140 31.8H139C139 33.8 138.4 35.3 137.3 36.4L138.1 37.1ZM140 31.8C140 29.7 139.3 27.9 138.1 26.6L137.3 27.3C138.4 28.4 139 29.9 139 31.8H140ZM138.1 26.6C136.8 25.3 135.2 24.6 133.3 24.6V25.6C135.0 25.6 136.3 26.2 137.3 27.3L138.1 26.6ZM133.3 24.6C131.4 24.6 129.7 25.3 128.5 26.6L129.2 27.3C130.3 26.2 131.6 25.6 133.3 25.6V24.6ZM128.5 26.6C127.2 28.0 126.6 29.7 126.6 31.8H127.6C127.6 29.9 128.2 28.4 129.2 27.3L128.5 26.6ZM126.6 31.8C126.6 34.0 127.2 35.7 128.5 37.1L129.2 36.4C128.2 35.3 127.6 33.8 127.6 31.8H126.6ZM128.5 37.1C129.7 38.4 131.4 39.1 133.3 39.1V38.1C131.6 38.1 130.3 37.5 129.2 36.4L128.5 37.1ZM158.0 22.9H157.5V24.5L158.4 23.2L158.0 22.9ZM161.3 20.3L161.1 19.8L161.1 19.8L161.3 20.3ZM166.3 19.4H166.8V18.9H166.3V19.4ZM166.3 25.9L166.3 26.4L166.8 26.4V25.9H166.3ZM160.0 27.5L160.3 27.8L160.3 27.8L160.0 27.5ZM158.3 44V44.5H158.8V44H158.3ZM151.3 44H150.8V44.5H151.3V44ZM151.3 19.7V19.2H150.8V19.7H151.3ZM158.0 19.7H158.5V19.2H158.0V19.7ZM158.4 23.2C159.2 22.1 160.2 21.3 161.5 20.7L161.1 19.8C159.7 20.5 158.5 21.4 157.6 22.6L158.4 23.2ZM161.5 20.7C162.9 20.2 164.5 19.9 166.3 19.9V18.9C164.4 18.9 162.7 19.2 161.1 19.8L161.5 20.7ZM165.8 19.4V25.9H166.8V19.4H165.8ZM166.3 25.4C165.6 25.3 165.0 25.3 164.7 25.3V26.3C165.0 26.3 165.5 26.3 166.3 26.4L166.3 25.4ZM164.7 25.3C162.6 25.3 160.9 25.9 159.6 27.1L160.3 27.8C161.4 26.8 162.8 26.3 164.7 26.3V25.3ZM159.6 27.1C158.4 28.4 157.8 30.2 157.8 32.5H158.8C158.8 30.3 159.3 28.8 160.3 27.8L159.6 27.1ZM157.8 32.5V44H158.8V32.5H157.8ZM158.3 43.5H151.3V44.5H158.3V43.5ZM151.8 44V19.7H150.8V44H151.8ZM151.3 20.2H158.0V19.2H151.3V20.2ZM157.5 19.7V22.9H158.5V19.7H157.5ZM170.5 19.7V19.2H170.0V19.7H170.5ZM177.5 19.7H178.0V19.2H177.5V19.7ZM177.5 44V44.5H178.0V44H177.5ZM170.5 44H170.0V44.5H170.5V44ZM170.8 15.2L170.5 15.6V15.6L170.8 15.2ZM170.8 9.7L171.2 10.0V10.0L170.8 9.7ZM177.1 9.6L176.8 10.0L177.1 9.6ZM177.1 15.2L177.5 15.6L177.5 15.6L177.1 15.2ZM170.5 20.2H177.5V19.2H170.5V20.2ZM177.0 19.7V44H178.0V19.7H177.0ZM177.5 43.5H170.5V44.5H177.5V43.5ZM171.0 44V19.7H170.0V44H171.0ZM174.0 15.9C172.8 15.9 171.9 15.5 171.2 14.9L170.5 15.6C171.4 16.5 172.6 16.9 174.0 16.9V15.9ZM171.2 14.9C170.5 14.2 170.1 13.4 170.1 12.5H169.1C169.1 13.7 169.6 14.8 170.5 15.6L171.2 14.9ZM170.1 12.5C170.1 11.5 170.5 10.7 171.2 10.0L170.5 9.3C169.6 10.1 169.1 11.2 169.1 12.5H170.1ZM171.2 10.0C171.9 9.4 172.8 9.0 174.0 9.0V8.0C172.6 8.0 171.4 8.4 170.5 9.3L171.2 10.0ZM174.0 9.0C175.2 9.0 176.1 9.4 176.8 10.0L177.5 9.2C176.5 8.4 175.4 8.0 174.0 8.0V9.0ZM176.8 10.0C177.5 10.6 177.8 11.4 177.8 12.3H178.8C178.8 11.1 178.4 10.1 177.5 9.2L176.8 10.0ZM177.8 12.3C177.8 13.4 177.5 14.2 176.8 14.9L177.5 15.6C178.4 14.7 178.8 13.6 178.8 12.3H177.8ZM176.8 14.9C176.1 15.5 175.2 15.9 174.0 15.9V16.9C175.4 16.9 176.5 16.5 177.5 15.6L176.8 14.9ZM222.2 22.1L221.8 22.4L221.9 22.4L222.2 22.1ZM224.9 44V44.5H225.4V44H224.9ZM217.9 44H217.4V44.5H217.9V44ZM216.7 26.9L216.3 27.2L216.3 27.2L216.3 27.2L216.7 26.9ZM209.4 27.1L209.7 27.4L209.8 27.4L209.4 27.1ZM207.9 44V44.5H208.4V44H207.9ZM200.9 44H200.4V44.5H200.9V44ZM192.5 27.1L192.8 27.4L192.8 27.4L192.5 27.1ZM191.0 44V44.5H191.5V44H191.0ZM184.0 44H183.5V44.5H184.0V44ZM184.0 19.7V19.2H183.5V19.7H184.0ZM190.7 19.7H191.2V19.2H190.7V19.7ZM190.7 22.5H190.2V23.9L191.1 22.9L190.7 22.5ZM194.0 20.2L193.8 19.7L193.8 19.7L194.0 20.2ZM202.9 20.4L202.7 20.9L202.7 20.9L202.9 20.4ZM206.3 23.3L205.9 23.6L206.2 24.2L206.7 23.6L206.3 23.3ZM210.0 20.4L209.8 20.0L209.8 20.0L210.0 20.4ZM215.0 19.9C217.9 19.9 220.2 20.7 221.8 22.4L222.6 21.7C220.7 19.8 218.1 18.9 215.0 18.9V19.9ZM221.9 22.4C223.5 24.1 224.4 26.6 224.4 30.1H225.4C225.4 26.4 224.5 23.6 222.6 21.7L221.9 22.4ZM224.4 30.1V44H225.4V30.1H224.4ZM224.9 43.5H217.9V44.5H224.9V43.5ZM218.4 44V31.2H217.4V44H218.4ZM218.4 31.2C218.4 29.2 218.0 27.6 217.0 26.6L216.3 27.2C217.0 28.0 217.4 29.3 217.4 31.2H218.4ZM217.1 26.6C216.2 25.5 214.9 25.0 213.3 25.0V26.0C214.6 26.0 215.6 26.4 216.3 27.2L217.1 26.6ZM213.3 25.0C211.5 25.0 210.1 25.5 209.0 26.7L209.8 27.4C210.6 26.4 211.8 26.0 213.3 26.0V25.0ZM209.0 26.7C207.9 27.9 207.4 29.6 207.4 31.8H208.4C208.4 29.8 208.9 28.3 209.7 27.4L209.0 26.7ZM207.4 31.8V44H208.4V31.8H207.4ZM207.9 43.5H200.9V44.5H207.9V43.5ZM201.4 44V31.2H200.4V44H201.4ZM201.4 31.2C201.4 29.2 201.0 27.6 200.2 26.6C199.3 25.5 198.0 25.0 196.3 25.0V26.0C197.7 26.0 198.7 26.4 199.4 27.2C200.0 28.0 200.4 29.3 200.4 31.2H201.4ZM196.3 25.0C194.6 25.0 193.2 25.5 192.1 26.7L192.8 27.4C193.7 26.4 194.8 26.0 196.3 26.0V25.0ZM192.1 26.7C191.0 27.9 190.5 29.6 190.5 31.8H191.5C191.5 29.8 192.0 28.3 192.8 27.4L192.1 26.7ZM190.5 31.8V44H191.5V31.8H190.5ZM191.0 43.5H184.0V44.5H191.0V43.5ZM184.5 44V19.7H183.5V44H184.5ZM184.0 20.2H190.7V19.2H184.0V20.2ZM190.2 19.7V22.5H191.2V19.7H190.2ZM191.1 22.9C191.9 21.9 193.0 21.2 194.2 20.7L193.8 19.7C192.4 20.3 191.3 21.1 190.3 22.2L191.1 22.9ZM194.2 20.7C195.4 20.1 196.8 19.9 198.3 19.9V18.9C196.7 18.9 195.2 19.2 193.8 19.7L194.2 20.7ZM198.3 19.9C199.9 19.9 201.4 20.2 202.7 20.9L203.2 20.0C201.7 19.2 200.1 18.9 198.3 18.9V19.9ZM202.7 20.9C204.0 21.5 205.1 22.4 205.9 23.6L206.7 23.1C205.8 21.7 204.6 20.7 203.2 20.0L202.7 20.9ZM206.7 23.6C207.6 22.5 208.8 21.5 210.2 20.9L209.8 20.0C208.2 20.7 206.9 21.7 205.9 23.0L206.7 23.6ZM210.2 20.9C211.7 20.2 213.3 19.9 215.0 19.9V18.9C213.1 18.9 211.4 19.2 209.8 20.0L210.2 20.9ZM236.1 42.7L235.9 43.2L235.9 43.2L236.1 42.7ZM231.4 38.3L230.9 38.5L231.4 38.3ZM231.4 25.4L230.9 25.2L231.4 25.4ZM236.1 21.0L236.3 21.4L236.3 21.4L236.1 21.0ZM249.8 21.0L249.6 21.4L249.6 21.4L249.8 21.0ZM254.5 25.4L255.0 25.2L254.5 25.4ZM254.5 38.3L255.0 38.5L254.5 38.3ZM249.8 42.7L250.1 43.2L250.1 43.2L249.8 42.7ZM247.4 36.8L247.0 36.4L247.0 36.4L247.4 36.8ZM247.4 27.0L247.0 27.3L247.0 27.3L247.4 27.0ZM238.5 27.0L238.9 27.3L238.9 27.3L238.5 27.0ZM238.5 36.8L238.2 37.1L238.2 37.1L238.5 36.8ZM243.0 43.8C240.5 43.8 238.3 43.3 236.3 42.3L235.9 43.2C238.0 44.3 240.4 44.8 243.0 44.8V43.8ZM236.3 42.3C234.4 41.3 232.9 39.8 231.8 38.0L230.9 38.5C232.1 40.5 233.8 42.1 235.9 43.2L236.3 42.3ZM231.8 38.0C230.7 36.2 230.2 34.2 230.2 31.8H229.2C229.2 34.3 229.8 36.6 230.9 38.5L231.8 38.0ZM230.2 31.8C230.2 29.5 230.7 27.5 231.8 25.7L230.9 25.2C229.8 27.1 229.2 29.4 229.2 31.8H230.2ZM231.8 25.7C232.9 23.9 234.4 22.5 236.3 21.4L235.9 20.6C233.8 21.6 232.1 23.2 230.9 25.2L231.8 25.7ZM236.3 21.4C238.3 20.4 240.5 19.9 243.0 19.9V18.9C240.4 18.9 238.0 19.4 235.9 20.6L236.3 21.4ZM243.0 19.9C245.5 19.9 247.7 20.4 249.6 21.4L250.1 20.6C248.0 19.4 245.6 18.9 243.0 18.9V19.9ZM249.6 21.4C251.5 22.5 253.0 23.9 254.1 25.7L255.0 25.2C253.8 23.2 252.1 21.6 250.1 20.6L249.6 21.4ZM254.1 25.7C255.2 27.5 255.8 29.5 255.8 31.8H256.8C256.8 29.4 256.2 27.1 255.0 25.2L254.1 25.7ZM255.8 31.8C255.8 34.2 255.2 36.2 254.1 38.0L255.0 38.5C256.2 36.6 256.8 34.3 256.8 31.8H255.8ZM254.1 38.0C253.0 39.8 251.5 41.3 249.6 42.3L250.1 43.2C252.1 42.1 253.8 40.5 255.0 38.5L254.1 38.0ZM249.6 42.3C247.7 43.3 245.5 43.8 243.0 43.8V44.8C245.6 44.8 248.0 44.3 250.1 43.2L249.6 42.3ZM243.0 39.1C244.9 39.1 246.5 38.4 247.8 37.1L247.0 36.4C246.0 37.5 244.7 38.1 243.0 38.1V39.1ZM247.8 37.1C249.0 35.8 249.6 34.0 249.6 31.8H248.6C248.6 33.8 248.1 35.3 247.0 36.4L247.8 37.1ZM249.6 31.8C249.6 29.7 249.0 27.9 247.7 26.6L247.0 27.3C248.1 28.4 248.6 29.9 248.6 31.8H249.6ZM247.8 26.6C246.5 25.3 244.9 24.6 243.0 24.6V25.6C244.7 25.6 246.0 26.2 247.0 27.3L247.8 26.6ZM243.0 24.6C241.1 24.6 239.4 25.3 238.2 26.6L238.9 27.3C240.0 26.2 241.3 25.6 243.0 25.6V24.6ZM238.2 26.6C236.9 27.9 236.3 29.7 236.3 31.8H237.3C237.3 29.9 237.8 28.4 238.9 27.3L238.2 26.6ZM236.3 31.8C236.3 34.0 236.9 35.8 238.2 37.1L238.9 36.4C237.8 35.3 237.3 33.8 237.3 31.8H236.3ZM238.2 37.1C239.4 38.4 241.1 39.1 243.0 39.1V38.1C241.3 38.1 240.0 37.5 238.9 36.4L238.2 37.1Z" fill="#343434"></path><defs><linearGradient id="paint0_linear" x1="14.5" y1="41.1" x2="33.6" y2="58.5" gradientUnits="userSpaceOnUse"><stop stop-color="#EE4645"></stop><stop offset="1" stop-color="#810707"></stop></linearGradient></defs></svg>
+<svg width="90" height="29" viewBox="0 0 90 29" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.2 19.5C-0.0 19.0 -0.0 18.5 0.1 18.0L10.3 1.5C10.8 0.6 12.2 0.7 12.7 1.6L21.9 21.7C22.3 22.5 21.9 23.3 21.1 23.6L6.7 27.9C6.1 28.1 5.5 27.8 5.1 27.3L0.2 19.5ZM11.4 6.3C11.5 5.9 12.2 5.8 12.4 6.2L18.8 21.0C18.9 21.3 18.8 21.6 18.5 21.7L8.5 24.7C8.2 24.8 7.8 24.5 7.9 24.1L11.4 6.3ZM48.4 21.6H51.3V11.2H48.4V21.6ZM48.3 8.5C48.3 7.6 48.8 7.2 49.9 7.2C50.9 7.2 51.4 7.6 51.4 8.5C51.4 9.0 51.3 9.3 51.0 9.6C50.8 9.8 50.4 9.9 49.9 9.9C48.8 9.9 48.3 9.5 48.3 8.5ZM87.1 16.8L86.0 16.8C85.2 16.8 84.6 17.0 84.2 17.3C83.8 17.5 83.6 18.0 83.6 18.5C83.6 19.3 84.0 19.7 85.0 19.7C85.6 19.7 86.1 19.5 86.5 19.1C86.9 18.8 87.1 18.3 87.1 17.6V16.8ZM88.0 21.6L87.4 20.2H87.3C86.9 20.8 86.4 21.2 85.9 21.4C85.4 21.7 84.7 21.8 83.9 21.8C82.9 21.8 82.1 21.5 81.5 20.9C81.0 20.4 80.7 19.5 80.7 18.5C80.7 17.4 81.1 16.6 81.8 16.1C82.6 15.5 83.8 15.2 85.3 15.2L87.1 15.1V14.7C87.1 13.6 86.6 13.1 85.5 13.1C84.7 13.1 83.7 13.4 82.6 13.9L81.7 11.9C82.8 11.3 84.2 11.0 85.6 11.0C87.0 11.0 88.1 11.3 88.8 11.9C89.6 12.5 89.9 13.4 89.9 14.7V21.6H88.0ZM72.4 21.6H69.6V15.5C69.6 14.8 69.5 14.2 69.2 13.9C69.0 13.5 68.6 13.3 68.0 13.3C67.3 13.3 66.8 13.6 66.5 14.1C66.1 14.6 66.0 15.5 66.0 16.7V21.6H63.1V11.2H65.3L65.7 12.5H65.8C66.1 12.1 66.5 11.7 67.1 11.4C67.6 11.2 68.2 11.0 68.9 11.0C70.4 11.0 71.5 11.5 72.0 12.5H72.3C72.5 12.1 73.0 11.7 73.5 11.4C74.0 11.2 74.6 11.0 75.3 11.0C76.5 11.0 77.4 11.3 78.0 11.9C78.6 12.5 78.9 13.5 78.9 14.8V21.6H76.1V15.5C76.1 14.8 75.9 14.2 75.7 13.9C75.4 13.5 75.0 13.3 74.5 13.3C73.8 13.3 73.3 13.5 72.9 14.0C72.6 14.5 72.4 15.3 72.4 16.4V21.6ZM60.1 20.9C60.9 20.4 61.2 19.6 61.2 18.5C61.2 18.0 61.1 17.6 61.0 17.2C60.8 16.8 60.5 16.5 60.1 16.2C59.7 15.9 59.2 15.6 58.3 15.3C57.4 14.9 56.8 14.6 56.6 14.5C56.3 14.3 56.2 14.1 56.2 13.8C56.2 13.3 56.6 13.1 57.4 13.1C57.9 13.1 58.4 13.2 58.8 13.3C59.3 13.5 59.7 13.7 60.3 13.9L61.1 11.8C59.9 11.3 58.7 11.0 57.5 11.0C56.2 11.0 55.2 11.3 54.4 11.8C53.7 12.3 53.4 13.0 53.4 13.9C53.4 14.5 53.5 14.9 53.6 15.3C53.8 15.6 54.1 16.0 54.4 16.3C54.8 16.5 55.4 16.9 56.2 17.2C56.8 17.4 57.2 17.6 57.5 17.8C57.9 18.0 58.1 18.1 58.2 18.3C58.4 18.4 58.4 18.6 58.4 18.8C58.4 19.4 57.9 19.7 56.9 19.7C56.4 19.7 55.8 19.6 55.2 19.5C54.5 19.3 53.9 19.1 53.4 18.8V21.2C53.8 21.4 54.3 21.5 54.9 21.6C55.4 21.7 56.1 21.8 56.8 21.8C58.3 21.8 59.4 21.5 60.1 20.9ZM46.9 11.1C46.7 11.1 46.4 11.0 46.0 11.0C45.3 11.0 44.8 11.2 44.2 11.6C43.7 11.9 43.2 12.4 42.9 13.0H42.8L42.3 11.2H40.2V21.6H43.0V16.3C43.0 15.5 43.3 14.8 43.8 14.4C44.3 13.9 45.0 13.7 45.9 13.7C46.2 13.7 46.5 13.7 46.7 13.8L46.9 11.1ZM31.9 14.4H32.8C33.7 14.4 34.4 14.2 34.8 13.9C35.3 13.5 35.5 13.0 35.5 12.4C35.5 11.7 35.3 11.2 34.9 10.9C34.6 10.5 34.0 10.4 33.2 10.4H31.9V14.4ZM38.4 12.3C38.4 13.7 37.9 14.8 37.0 15.6C36.1 16.4 34.8 16.8 33.1 16.8H31.9V21.6H29.0V8.0H33.3C35.0 8.0 36.2 8.4 37.1 9.1C37.9 9.8 38.4 10.9 38.4 12.3Z" fill="black"></path></svg>
