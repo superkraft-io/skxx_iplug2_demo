@@ -14,7 +14,50 @@
             "program": "${workspaceFolder}/skxx/bundler/sk_bundler.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
-            ]
+            ],
+            "args": [ "--bundle_mode", "deep" ]
+        },
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Prebuild script (dbg-none_bundle)",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/skxx/bundler/sk_prebuild_script.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "args": [ "--config", "dbg-none_bundle" ]
+        },
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Prebuild script (dbg-shallow_bundle)",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/skxx/bundler/sk_prebuild_script.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "args": [ "--config", "dbg-shallow_bundle" ]
+        },
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Prebuild script (dbg-deep_bundle)",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/skxx/bundler/sk_prebuild_script.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "args": [ "--config", "dbg-deep_bundle" ]
         }
     ]
 }
