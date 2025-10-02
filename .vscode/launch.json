@@ -29,7 +29,7 @@
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
-            "args": [ "--config", "dbg-none_bundle" ]
+            "args": [ "--ide", "vscode", "--config", "dbg-none_bundle" ]
         },
 
         {
@@ -43,7 +43,7 @@
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
-            "args": [ "--config", "dbg-shallow_bundle" ]
+            "args": [ "--ide", "vscode", "--config", "dbg-shallow_bundle" ]
         },
 
         {
@@ -57,7 +57,29 @@
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
-            "args": [ "--config", "dbg-deep_bundle" ]
+            "args": [ "--ide", "vscode", "--config", "dbg-deep_bundle" ]
+        },
+
+        {
+            "type": "pwa-node",
+            "request": "attach",
+            "name": "Attach on 9229",
+            "port": 9229,
+            "address": "localhost",
+            "protocol": "inspector",
+            "cwd": "${workspaceFolder}",
+            "timeout": 30000
+        },
+
+        {
+            "type": "pwa-node",
+            "request": "attach",
+            "name": "Attach on 9228",
+            "port": 9228,
+            "address": "localhost",
+            "protocol": "inspector",
+            "cwd": "${workspaceFolder}",
+            "timeout": 30000
         }
     ]
 }
