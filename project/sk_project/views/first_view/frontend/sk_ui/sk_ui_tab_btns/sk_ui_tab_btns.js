@@ -4,6 +4,12 @@ class sk_ui_tab_btns extends sk_ui_list {
 
         this.styling += ' fullheight'
 
+         this.items.add({
+            id: 'window',
+            icon: 'window maximize outline',
+            label: 'Window'
+        })
+
         this.items.add({
             id: 'parameters',
             icon: 'sliders horizontal',

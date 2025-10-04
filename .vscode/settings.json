@@ -71,6 +71,11 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "algorithm": "cpp",
-        "xlocinfo": "cpp"
+        "xlocinfo": "cpp",
+        "xhash": "cpp",
+        "xtree": "cpp",
+        "functional": "cpp",
+        "ranges": "cpp",
+        "xutility": "cpp"
     }
 }

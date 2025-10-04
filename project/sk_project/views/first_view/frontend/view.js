@@ -4,6 +4,10 @@ class SK_App_View extends sk_ui_component {
     constructor(opt){
         super(opt)
 
+        this.add.titlebar(_c => {
+            _c.os = sk_api.staticInfo.os
+        })
+
         sk.app.body.styling = 'center tbb scrollable'
 
         this.styling = 'left middle ttb scrollable'
@@ -19,7 +23,7 @@ class SK_App_View extends sk_ui_component {
             _c.vertical = false
             
             this.sectionsList = _c.add.tab_btns()
-            this.sectionsList.selectItem({key: 'id', value: 'parameters'})
+            this.sectionsList.selectItem({key: 'id', value: 'window'})
         })
     }
 }

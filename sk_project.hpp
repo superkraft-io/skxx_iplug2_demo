@@ -235,9 +235,10 @@ public:
 
 
             //initialize the webview
-            static_cast<Superkraft*>(skg->sk)->wvinit->init(webview, isHardBackend);
-
             SK_Window* _wnd = static_cast<SK_Window*>(wnd);
+
+            static_cast<Superkraft*>(skg->sk)->wvinit->init(webview, _wnd);
+
             if (_wnd->config.data.contains("accessPluginParameters") && _wnd->config.data["accessPluginParameters"] == true) {
                 for (int i = 0; i < instance->NParams(); i++) {
                     IParam* param = instance->GetParam(i);
