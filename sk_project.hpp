@@ -82,9 +82,10 @@ public:
             }
             else {
                 SK_Window* view = static_cast<Superkraft*>(skg->sk)->wndMngr->findWindowByTag(target);
-                if (view) view->webview.evaluateScript(str, NULL);
+                //if (view) view->webview.evaluateScript(str, NULL);
+                if (view) view->webview.sendMsgAsJSON(data, NULL);
             }
-         };
+        };
 
         
         
@@ -401,7 +402,7 @@ public:
                 nlohmann::json be_data;
                 be_data["this_is"] = "a backend request :)";
                 
-                ipc->request("sk:hb", "sk:sb", "requestFromBackend", be_data, [](const SK_String& sender, SK_Communication_Packet* packet) {
+                ipc->request("sk:hb", "sk:sb", "requestFromBackend", be_data, false, [](const SK_String& sender, SK_Communication_Packet* packet) {
                     SK_String key = packet->data["key"];
                     DBGMSG("key = %s\n", key.c_str());
                 });
