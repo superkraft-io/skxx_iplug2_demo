@@ -371,6 +371,7 @@ public:
             packet->response()->JSON_OK();
 
             SK_App_Initializer* appInitializer = static_cast<SK_App_Initializer*>(skg->appInitializer);
+            appInitializer->skg = _skg;
             appInitializer->emitAppEvent("ready", {});
         });
         
