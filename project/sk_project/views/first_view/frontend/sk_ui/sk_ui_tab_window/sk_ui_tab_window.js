@@ -17,6 +17,7 @@ class sk_ui_tab_window extends sk_ui_component {
                 _c.height = 100
                 _c.style.border = '2px dashed var(--sk_ui_color_blue)'
                 _c.backgroundColor = 'rgba(8, 136, 255, 0.25)'
+                _c.cursor = 'move'
 
                 _c.add.label(_c => {
                     _c.text = 'Drag window with this area'

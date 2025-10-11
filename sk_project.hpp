@@ -7,15 +7,18 @@
 #include "IPlugWebUI_SK.h"
 
 #include "IPlugPlatform.h"
+#include "IPlugParameter.h"
 
 #if defined(SK_OS_windows)
     #include "WebView2.h"
 #endif
 
+
 using namespace iplug;
 
 class SK_Project {
 public:
+    std::unique_ptr<iplug::Timer> uiTimer_;
     SK_Global* skg;
 
     bool initialized = false;
@@ -90,7 +93,7 @@ public:
         
         
         skg->handlePluginParamEvent = [&](const nlohmann::json& payload, SK_Communication_Response& respondWith){
-            SK_String pluginParamID = payload["pluginParamID"];
+            SK_String pluginParamID = payload["dawPluginParamID"];
             iplug::IParam* param = skg->findPluginParamByName(pluginParamID);
             int paramIdx = skg->findPluginParamIdxByName(pluginParamID);
 
@@ -219,13 +222,103 @@ public:
                 pluginParameters = "'" + SK_String(instance->GetParam(0)->GetName()) + "'";
             }
             else {
+                auto makeParameterObj = [](IParam* param) {
+                    SK_String id = SK_String(param->GetName());
+                    SK_String value = SK_String(param->Value());
+
+                    std::map<IParam::EParamType, std::string> types {
+                        {IParam::EParamType::kTypeNone, "none"},
+                        {IParam::EParamType::kTypeBool, "boolean"},
+                        {IParam::EParamType::kTypeInt, "integer"},
+                        {IParam::EParamType::kTypeEnum, "list"},
+                        {IParam::EParamType::kTypeDouble, "double"},
+                    };
+
+                    std::string type = types[param->Type()];
+
+
+
+                    std::map<IParam::EParamUnit, std::string> units {
+                        {IParam::EParamUnit::kUnitPercentage, "percentage"},
+                        {IParam::EParamUnit::kUnitSeconds, "seconds"},
+                        {IParam::EParamUnit::kUnitMilliseconds, "milliseconds"},
+                        {IParam::EParamUnit::kUnitSamples, "samples"},
+                        {IParam::EParamUnit::kUnitDB, "decibels"},
+                        {IParam::EParamUnit::kUnitLinearGain, "linear_gain"},
+                        {IParam::EParamUnit::kUnitPan, "pan"},
+                        {IParam::EParamUnit::kUnitPhase, "phase"},
+                        {IParam::EParamUnit::kUnitDegrees, "degrees"},
+                        {IParam::EParamUnit::kUnitMeters, "meters"},
+                        {IParam::EParamUnit::kUnitRate, "rate"},
+                        {IParam::EParamUnit::kUnitRatio, "ratio"},
+                        {IParam::EParamUnit::kUnitFrequency, "frequency"},
+                        {IParam::EParamUnit::kUnitOctaves, "octaves"},
+                        {IParam::EParamUnit::kUnitCents, "cents"},
+                        {IParam::EParamUnit::kUnitAbsCents, "absolute_cents"},
+                        {IParam::EParamUnit::kUnitSemitones, "semitones"},
+                        {IParam::EParamUnit::kUnitMIDINote, "midi_note"},
+                        {IParam::EParamUnit::kUnitMIDICtrlNum, "midi_ctrl_number"},
+                        {IParam::EParamUnit::kUnitBPM, "bpm"},
+                        {IParam::EParamUnit::kUnitBeats, "beats"},
+                        {IParam::EParamUnit::kUnitCustom, "custom"}
+                    };
+
+                    std::string unit = units[param->Unit()];
+
+
+                    std::map<IParam::EDisplayType, std::string> displayTypes{
+                       {IParam::EDisplayType::kDisplayLinear, "linear"},
+                       {IParam::EDisplayType::kDisplayLog, "log"},
+                       {IParam::EDisplayType::kDisplayExp, "exponential"},
+                       {IParam::EDisplayType::kDisplaySquared, "squared"},
+                       {IParam::EDisplayType::kDisplaySquareRoot, "squared_root"},
+                       {IParam::EDisplayType::kDisplayCubed, "cubed"},
+                       {IParam::EDisplayType::kDisplayCubeRoot, "cubed_root"}
+                    };
+
+                    std::string displayType = displayTypes[param->DisplayType()];
+
+
+                    int flags = param->GetFlags();
+
+                    bool cannotAutomate = (flags & IParam::EFlags::kFlagCannotAutomate) != 0;
+                    bool stepped = (flags & IParam::EFlags::kFlagStepped) != 0;
+                    bool negateDisplay = (flags & IParam::EFlags::kFlagNegateDisplay) != 0;
+                    bool signDisplay = (flags & IParam::EFlags::kFlagSignDisplay) != 0; // <- fix scope
+                    bool meta = (flags & IParam::EFlags::kFlagMeta) != 0;
+
+                    // "none" means none of the real bits are set
+                    constexpr int kAllFlags =
+                        IParam::EFlags::kFlagCannotAutomate |
+                        IParam::EFlags::kFlagStepped |
+                        IParam::EFlags::kFlagNegateDisplay |
+                        IParam::EFlags::kFlagSignDisplay |
+                        IParam::EFlags::kFlagMeta;
+
+                    bool none = (flags & kAllFlags) == 0;
+
+                    // Build the object string (JSON-like). If you need strict JSON, add quotes around keys.
+                    SK_String flagsObject = "null";
+
+                    if (!none){
+                        flagsObject = "{cannotAutomate:" + SK_String(cannotAutomate ? "true" : "false") +
+                        ",stepped:" + SK_String(stepped ? "true" : "false") +
+                        ",negateDisplay:" + SK_String(negateDisplay ? "true" : "false") +
+                        ",signDisplay:" + SK_String(signDisplay ? "true" : "false") +
+                        ",meta:" + SK_String(meta ? "true" : "false") +
+                        "}";
+                    }
+
+                    return "{id:'" + id + "',value:" + value + ",type:'" + type + "',unit:'" + unit + "',displayType:'" + displayType + "',flags:" + flagsObject + "}";
+                };
+
                 for (int i = 0; i < instance->NParams() - 1; i++) {
                     IParam* param = instance->GetParam(i);
-                    pluginParameters += "{id:'" + SK_String(param->GetName()) + "',value:" + SK_String(param->Value()) + "},";
+                    pluginParameters += makeParameterObj(param) + ",";
                 }
 
-                IParam* param = instance->GetParam(instance->NParams() - 1);
-                pluginParameters += "{id:'" + SK_String(param->GetName()) + "',value:" + SK_String(param->Value()) + "}";
+                IParam* lastParam = instance->GetParam(instance->NParams() - 1);
+                pluginParameters += makeParameterObj(lastParam);
             }
 
             pluginParameters = "[" + pluginParameters + "]";
@@ -296,6 +389,32 @@ public:
                 wnd->updateWebView();
             };
         #endif
+
+
+        skg->tickSK_TimerMngr = [&]() {
+            if (skg && !skg->terminating) skg->timerMngr->tick();
+        };
+
+        
+        uiTimer_ = std::unique_ptr<Timer>(Timer::Create([this](iplug::Timer&) {
+            bool isRunningInMainThread = skg->threadPool->thisFunctionRunningInMainThread();
+            if (isRunningInMainThread) skg->threadPool_processMainThreadTasks();
+
+            skg->tickSK_TimerMngr();
+        }, 1));
+        
+
+
+        skg->syncTimer->setCallback([this]() {
+            #if defined(SK_OS_windows)
+                updateParamValues();
+            #elif defined(SK_OS_apple)
+                if (skg->OBJCPPSafeTicker) skg->OBJCPPSafeTicker();
+            #endif
+        });
+        
+
+        initialized = true;
     }
     
 
