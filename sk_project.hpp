@@ -85,8 +85,7 @@ public:
             }
             else {
                 SK_Window* view = static_cast<Superkraft*>(skg->sk)->wndMngr->findWindowByTag(target);
-                //if (view) view->webview.evaluateScript(str, NULL);
-                if (view) view->webview.sendMsgAsJSON(data, NULL);
+                if (view) view->webview.sendMsgAsJSON(str, NULL);
             }
         };
 
@@ -193,6 +192,8 @@ public:
                             wnd->contentView = (__bridge NSView*) handle;
                             wnd->wndHandle = wnd->contentView.window;
                         }
+                
+                        wnd->finalizeCreation();
                     #endif
                 #endif
                   
@@ -321,8 +322,9 @@ public:
                 pluginParameters += makeParameterObj(lastParam);
             }
 
-            pluginParameters = "[" + pluginParameters + "]";
-
+            //pluginParameters = "[" + pluginParameters + "]";
+            pluginParameters = "[]";
+            
             static_cast<Superkraft*>(skg->sk)->wvinit->pluginParameters = pluginParameters;
 
 
@@ -409,7 +411,7 @@ public:
             #if defined(SK_OS_windows)
                 updateParamValues();
             #elif defined(SK_OS_apple)
-                if (skg->OBJCPPSafeTicker) skg->OBJCPPSafeTicker();
+                //if (skg->OBJCPPSafeTicker) skg->OBJCPPSafeTicker();
             #endif
         });
         
