@@ -84,6 +84,10 @@ public:
                 instance->EvaluateJavaScript(str.c_str());
             }
             else {
+                #if defined(SK_OS_windows)
+                    str = data;
+                #endif
+
                 SK_Window* view = static_cast<Superkraft*>(skg->sk)->wndMngr->findWindowByTag(target);
                 if (view) view->webview.sendMsgAsJSON(str, NULL);
             }
