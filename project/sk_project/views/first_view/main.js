@@ -13,11 +13,11 @@ module.exports = class SK_View extends SK_RootView {
             minimizable: true,
             maximizable: true,
 
-            minWidth: 500,
-            minHeight: 580,
+            //minWidth: 500,
+            //minHeight: 580,
 
-            maxWidth: 1500,
-            maxHeight: 1580,
+            //maxWidth: 1500,
+            //maxHeight: 1580,
 
             //resizable: false,
 
@@ -34,6 +34,8 @@ module.exports = class SK_View extends SK_RootView {
             //transparent: true,
 
             //backgroundColor: 'rgba(200, 124, 85, 0.5)'
+
+            fullscreenable: false,
 
             accessPluginParameters: true, //this tells the SK++ backend that this view will need to access the plugin parameters
         }

@@ -24,7 +24,7 @@ class sk_ui_tab_parameters extends sk_ui_component {
 
             _c.container.setup(_c => {
                 _c.add.switch(_c => {
-                    _c.pluginParamID = 'Boolean'
+                    _c.dawPluginParamID = 'Boolean'
                     _c.text = 'Boolean'
                 })
             })
@@ -39,16 +39,14 @@ class sk_ui_tab_parameters extends sk_ui_component {
 
             _c.container.setup(_c => {
                 _c.add.slider(_c => {
-                    _c.pluginParamID = 'Integer'
+                    _c.dawPluginParamID = 'Integer'
 
                     _c.style.maxWidth = '300px'
-
-                    _c.step = 1
-                    _c.min = 1
-                    _c.max = 9
-                    _c.defaultValue = 5
-
-                    _c.smooth = false
+                }, {
+                    step: 1,
+                    min: 1,
+                    max: 9,
+                    default: 5
                 })
             })
 
@@ -61,20 +59,16 @@ class sk_ui_tab_parameters extends sk_ui_component {
 
             _c.container.setup(_c => {
                 _c.add.slider(_c => {
-                    _c.pluginParamID = 'Double'
+                    _c.dawPluginParamID = 'Double'
 
                     _c.style.maxWidth = '300px'
 
                     _c.min = 0
                     _c.max = 100
                     _c.defaultValue = 50
-
-                    _c.smooth = true
                 })
             })
-
         })
-
 
         this.add.group(_c => {
             _c._header.weight = 'bold'
@@ -83,7 +77,7 @@ class sk_ui_tab_parameters extends sk_ui_component {
 
             _c.container.setup(_c => {
                 _c.add.list(_c => {
-                    _c.pluginParamID = 'List'
+                    _c.dawPluginParamID = 'List'
 
                     _c.highlightOnSelect = true
 
@@ -102,21 +96,6 @@ class sk_ui_tab_parameters extends sk_ui_component {
                     _c.items.add({
                         label: 'Option 3'
                     })
-
-
-                    _c.onItemSelected = async item => {
-                        var paramIdx = item.idx
-                        var paramID = item.info.label
-
-                        _c.dawPluginParamInfo.busyWriting = true
-                        _c.dawPluginParamInfo.busyChanging = true
-                        
-                        await _c.dawPluginParamInfo.writeValue({value: paramIdx})
-
-                        _c.dawPluginParamInfo.busyWriting = false
-                        _c.dawPluginParamInfo.busyChanging = false
-                        
-                    }
                 })
             })
 

@@ -70,6 +70,22 @@
         "tuple": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "xlocinfo": "cpp",
+        "xhash": "cpp",
+        "xtree": "cpp",
+        "functional": "cpp",
+        "ranges": "cpp",
+        "xutility": "cpp",
+        "chrono": "cpp",
+        "compare": "cpp",
+        "memory": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "xmemory": "cpp",
+        "xtr1common": "cpp",
+        "atomic": "cpp",
+        "system_error": "cpp",
+        "xiosbase": "cpp"
     }
 }

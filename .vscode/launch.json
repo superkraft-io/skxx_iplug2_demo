@@ -14,7 +14,72 @@
             "program": "${workspaceFolder}/skxx/bundler/sk_bundler.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
-            ]
+            ],
+            "args": [ "--bundle_mode", "deep" ]
+        },
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Prebuild script (dbg-none_bundle)",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/skxx/bundler/sk_prebuild_script.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "args": [ "--ide", "vscode", "--config", "dbg-none_bundle" ]
+        },
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Prebuild script (dbg-shallow_bundle)",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/skxx/bundler/sk_prebuild_script.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "args": [ "--ide", "vscode", "--config", "dbg-shallow_bundle" ]
+        },
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Prebuild script (dbg-deep_bundle)",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/skxx/bundler/sk_prebuild_script.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "args": [ "--ide", "vscode", "--config", "dbg-deep_bundle" ]
+        },
+
+        {
+            "type": "pwa-node",
+            "request": "attach",
+            "name": "Attach on 9229",
+            "port": 9229,
+            "address": "localhost",
+            "protocol": "inspector",
+            "cwd": "${workspaceFolder}",
+            "timeout": 30000
+        },
+
+        {
+            "type": "pwa-node",
+            "request": "attach",
+            "name": "Attach on 9228",
+            "port": 9228,
+            "address": "localhost",
+            "protocol": "inspector",
+            "cwd": "${workspaceFolder}",
+            "timeout": 30000
         }
     ]
 }
