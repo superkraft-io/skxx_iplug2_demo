@@ -326,8 +326,7 @@ public:
                 pluginParameters += makeParameterObj(lastParam);
             }
 
-            //pluginParameters = "[" + pluginParameters + "]";
-            pluginParameters = "[]";
+            pluginParameters = "[" + pluginParameters + "]";
             
             static_cast<Superkraft*>(skg->sk)->wvinit->pluginParameters = pluginParameters;
 
@@ -415,7 +414,7 @@ public:
             #if defined(SK_OS_windows)
                 updateParamValues();
             #elif defined(SK_OS_apple)
-                //if (skg->OBJCPPSafeTicker) skg->OBJCPPSafeTicker();
+                if (skg->OBJCPPSafeTicker) skg->OBJCPPSafeTicker();
             #endif
         });
         
