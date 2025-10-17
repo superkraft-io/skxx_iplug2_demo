@@ -174,9 +174,10 @@ public:
 
 
         skg->onMainWindowHWNDAcquired = [&](void* handle, bool isView = false) {
+           
             SK_Window* wnd = static_cast<Superkraft*>(skg->sk)->wndMngr->newWindow([&](SK_Window* wnd) {
                 skg->mainWindow = wnd;
-
+                
                 wnd->config.data["width"] = instance->GetEditorWidth();
                 wnd->config.data["height"] = instance->GetEditorHeight();
 
