@@ -37,6 +37,8 @@ module.exports = class SK_View extends SK_RootView {
 
             fullscreenable: false,
 
+            resizable: false,
+
             accessPluginParameters: true, //this tells the SK++ backend that this view will need to access the plugin parameters
         }
     }
